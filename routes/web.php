@@ -7,6 +7,7 @@ use App\Http\Controllers\ProduitController;
 use App\Http\Controllers\MagasinierController;
 use App\Http\Controllers\AchatProduitController;
 use App\Http\Controllers\BonReceptionController;
+use App\Http\Controllers\DepotController;
 use App\Http\Controllers\LivraisonProduitsController;
 use App\Models\LivraisonProduits;
 
@@ -36,6 +37,7 @@ Route::get('home/', [HomeController::class, 'index'])->name('home');
 
 Route::get('produits/liste', [ProduitController::class, 'index'])->name('index.produits');                                          #
 Route::post('produits/store', [ProduitController::class, 'store'])->name('store.produits');                                         #
+Route::get('magasin/depots', [DepotController::class, 'index'])->name('depots');
 
 // Achats Magasinier
 

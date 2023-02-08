@@ -26,8 +26,7 @@
     <link rel="shortcut icon" href="{{ asset('assets/images/favicon.png') }}" />
     <!-- Data Table -->
     <link rel="stylesheet" href="{{ asset('assets/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') }}">
-    <link rel="stylesheet"
-        href="{{ asset('assets/plugins/datatables-responsive/css/responsive.bootstrap4.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/plugins/datatables-responsive/css/responsive.bootstrap4.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/plugins/datatables-buttons/css/buttons.bootstrap4.min.css') }}">
 
     <! <link rel="stylesheet" href="{{ asset('assets/plugins/toastr/toastr.min.css') }}">
@@ -82,18 +81,15 @@
     <div class="container-scroller">
         <nav class="sidebar sidebar-offcanvas" id="sidebar">
             <div class="sidebar-brand-wrapper d-none d-lg-flex align-items-center justify-content-center fixed-top">
-                <a class="sidebar-brand brand-logo" href="index.html"><img src="{{ asset('assets/images/logo.svg') }}"
-                        alt="logo" /></a>
-                <a class="sidebar-brand brand-logo-mini" href="index.html"><img
-                        src="{{ asset('assets/images/logo-mini.svg') }}" alt="logo" /></a>
+                <a class="sidebar-brand brand-logo" href="index.html"><img src="{{ asset('assets/images/logo.svg') }}" alt="logo" /></a>
+                <a class="sidebar-brand brand-logo-mini" href="index.html"><img src="{{ asset('assets/images/logo-mini.svg') }}" alt="logo" /></a>
             </div>
             <ul class="nav">
                 <li class="nav-item profile">
                     <div class="profile-desc">
                         <div class="profile-pic">
                             <div class="count-indicator">
-                                <img class="img-xs rounded-circle " src="{{ asset('assets/images/faces/face15.jpg') }}"
-                                    alt="">
+                                <img class="img-xs rounded-circle " src="{{ asset('assets/images/faces/face15.jpg') }}" alt="">
                                 <span class="count bg-success"></span>
                             </div>
                             <div class="profile-name">
@@ -101,10 +97,8 @@
                                 <span>Gold Member</span>
                             </div>
                         </div>
-                        <a href="#" id="profile-dropdown" data-toggle="dropdown"><i
-                                class="mdi mdi-dots-vertical"></i></a>
-                        <div class="dropdown-menu dropdown-menu-right sidebar-dropdown preview-list"
-                            aria-labelledby="profile-dropdown">
+                        <a href="#" id="profile-dropdown" data-toggle="dropdown"><i class="mdi mdi-dots-vertical"></i></a>
+                        <div class="dropdown-menu dropdown-menu-right sidebar-dropdown preview-list" aria-labelledby="profile-dropdown">
                             <a href="#" class="dropdown-item preview-item">
                                 <div class="preview-thumbnail">
                                     <div class="preview-icon bg-dark rounded-circle">
@@ -152,22 +146,21 @@
                     <p class="nav-link">Administrator</p>
                 </li>
                 <li class="nav-item menu-items">
-                    <a class="nav-link" data-toggle="collapse" href="#ui-achat_livraison" aria-expanded="false"
-                        aria-controls="ui-achat_livraison">
+                    <a class="nav-link" data-toggle="collapse" href="#ui-achat_livraison" aria-expanded="false" aria-controls="ui-achat_livraison">
                         <span class="menu-icon">
                             <i class="mdi mdi-home"></i>
                         </span>
                         <span class="menu-title">Livraison & Achat</span>
                         <i class="menu-arrow"></i>
                     </a>
-                    <div class="collapse" id="ui-achat_livraison" >
+                    <div class="collapse" id="ui-achat_livraison">
                         <ul class="nav flex-column sub-menu">
-                            <li class="nav-item"> 
+                            <li class="nav-item">
                                 <a class="nav-link" href="{{ route('produits.achat') }}">
                                     Achat des Produits
                                 </a>
                             </li>
-                            <li class="nav-item"> 
+                            <li class="nav-item">
                                 <a class="nav-link" href="{{ route('All.Livraison') }}">
                                     Livraison des Produits
                                 </a>
@@ -176,39 +169,82 @@
                     </div>
                 </li>
 
-                <li  class="nav-item menu-items">
+                <!-- Masgasin & magasinier -->
+
+                <li class="nav-item menu-items">
                     <p class="nav-link">Depots Produits Medicale</p>
                 </li>
                 <li class="nav-item menu-items">
-                <a class="nav-link" data-toggle="collapse" href="#ui-fourniture" aria-expanded="false"
-                    aria-controls="ui-fourniture">
-                    <span class="menu-icon">
-                        <i class="mdi mdi-home"></i>
-                    </span>
-                    <span class="menu-title">Magasin</span>
-                    <i class="menu-arrow"></i>
-                </a>
-                <div class="collapse" id="ui-fourniture" >
-                    <ul class="nav flex-column sub-menu">
-                        <li class="nav-item"> 
-                            <a class="nav-link" href="{{ route('index.produits') }}">
-                                Listes des Produits
-                            </a>
-                        </li>
-                        <li class="nav-item"> 
-                            <a class="nav-link" href="{{ route('index.achat.produits') }}">
-                                Achat des Produits
-                            </a>
-                        </li>
+                    <a class="nav-link" data-toggle="collapse" href="#ui-fourniture" aria-expanded="false" aria-controls="ui-fourniture">
+                        <span class="menu-icon">
+                            <i class="mdi mdi-home"></i>
+                        </span>
+                        <span class="menu-title">Magasin</span>
+                        <i class="menu-arrow"></i>
+                    </a>
+                    <div class="collapse" id="ui-fourniture">
+                        <ul class="nav flex-column sub-menu">
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('index.produits') }}">
+                                    Listes des Produits
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{route('depots')}}">
+                                    Depots
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('index.achat.produits') }}">
+                                    Achat des Produits
+                                </a>
+                            </li>
 
-                        <li class="nav-item"> 
-                            <a class="nav-link" href="{{ route('liste.reception') }}">
-                                Listes des Livraison 
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('liste.reception') }}">
+                                    Listes des Livraison
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+
+                <!-- Pharmacie & Pharmacien -->
+
+                <li class="nav-item menu-items">
+                    <a class="nav-link" data-toggle="collapse" href="#ui-fourniture" aria-expanded="false" aria-controls="ui-fourniture">
+                        <span class="menu-icon">
+                            <i class="mdi mdi-home"></i>
+                        </span>
+                        <span class="menu-title">Pharmacie</span>
+                        <i class="menu-arrow"></i>
+                    </a>
+                    <div class="collapse" id="ui-fourniture">
+                        <ul class="nav flex-column sub-menu">
+                            <li class="nav-item">
+                                <a class="nav-link" href=" ">
+                                    Stock Medicament
+                                </a>
+                            </li>
+                            <!-- <li class="nav-item">
+                                <a class="nav-link" href="{{route('depots')}}">
+                                    Depots
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('index.achat.produits') }}">
+                                    Achat des Produits
+                                </a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('liste.reception') }}">
+                                    Listes des Livraison
+                                </a>
+                            </li> -->
+                        </ul>
+                    </div>
+                </li>
             </ul>
         </nav>
         <!-- partial -->
@@ -220,8 +256,7 @@
                         <img src="{{ asset('assets/images/logo-mini.svg') }}" alt="logo" /></a>
                 </div>
                 <div class="navbar-menu-wrapper flex-grow d-flex align-items-stretch">
-                    <button class="navbar-toggler navbar-toggler align-self-center" type="button"
-                        data-toggle="minimize">
+                    <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
                         <span class="mdi mdi-menu"></span>
                     </button>
                     <ul class="navbar-nav w-100">
@@ -235,25 +270,22 @@
 
                         {{-- <li class="nav-item nav-settings d-none d-lg-block">
                             <a class="nav-link" href="{{ route('parametre') }}">
-                                <i class="mdi mdi-settings"></i>
-                            </a>
+                        <i class="mdi mdi-settings"></i>
+                        </a>
                         </li> --}}
                         @guest
                         @else
-                            <li class="nav-item border-left">
-                                <a class="nav-link count-indicator dropdown-toggle"
-                                    onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
-                                    href="{{ route('logout') }}" data-toggle="dropdown" aria-expanded="false">
-                                    <i class="mdi mdi-logout text-danger"></i>
-                                </a>
-                                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                    @csrf
-                                </form>
-                            </li>
+                        <li class="nav-item border-left">
+                            <a class="nav-link count-indicator dropdown-toggle" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" href="{{ route('logout') }}" data-toggle="dropdown" aria-expanded="false">
+                                <i class="mdi mdi-logout text-danger"></i>
+                            </a>
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                @csrf
+                            </form>
+                        </li>
                         @endguest
                     </ul>
-                    <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button"
-                        data-toggle="offcanvas">
+                    <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
                         <span class="mdi mdi-format-line-spacing"></span>
                     </button>
                 </div>
@@ -263,11 +295,11 @@
                 <div class="content-wrapper">
 
                     @if ($message = Session::get('success'))
-                        <div class="alertSucess">
-                            <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
-                            <strong>Success!</strong>
-                            {{ $message }}
-                        </div>
+                    <div class="alertSucess">
+                        <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+                        <strong>Success!</strong>
+                        {{ $message }}
+                    </div>
                     @endif
                     @yield('content')
                 </div>
@@ -294,8 +326,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title ">Nouveaux Fourniture</h4>
-                <button style="color:#e32c2c" type="button" class="close" data-dismiss="modal"
-                    aria-label="Close">
+                <button style="color:#e32c2c" type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>

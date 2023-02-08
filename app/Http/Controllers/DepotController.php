@@ -2,12 +2,21 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Depot;
+use App\Repository\DepotsRepository;
 use App\Http\Requests\StoreDepotRequest;
 use App\Http\Requests\UpdateDepotRequest;
-use App\Models\Depot;
 
 class DepotController extends Controller
 {
+    private $depotsRepository;
+    public function __construct(
+
+        DepotsRepository $depotsRepository
+        
+    ){
+        $this->depotsRepository = $depotsRepository;
+    }
     /**
      * Display a listing of the resource.
      *
@@ -15,7 +24,13 @@ class DepotController extends Controller
      */
     public function index()
     {
-        //
+        $depotProduits = $this->depotsRepository->getAll();
+
+        return view('magasin.depotsProduits',
+            [
+                'depots' => $depotProduits
+            ]
+        );
     }
 
     /**
