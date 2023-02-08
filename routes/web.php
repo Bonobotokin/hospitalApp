@@ -65,4 +65,6 @@ Route::get('details/achat_produits/{numAchat}', [AchatProduitController::class, 
 
 Route::get('liste/Livraison', [LivraisonProduitsController::class, 'index'])->name('All.Livraison');
 Route::get('nouveaux/livraison', [LivraisonProduitsController::class, 'create'])->name('createNewLivraison');
-Route::get('enregistrement/livraison_fournisseur', [LivraisonProduitsController::class], 'store')->name('saveLivraison');
+Route::post('enregistrement/livraison_fournisseur', [LivraisonProduitsController::class, 'store'])->name('saveLivraison');
+// Route::get('Bon_livraison/details/{num_livraison}/Magasien', [BonReceptionController::class, 'detailLivraison'])->name('detail.livraison');
+Route::get('details/{num_livraison}/livraison', [LivraisonProduitsController::class, 'show'])->name('livraison.show');

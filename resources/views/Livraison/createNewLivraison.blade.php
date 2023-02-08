@@ -135,19 +135,25 @@
                                                 Information sur le commande :
                                             </h6>
                                             <div class="row">
-                                                <div class="col-lg-6">
+                                                <div class="col-lg-4">
                                                     <div class="form-group">
                                                         <label for="Conditionnement">Conditionnement : </label>
                                                         <input id="conditionnement" type="text" placeholder="Conditionnement" class="form-control">
                                                     </div>
                                                 </div>
-                                                <div class="col-lg-6">
+                                                <div class="col-lg-4">
                                                     <div class="form-group">
-                                                        <label for="Quantite">Quantite Acheter: </label>
-                                                        <input id="quantite" type="number" placeholder="Quantiter a commander" class="form-control">
+                                                        <label for="Quantite">Quantite Livrer: </label>
+                                                        <input id="quantite" type="number" placeholder="Quantite totale" class="form-control">
                                                     </div>
                                                 </div>
-
+                                                <div class="col-lg-3">
+                                                    <div class="form-group">
+                                                        <label for="">Prix:</label>
+                                                        <input type="number" class="form-control" name="" id="prix" placeholder="Prix">
+                                                        
+                                                    </div>
+                                                </div>
                                             </div>
                                             <div class="row">
                                                 <div class="col-md-6 text-right">
@@ -157,7 +163,7 @@
                                                     </button>
                                                 </div>
                                                 <div class="col-md-6">
-                                                    <button type="button" onclick="addMedicamentBtn()" class="btn btn-inverse-primary btn-fw">
+                                                    <button type="button" onclick="addProduitLivrais()" class="btn btn-inverse-primary btn-fw">
                                                         <i class="mdi mdi-plus btn-icon-prepend"></i>
                                                         Ajouter
                                                     </button>
@@ -167,12 +173,6 @@
                                         <br><br><br>
                                         <div class="col-lg-12 mt-2">
 
-                                            <div class="col-lg-4">
-                                                <div class="form-group">
-                                                    <label for="">Numero d'achat :</label>
-                                                    <input type="number" class="form-control" name="numAchat" placeholder="Numero de l'achat">
-                                                </div>
-                                            </div>
                                             <div id="formCommande" class="formCommande form-inline">
 
                                             </div>

@@ -59,7 +59,7 @@ class BonReceptionController extends Controller
 
             if (!is_null($reponse_depot_livraison['data'])) {
 
-                return redirect()->route('index.produits', ['reponse' => $reponse_depot_livraison])->with('success', $reponse_depot_livraison['message']);
+                return redirect()->route('magasin.listeLivraison', ['reponse' => $reponse_depot_livraison])->with('success', $reponse_depot_livraison['message']);
 
             } else {
                 return redirect()->back()->withErrors($reponse_depot_livraison)->withInput();

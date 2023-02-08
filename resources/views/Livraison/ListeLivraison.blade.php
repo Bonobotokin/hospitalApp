@@ -57,26 +57,11 @@
                                             ?>
                                         </td>
                                         <td>
-                                            <?php
-                                            if($livraisonListe['isValidate'] == 0)
-                                            {
-                                        ?>
-                                            <a type="button" class="btn btn-outline-primary btn-fw"
-                                                href="{{ route('detail.livraison', ['num_livraison' => $livraisonListe['num_livraison']]) }}">
-                                                Valider
-                                            </a>
-                                            <?php
-                                            }
-                                            else {
-                                        ?>
                                             <a type="button"
-                                                href="{{ route('detail.livraison', ['num_livraison' => $livraisonListe['num_livraison']]) }}"
+                                                href="{{ route('livraison.show', ['num_livraison' => $livraisonListe['num_livraison']]) }}"
                                                 class="btn  btn-outline-success btn-fw"e <i class="mdi mdi-view"></i>
                                                 Details
                                             </a>
-                                            <?php
-                                            }
-                                        ?>
                                         </td>
                                     </tr>
                                 @endforeach

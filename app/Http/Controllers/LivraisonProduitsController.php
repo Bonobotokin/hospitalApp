@@ -65,10 +65,10 @@ class LivraisonProduitsController extends Controller
      */
     public function store(Request $request, LivraisonAction $action)
     {
-        dd($request);
+        
         try {
 
-            $reponse_depot_livraison = $action->updateDepot($request);
+            $reponse_depot_livraison = $action->saveLivraisonPartenariat($request);
 
             // dd($reponse_depot_livraison, 'eto1');
 
@@ -95,7 +95,7 @@ class LivraisonProduitsController extends Controller
     {
         $liste = $this->livraisonProduitsRepository->getListeNum($num);
         // dd($liste);
-        return view('magasin.validateLivraison',
+        return view('Livraison.detailsLivraison',
             [
                 'details' => $liste
             ]

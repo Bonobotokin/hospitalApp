@@ -74,16 +74,15 @@ class AchatProduitsAction
         try {
 
             $data = DB::transaction(function () use ($request) {
-                // dd($request);
 
                 $nombreProduitsLivred = $request->listeAchatLivred;
 
                 $reqFournisseur = $request->fournisseur;
 
                 $forunisseur = $this->insertFournisseur($reqFournisseur);
-                // dd($reqFournisseur);
+                
                 for ($i = 0; $i < (int) $nombreProduitsLivred; $i++) {
-                    // dd($request->$i['produits_id']);
+                    
                     $idAchat = (int) $request->$i['achat_id'];
 
                     $numAchat = $request->$i['numAchat'];
@@ -102,7 +101,7 @@ class AchatProduitsAction
 
                             'quantiter_livraison' => $request->$i['quantite'],
 
-                            'total_quantite_livraison' => $request->$i['total'],
+                            
 
                             'prix_livraison' => $request->$i['prix_achat'],
 
