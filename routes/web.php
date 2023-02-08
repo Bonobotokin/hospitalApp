@@ -8,7 +8,7 @@ use App\Http\Controllers\MagasinierController;
 use App\Http\Controllers\AchatProduitController;
 use App\Http\Controllers\BonReceptionController;
 use App\Http\Controllers\LivraisonProduitsController;
-
+use App\Models\LivraisonProduits;
 
 /*
 |--------------------------------------------------------------------------
@@ -65,3 +65,4 @@ Route::get('details/achat_produits/{numAchat}', [AchatProduitController::class, 
 
 Route::get('liste/Livraison', [LivraisonProduitsController::class, 'index'])->name('All.Livraison');
 Route::get('nouveaux/livraison', [LivraisonProduitsController::class, 'create'])->name('createNewLivraison');
+Route::post('enregistrement/livraison_fournisseur', [LivraisonProduitsController::class], 'store')->name('saveLivraison');

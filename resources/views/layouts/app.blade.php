@@ -160,7 +160,7 @@
                         <span class="menu-title">Livraison & Achat</span>
                         <i class="menu-arrow"></i>
                     </a>
-                    <div class="collapse" id="ui-achat_livraison" style="">
+                    <div class="collapse" id="ui-achat_livraison" >
                         <ul class="nav flex-column sub-menu">
                             <li class="nav-item"> 
                                 <a class="nav-link" href="{{ route('produits.achat') }}">
@@ -188,7 +188,7 @@
                     <span class="menu-title">Magasin</span>
                     <i class="menu-arrow"></i>
                 </a>
-                <div class="collapse" id="ui-fourniture" style="">
+                <div class="collapse" id="ui-fourniture" >
                     <ul class="nav flex-column sub-menu">
                         <li class="nav-item"> 
                             <a class="nav-link" href="{{ route('index.produits') }}">

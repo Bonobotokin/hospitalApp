@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Action\LivraisonAction;
+use Illuminate\Http\Request;
 use App\Models\LivraisonProduits;
 use App\Repository\LivraisonProduitsRepository;
 use App\Http\Requests\StoreLivraisonProduitsRequest;
@@ -54,9 +56,26 @@ class LivraisonProduitsController extends Controller
      * @param  \App\Http\Requests\StoreLivraisonProduitsRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreLivraisonProduitsRequest $request)
+    public function store(Request $request, LivraisonAction $action)
     {
-        //
+        try {
+
+            $reponse_depot_livraison = $action->updateDepot($request);
+
+            // dd($reponse_depot_livraison, 'eto1');
+
+            if (!is_null($reponse_depot_livraison['data'])) {
+
+                return redirect()->route('All.Livraison', ['reponse' => $reponse_depot_livraison])->with('success', $reponse_depot_livraison['message']);
+
+            } else {
+                return redirect()->back()->withErrors($reponse_depot_livraison)->withInput();
+            }
+        } catch (\Throwable $th) {
+
+            return $th;
+
+        }
     }
 
     /**

@@ -14,7 +14,7 @@
     @endif
     <form id="formLine" class="" action="{{ route('store.achat.produits') }}" method="POST" enctype="multipart/form-data">
         @csrf
-        <div id="formLivraison" class="row" style="display: ">
+        <div id="formLivraison" class="row" >
             <div class="col-lg-12 grid-margin stretch-card">
                 <div class="card">
                     <h4 class="card-title m-10 pd-10 text-center">
@@ -55,7 +55,7 @@
                                     </div>
                                 </div>
                                 
-                                <div class="col-md-8" id="cardConsultation" style="display:">
+                                <div class="col-md-8" id="cardConsultation" >
                                     <blockquote class="blockquote blockquote-primary">
 
                                         <div class="row">

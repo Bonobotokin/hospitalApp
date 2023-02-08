@@ -35,7 +35,7 @@ class LivraisonAction {
             $livraisonAll = $this->livraisonProduitsRepository->getByNumLivraison($request->numLivraison);
 
             $magasinierId = Auth::user()->id;
-            // dd($livraisonAll);
+            
             $data = DB::transaction(function () use ($livraisonAll, $magasinierId) {
 
                 

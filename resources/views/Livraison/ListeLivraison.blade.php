@@ -18,7 +18,7 @@
             <div class="card">
                 <div class="card-body">
                     <h4 class="card-title text-center">Liste des Livraison</h4>
-                    <a href="{{ route('create.achat.produits') }}" type="button" class="btn btn-outline-primary btn-fw">
+                    <a href="{{ route('createNewLivraison') }}" type="button" class="btn btn-outline-primary btn-fw">
                         Nouveaux Livraison
                     </a>
                     <br><br>

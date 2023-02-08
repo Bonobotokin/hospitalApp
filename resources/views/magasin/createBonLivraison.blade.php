@@ -14,7 +14,7 @@
     @endif
     {{-- @dd($isRessut[0]) --}}
         
-        <div id="formLivraison" class="row" style="display: ">
+        <div id="formLivraison" class="row" >
             <div class="col-lg-12 grid-margin stretch-card">
                 <div class="card">
                     <div class="card-body">

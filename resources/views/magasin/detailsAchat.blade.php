@@ -12,7 +12,7 @@
             @endforeach
         </div>
     @endif
-        <div id="commandeList" style="display:" class="row">
+        <div id="commandeList"  class="row">
             <div class="col-lg-12 grid-margin stretch-card">
                 <div class="card">
                     <div class="card-body">

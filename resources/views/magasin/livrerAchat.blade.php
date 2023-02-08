@@ -15,7 +15,7 @@
     {{-- @dd($isRessut[0]) --}}
     @if ($isRessut[0]['Isvalide'] == false)
         
-        <div id="formLivraison" class="row" style="display: ">
+        <div id="formLivraison" class="row" >
             <div class="col-lg-12 grid-margin stretch-card">
                 <div class="card">
                     <div class="card-body">
@@ -163,7 +163,7 @@
             </div>
         </div>
     @else
-        <div id="commandeList" style="display:" class="row">
+        <div id="commandeList"  class="row">
             <div class="col-lg-12 grid-margin stretch-card">
                 <div class="card">
                     <div class="card-body">
