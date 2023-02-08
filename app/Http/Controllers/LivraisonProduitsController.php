@@ -2,24 +2,25 @@
 
 namespace App\Http\Controllers;
 
-use App\Action\LivraisonAction;
 use Illuminate\Http\Request;
+use App\Action\LivraisonAction;
 use App\Models\LivraisonProduits;
+use App\Repository\DepotsRepository;
 use App\Repository\LivraisonProduitsRepository;
 use App\Http\Requests\StoreLivraisonProduitsRequest;
 use App\Http\Requests\UpdateLivraisonProduitsRequest;
 
 class LivraisonProduitsController extends Controller
 {
-
+    private $depotsRepository;
     private $livraisonProduitsRepository;
 
     public function __construct(
-
+        DepotsRepository $depotsRepository,
         LivraisonProduitsRepository $livraisonProduitsRepository
 
     ){
-
+        $this->depotsRepository = $depotsRepository;
         $this->livraisonProduitsRepository = $livraisonProduitsRepository;
 
     }
@@ -47,7 +48,13 @@ class LivraisonProduitsController extends Controller
      */
     public function create()
     {
-        return view('Livraison.createNewLivraison');
+        $produits = $this->depotsRepository->getAll();
+        return view('Livraison.createNewLivraison',
+            [
+                'produits' => $produits
+            ]
+    
+        );
     }
 
     /**
@@ -58,6 +65,7 @@ class LivraisonProduitsController extends Controller
      */
     public function store(Request $request, LivraisonAction $action)
     {
+        dd($request);
         try {
 
             $reponse_depot_livraison = $action->updateDepot($request);

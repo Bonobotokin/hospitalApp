@@ -31,14 +31,15 @@ class LivraisonAction {
     public function updateDepot ($request) {
 
         try 
-        {
+        {   
+            dd($request);
             $livraisonAll = $this->livraisonProduitsRepository->getByNumLivraison($request->numLivraison);
 
             $magasinierId = Auth::user()->id;
             
             $data = DB::transaction(function () use ($livraisonAll, $magasinierId) {
 
-                
+            
                 for ($i=0; $i < count($livraisonAll); $i++) 
                 { 
 

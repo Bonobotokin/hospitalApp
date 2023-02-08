@@ -50,7 +50,7 @@ class MagasinierController extends Controller
         // return view('achatProduits.nouveauxAchat'
         // dd($produits);
         return view('magasin.nouveauxAchat',
-                [
+            [
                 'produits' => $produits
             ]
         );
