@@ -18,7 +18,7 @@ return new class extends Migration
         Schema::create('mouvement_depots', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(Depot::class);
-            $table->foreignIdFor(Fournisseur::class);
+            $table->foreignIdFor(Fournisseur::class)->nullable()->constrained();
             $table->integer('quantite_mouvement')->default(0);
             $table->string('type_mouvement');
             $table->timestamps();

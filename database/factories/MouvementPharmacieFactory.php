@@ -5,9 +5,9 @@ namespace Database\Factories;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Pharmacien>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\mouvementPharmacie>
  */
-class PharmacienFactory extends Factory
+class MouvementPharmacieFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -17,7 +17,7 @@ class PharmacienFactory extends Factory
     public function definition()
     {
         return [
-            'personnel_id' => 1
+            //
         ];
     }
 }

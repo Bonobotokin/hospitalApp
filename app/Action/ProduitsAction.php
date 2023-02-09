@@ -3,14 +3,20 @@ namespace App\Action;
 use Exception;
 use App\Models\Depot;
 use App\Models\Produit;
-use App\Repository\PersonnelRepository;
+use App\Models\Pharmacien;
+use App\Action\DepotsAction;
+use App\Models\MouvementDepot;
+use App\Models\StockPharmacie;
+use App\Models\mouvementPharmacie;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use App\Repository\PersonnelRepository;
 
 class ProduitsAction 
 {
     private $personnelRepository;
     public function __construct(
+
         PersonnelRepository $personnelRepository
     ){
         $this->personnelRepository = $personnelRepository;
@@ -23,7 +29,7 @@ class ProduitsAction
         try {
             $data = DB::transaction(function () use ($request, $magasinierId) {
 
-                $magasinierConnetected = $this->personnelRepository->getPersonnelConnected($magasinierId);
+                $equipeFourniture = $this->personnelRepository->getPersonnelConnected($magasinierId);
 
                 // dd($request);
 
@@ -37,14 +43,12 @@ class ProduitsAction
                 ]);
                 $produits_id = $produits->id;
                 
-                // default neww produit is store in depot for Magasin central
-                
-                $depots = Depot::create([
-                    'conditionnement_depots' => null,
-                    'quantite_depots' => 0,
-                    'produit_id' => $produits_id,
-                    'magasinier_id' => $magasinierConnetected[0]['id']
-                ]);
+                $depots = $this->insertNewProduitsDepots($produits_id, $equipeFourniture[0]['id']);
+
+                if($request['categori'] == 'Medicaments')
+                {
+                    $pharmacie = $this->regenereStockPharmacie($produits_id, $equipeFourniture[0]['id']);
+                }
 
                 return [
 
@@ -59,5 +63,47 @@ class ProduitsAction
         }
 
     }
+
+
+    public function insertNewProduitsDepots ($produits, $magasinier) {
+        $depots = Depot::create([
+                    'conditionnement_depots' => null,
+                    'quantite_depots' => 0,
+                    'produit_id' => $produits,
+                    'magasinier_id' => $magasinier
+                ]);
+
+        $initialisationDepot = MouvementDepot::create([
+
+            'depot_id' => $depots->id,
+            'fournisseur_id' => null,
+            'quantite_mouvement' => 0,
+            'type_mouvement'  => 'Initialisation du Depot'
+
+        ]);
+
+        return $depots;
+    }
+
+
+    public function regenereStockPharmacie($produits, $pharmacien) {
+        
+        $pharmacie = StockPharmacie::create([
+            'conditionnement_pharmacie' => null,
+            'quantite_pharmacie' => 0,
+            'produit_id' => $produits,
+            'pharmacien_id' => $pharmacien
+        ]);
+        $initialisationStock = mouvementPharmacie::create([
+
+            'stock_pharmacie_id' => $pharmacie->id,
+            'magasinier_id' => $pharmacien,
+            'quantite_mvm_pharmacie' => 0,
+            'type_mvm_pharmacie'  => 'Initialisation du Stocage'
+
+        ]);
+        return $pharmacie;
+    }
+
 }
 

@@ -15,7 +15,7 @@ class CommandeProduitController extends Controller
      */
     public function index()
     {
-        //
+        return view('Pharmacie.CommandeProduits');
     }
 
     /**

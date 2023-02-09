@@ -212,25 +212,26 @@
                 <!-- Pharmacie & Pharmacien -->
 
                 <li class="nav-item menu-items">
-                    <a class="nav-link" data-toggle="collapse" href="#ui-fourniture" aria-expanded="false" aria-controls="ui-fourniture">
+                    <a class="nav-link" data-toggle="collapse" href="#ui-pharmacie" aria-expanded="false" aria-controls="ui-pharmacie">
                         <span class="menu-icon">
                             <i class="mdi mdi-home"></i>
                         </span>
                         <span class="menu-title">Pharmacie</span>
                         <i class="menu-arrow"></i>
                     </a>
-                    <div class="collapse" id="ui-fourniture">
+                    <div class="collapse" id="ui-pharmacie">
                         <ul class="nav flex-column sub-menu">
                             <li class="nav-item">
-                                <a class="nav-link" href=" ">
+                                <a class="nav-link" href="{{ route('pharmacie.stock') }}">
                                     Stock Medicament
                                 </a>
                             </li>
-                            <!-- <li class="nav-item">
-                                <a class="nav-link" href="{{route('depots')}}">
-                                    Depots
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('commande.index') }}" >
+                                    Commande Medicaments
                                 </a>
                             </li>
+                            <!-- 
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('index.achat.produits') }}">
                                     Achat des Produits

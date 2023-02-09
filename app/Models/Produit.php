@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Models\Depot;
 use App\Models\AchatProduit;
+use App\Models\StockPharmacie;
 use App\Models\LivraisonProduits;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -35,6 +36,11 @@ class Produit extends Model
     public function livraison() : HasMany
     {
         return $this->hasMany(LivraisonProduits::class);
+    }
+
+    public function stockPharmacie() : HasMany
+    {
+        return $this->hasMany(StockPharmacie::class);
     }
 
 

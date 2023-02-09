@@ -7,8 +7,10 @@ use App\Http\Controllers\ProduitController;
 use App\Http\Controllers\MagasinierController;
 use App\Http\Controllers\AchatProduitController;
 use App\Http\Controllers\BonReceptionController;
+use App\Http\Controllers\CommandeProduitController;
 use App\Http\Controllers\DepotController;
 use App\Http\Controllers\LivraisonProduitsController;
+use App\Http\Controllers\StockPharmacieController;
 use App\Models\LivraisonProduits;
 
 /*
@@ -51,6 +53,18 @@ Route::get('Liste_achat/validated/{numAchat}', [MagasinierController::class, 'sh
 Route::get('Bon_reception/Magasien', [BonReceptionController::class, 'bonReception'])->name('liste.reception');
 Route::get('Bon_livraison/details/{num_livraison}/Magasien', [BonReceptionController::class, 'detailLivraison'])->name('detail.livraison');
 Route::post('valider/livraison', [BonReceptionController::class, 'updateDepotLiivraison'])->name('valider_livraison.update_depot');
+
+############################################
+#  Gestion de Pharmacie stock & Medicamen  #
+############################################
+
+Route::get('pharmacie/stock', [StockPharmacieController::class, 'index'])->name('pharmacie.stock');
+
+// Commandes Medicaments Pharmacie
+
+Route::get('Pharmacie/commande/Medicament', [CommandeProduitController::class, 'index'])->name('commande.index');
+
+
 
 ############################################################
 #  Gestion des Achats Produits & Fournisseur Administrator #

@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreSkockPharmacieRequest;
-use App\Http\Requests\UpdateSkockPharmacieRequest;
-use App\Models\SkockPharmacie;
+use App\Http\Requests\StoremouvementPharmacieRequest;
+use App\Http\Requests\UpdatemouvementPharmacieRequest;
+use App\Models\mouvementPharmacie;
 
-class SkockPharmacieController extends Controller
+class MouvementPharmacieController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -31,10 +31,10 @@ class SkockPharmacieController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\StoreSkockPharmacieRequest  $request
+     * @param  \App\Http\Requests\StoremouvementPharmacieRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreSkockPharmacieRequest $request)
+    public function store(StoremouvementPharmacieRequest $request)
     {
         //
     }
@@ -42,10 +42,10 @@ class SkockPharmacieController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\SkockPharmacie  $skockPharmacie
+     * @param  \App\Models\mouvementPharmacie  $mouvementPharmacie
      * @return \Illuminate\Http\Response
      */
-    public function show(SkockPharmacie $skockPharmacie)
+    public function show(mouvementPharmacie $mouvementPharmacie)
     {
         //
     }
@@ -53,10 +53,10 @@ class SkockPharmacieController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\SkockPharmacie  $skockPharmacie
+     * @param  \App\Models\mouvementPharmacie  $mouvementPharmacie
      * @return \Illuminate\Http\Response
      */
-    public function edit(SkockPharmacie $skockPharmacie)
+    public function edit(mouvementPharmacie $mouvementPharmacie)
     {
         //
     }
@@ -64,11 +64,11 @@ class SkockPharmacieController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\UpdateSkockPharmacieRequest  $request
-     * @param  \App\Models\SkockPharmacie  $skockPharmacie
+     * @param  \App\Http\Requests\UpdatemouvementPharmacieRequest  $request
+     * @param  \App\Models\mouvementPharmacie  $mouvementPharmacie
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateSkockPharmacieRequest $request, SkockPharmacie $skockPharmacie)
+    public function update(UpdatemouvementPharmacieRequest $request, mouvementPharmacie $mouvementPharmacie)
     {
         //
     }
@@ -76,10 +76,10 @@ class SkockPharmacieController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\SkockPharmacie  $skockPharmacie
+     * @param  \App\Models\mouvementPharmacie  $mouvementPharmacie
      * @return \Illuminate\Http\Response
      */
-    public function destroy(SkockPharmacie $skockPharmacie)
+    public function destroy(mouvementPharmacie $mouvementPharmacie)
     {
         //
     }

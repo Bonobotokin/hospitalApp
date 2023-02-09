@@ -15,7 +15,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('skock_pharmacies', function (Blueprint $table) {
+        Schema::create('stock_pharmacies', function (Blueprint $table) {
             $table->id();
             $table->string('conditionnement_pharmacie')->nullable();
             $table->integer('quantite_pharmacie')->default(0);
@@ -32,6 +32,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('skock_pharmacies');
+        Schema::dropIfExists('stock_pharmacies');
     }
 };
