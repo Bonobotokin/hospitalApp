@@ -29,4 +29,14 @@ class StockPharmacieRepository implements StockPharmacieRepositoryInterface {
 
     }
 
+
+    public function lookOfQuantite()
+    {
+        $commandeInstantane = StockPharmacie::with('produit')
+                ->where('quantite_pharmacie', '<=', 50)
+                ->get();
+
+        return $commandeInstantane;
+    }
+
 }

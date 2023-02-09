@@ -2,12 +2,24 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreCommandeProduitRequest;
+
 use App\Http\Requests\UpdateCommandeProduitRequest;
 use App\Models\CommandeProduit;
+use App\Repository\StockPharmacieRepository;
+use Illuminate\Http\Request;
 
 class CommandeProduitController extends Controller
 {
+
+    private $stockPharmacieRepository;
+
+    public function __construct(
+        StockPharmacieRepository $stockPharmacieRepository
+    )
+    {
+        $this->stockPharmacieRepository = $stockPharmacieRepository;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -15,7 +27,14 @@ class CommandeProduitController extends Controller
      */
     public function index()
     {
-        return view('Pharmacie.CommandeProduits');
+        // Envoyer Instatanner les Medicament qui a besoin d'etre Approvisonner
+        $stockPharmacieSeuil = $this->stockPharmacieRepository->lookOfQuantite();
+       
+        return view('Commandes.AllCommande',
+            [
+                'pharmacieCommande' => $stockPharmacieSeuil
+            ]
+        );
     }
 
     /**
@@ -34,7 +53,7 @@ class CommandeProduitController extends Controller
      * @param  \App\Http\Requests\StoreCommandeProduitRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreCommandeProduitRequest $request)
+    public function store(Request $request)
     {
         //
     }

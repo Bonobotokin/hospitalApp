@@ -3,8 +3,6 @@ namespace App\Action;
 use Exception;
 use App\Models\Depot;
 use App\Models\Produit;
-use App\Models\Pharmacien;
-use App\Action\DepotsAction;
 use App\Models\MouvementDepot;
 use App\Models\StockPharmacie;
 use App\Models\mouvementPharmacie;

@@ -6,4 +6,6 @@ interface StockPharmacieRepositoryInterface {
 
     public function getAll();
 
+    public function lookOfQuantite();
+
 }

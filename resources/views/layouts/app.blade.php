@@ -168,6 +168,7 @@
                         </ul>
                     </div>
                 </li>
+                
 
                 <!-- Masgasin & magasinier -->
 
@@ -205,10 +206,14 @@
                                     Listes des Livraison
                                 </a>
                             </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('commandeAll') }}">
+                                    Listes des Commandes
+                                </a>
+                            </li>
                         </ul>
                     </div>
                 </li>
-
                 <!-- Pharmacie & Pharmacien -->
 
                 <li class="nav-item menu-items">

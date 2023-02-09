@@ -10,8 +10,9 @@ use App\Http\Controllers\BonReceptionController;
 use App\Http\Controllers\CommandeProduitController;
 use App\Http\Controllers\DepotController;
 use App\Http\Controllers\LivraisonProduitsController;
+use App\Http\Controllers\PharmacienController;
 use App\Http\Controllers\StockPharmacieController;
-use App\Models\LivraisonProduits;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -62,7 +63,7 @@ Route::get('pharmacie/stock', [StockPharmacieController::class, 'index'])->name(
 
 // Commandes Medicaments Pharmacie
 
-Route::get('Pharmacie/commande/Medicament', [CommandeProduitController::class, 'index'])->name('commande.index');
+Route::get('Pharmacie/commande/Medicament', [PharmacienController::class, 'index'])->name('commande.index');
 
 
 
@@ -77,10 +78,18 @@ Route::get('details/achat_produits/{numAchat}', [AchatProduitController::class, 
 
 ###############################################################
 #  Gestion des Livraison Produits & Fournisseur Administrator #
-##############################################################
+###############################################################
 
 Route::get('liste/Livraison', [LivraisonProduitsController::class, 'index'])->name('All.Livraison');
 Route::get('nouveaux/livraison', [LivraisonProduitsController::class, 'create'])->name('createNewLivraison');
 Route::post('enregistrement/livraison_fournisseur', [LivraisonProduitsController::class, 'store'])->name('saveLivraison');
 // Route::get('Bon_livraison/details/{num_livraison}/Magasien', [BonReceptionController::class, 'detailLivraison'])->name('detail.livraison');
 Route::get('details/{num_livraison}/livraison', [LivraisonProduitsController::class, 'show'])->name('livraison.show');
+
+
+###############################################################
+#  Gestion des Livraison Produits & Fournisseur Administrator #
+###############################################################
+
+Route::get('ListeCommande/Produits', [CommandeProduitController::class, 'index'])->name('commandeAll');
+
