@@ -114,18 +114,21 @@
                 </h6>
                 <form id="formLine" class="" action="{{ route('enregistre.commande') }}" method="POST" enctype="multipart/form-data">
                     @csrf
+
+                    @foreach ($produits as $idPharmacien)
+                        <input type="hidden" name="pharmacien_id" value="{{ $idPharmacien['pharmacien_id'] }}">
+                    @endforeach
                     <label for="numCommande">Numero de commande :</label>
+                    @if ($generedNumber->isNotempty()) 
 
-                    {{-- @if ($commande->isNotempty()) --}}
+                        <input type="number" name="num_commande1" required class="form-control mb-2 mr-1 col-lg-3" placeholder="Numero du commande" value="{{ $generedNumber['num_commande'] }}">
 
-                    <input type="number" name="num_commande" required class="form-control mb-2 mr-1 col-lg-3" placeholder="Numero du commande" value="">
+                    @elseif ($generedNumber->isEmpty())
 
-                    {{-- @elseif ($commande->isEmpty())
+                        <input type="number" name="num_commande2" required class="form-control mb-2 mr-1 col-lg-3" placeholder="Numero du commande"
+                        value="1">
 
-                            <input type="number" name="num_commande2" required class="form-control mb-2 mr-1 col-lg-12" placeholder="Numero du commande"
-                            value="1">
-
-                        @endif --}}
+                    @endif
 
 
                     <div id="formCommande" class="formCommande form-inline">

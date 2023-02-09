@@ -26,7 +26,6 @@ return new class extends Migration
             $table->string('type_livraison')->nullable();
 
             $table->foreignIdFor(Produit::class);
-            $table->foreignIdFor(Pharmacien::class,'validate_pharmacien');
             $table->foreignIdFor(Magasinier::class,'validate_magasinier');
             $table->timestamps();
         });

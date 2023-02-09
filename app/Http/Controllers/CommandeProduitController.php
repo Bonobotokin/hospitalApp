@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Action\CommandeAction;
 use App\Http\Requests\UpdateCommandeProduitRequest;
 use App\Models\CommandeProduit;
+use App\Repository\CommandeRepository;
 use App\Repository\StockPharmacieRepository;
 use Illuminate\Http\Request;
 
@@ -12,12 +13,15 @@ class CommandeProduitController extends Controller
 {
 
     private $stockPharmacieRepository;
+    private $commandeRepository;
 
     public function __construct(
-        StockPharmacieRepository $stockPharmacieRepository
+        StockPharmacieRepository $stockPharmacieRepository,
+        CommandeRepository $commandeRepository
     )
     {
         $this->stockPharmacieRepository = $stockPharmacieRepository;
+        $this->commandeRepository = $commandeRepository;
     }
 
     /**
@@ -28,8 +32,9 @@ class CommandeProduitController extends Controller
     public function index()
     {
         // Envoyer Instatanner les Medicament qui a besoin d'etre Approvisonner
+
         $stockPharmacieSeuil = $this->stockPharmacieRepository->lookOfQuantite();
-       
+        // dd($stockPharmacieSeuil);
         return view('Commandes.AllCommande',
             [
                 'pharmacieCommande' => $stockPharmacieSeuil
@@ -45,10 +50,12 @@ class CommandeProduitController extends Controller
     public function create()
     {
         $stockPharmacieSeuil = $this->stockPharmacieRepository->lookOfQuantite();
-       
+        $generedNumber = $this->commandeRepository->getGeneredNumCommande();
+        // dd($generedNumber->isEmpty());
         return view('Commandes.CreateCommande',
             [
-                'produits' => $stockPharmacieSeuil
+                'produits' => $stockPharmacieSeuil,
+                'generedNumber' => $generedNumber
             ]
         );
     }
