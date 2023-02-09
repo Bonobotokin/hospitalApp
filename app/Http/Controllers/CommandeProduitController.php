@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-
+use App\Action\CommandeAction;
 use App\Http\Requests\UpdateCommandeProduitRequest;
 use App\Models\CommandeProduit;
 use App\Repository\StockPharmacieRepository;
@@ -44,7 +44,13 @@ class CommandeProduitController extends Controller
      */
     public function create()
     {
-        //
+        $stockPharmacieSeuil = $this->stockPharmacieRepository->lookOfQuantite();
+       
+        return view('Commandes.CreateCommande',
+            [
+                'produits' => $stockPharmacieSeuil
+            ]
+        );
     }
 
     /**
@@ -53,9 +59,25 @@ class CommandeProduitController extends Controller
      * @param  \App\Http\Requests\StoreCommandeProduitRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, CommandeAction $action)
     {
-        //
+        try {
+            //code...
+            $achatResponse = $action->commandeAction($request);
+
+            dd($achatResponse, 'eto1');
+
+            if (!is_null($achatResponse['data']))
+            {
+
+                return redirect()->route('produits.achat',['reponse'=>$achatResponse])->with('success', $achatResponse['message']);
+
+            }else {
+                return redirect()->back()->withErrors($achatResponse)->withInput();
+            }
+        } catch (\Throwable $th) {
+            //throw $th;
+        }
     }
 
     /**

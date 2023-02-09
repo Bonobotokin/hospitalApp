@@ -19,13 +19,18 @@
             <div class="card-body">
                 <h4 class="card-title text-center">Liste des Commandes</h4>
 
-                <!-- <div class="alertDanger">
-                    <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
-                    <strong>Danger!</strong>
-                    Vous {{ count($pharmacieCommande) }} Commande des Medicament in Pharmacie
-                    <br>
-                    <button>pour plus de details click ici</button>
-                </div> -->
+                @if ($pharmacieCommande->isNotEmpty())
+                    <div class="alertDanger">
+                        <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+                        <strong>Danger!</strong>
+                        Vous {{ count($pharmacieCommande) }} Commande des Medicament in Pharmacie,
+                        pour plus d'information
+                        <br>
+                        <a href="{{ route('create.commande') }}" type="button" class="btn btn-info">
+                            click ici
+                        </a>
+                    </div>
+                @endif
                 <br><br>
                 <div class="table-responsive">
                     <table id="example3" class="table table-striped">

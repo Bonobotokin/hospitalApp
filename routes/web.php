@@ -55,6 +55,12 @@ Route::get('Bon_reception/Magasien', [BonReceptionController::class, 'bonRecepti
 Route::get('Bon_livraison/details/{num_livraison}/Magasien', [BonReceptionController::class, 'detailLivraison'])->name('detail.livraison');
 Route::post('valider/livraison', [BonReceptionController::class, 'updateDepotLiivraison'])->name('valider_livraison.update_depot');
 
+// Enregistre Valide * Commande Pharmacie
+
+Route::get('ListeCommande/Produits', [CommandeProduitController::class, 'index'])->name('commandeAll');
+Route::get('ValideCommandes/Magasin', [CommandeProduitController::class, 'create'])->name('create.commande');
+Route::post('valideCommandes/Envoyer', [CommandeProduitController::class, 'store'])->name('enregistre.commande');
+
 ############################################
 #  Gestion de Pharmacie stock & Medicamen  #
 ############################################
@@ -91,5 +97,5 @@ Route::get('details/{num_livraison}/livraison', [LivraisonProduitsController::cl
 #  Gestion des Livraison Produits & Fournisseur Administrator #
 ###############################################################
 
-Route::get('ListeCommande/Produits', [CommandeProduitController::class, 'index'])->name('commandeAll');
+
 

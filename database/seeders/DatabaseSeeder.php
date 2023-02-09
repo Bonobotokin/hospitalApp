@@ -4,7 +4,7 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
-use App\Models\Magasin;
+
 use App\Models\Magasinier;
 use App\Models\Personnel;
 use App\Models\Pharmacien;

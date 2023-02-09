@@ -18,6 +18,7 @@ return new class extends Migration
     {
         Schema::create('commande_produits', function (Blueprint $table) {
             $table->id();
+            $table->integer('num_commande');
             $table->foreignIdFor(Produit::class);
             $table->string('conditionnement_commande');
             $table->integer('qunantite_commande');

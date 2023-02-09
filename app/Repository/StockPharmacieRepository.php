@@ -20,7 +20,11 @@ class StockPharmacieRepository implements StockPharmacieRepositoryInterface {
                     'abrev' => $produits->abreviation_produits,
                     'quantite' => $stoque->quantite_pharmacie,
                     'conditionnement' => $stoque->conditionnement_pharmacie,
-                    'type' =>  $produits->type_produits
+                    'type' =>  $produits->type_produits,
+                    'num' =>    $produits->produits_id,
+                    'categorie' =>$produits->categorie,
+                    'abrev' =>$produits->abreviation_produits
+                    
                 ];
 
             });
@@ -34,7 +38,24 @@ class StockPharmacieRepository implements StockPharmacieRepositoryInterface {
     {
         $commandeInstantane = StockPharmacie::with('produit')
                 ->where('quantite_pharmacie', '<=', 50)
-                ->get();
+                ->get()
+                ->map(function($stoque){
+                
+                    $produits = $stoque->produit;  
+                    
+                    return [
+                        'num' => $stoque->produit_id,
+                        'nom' => $produits->designation_produits,
+                        'abrev' => $produits->abreviation_produits,
+                        'quantite' => $stoque->quantite_pharmacie,
+                        'conditionnement' => $stoque->conditionnement_pharmacie,
+                        'type' =>  $produits->type_produits,
+                        'categorie' =>$produits->categorie,
+                        'abrev' =>$produits->abreviation_produits
+                        
+                    ];
+    
+                });
 
         return $commandeInstantane;
     }
