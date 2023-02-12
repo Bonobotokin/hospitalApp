@@ -7,4 +7,6 @@ interface CommandeProduitRepositoryInterface {
 
     public function getGeneredNumCommande();
 
+    public function getAll();
+
 }

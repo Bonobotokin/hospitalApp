@@ -44,7 +44,7 @@ class LivraisonAction
 
             $data = DB::transaction(function () use ($livraisonAll, $magasinierId) {
 
-                $magasinierValidate = $this->verifyUserIsMagasin($magasinierId);
+            $magasinierValidate = $this->verifyUserIsMagasin($magasinierId);
 
                 if (count($livraisonAll) == 1) {
 

@@ -43,7 +43,8 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($pharmacieCommande as $liste)
+                            
+                            @foreach ($commande as $liste)
                             <tr>
                                 <td>
 

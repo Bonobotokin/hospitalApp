@@ -44,6 +44,9 @@ class AchatProduitsRepository implements AchatProduitsRepositoryInterface
         return $magasinier;
     }
 
+    /**
+     * select by numAchat
+     * */ 
     public function getByNumAchat(int $num)
     {
 
@@ -79,6 +82,15 @@ class AchatProduitsRepository implements AchatProduitsRepositoryInterface
                     });
         return $liste;
     }
+
+
+    public function getNumAchatGenered()
+    {
+        $numGenered = AchatProduit::select('numAchat')->distinct()->get();
+
+        return $numGenered;
+    }
+
 
     public function setRessut(int $num)
     {

@@ -41,17 +41,19 @@ class MagasinierController extends Controller
     }
 
     /**
-     * Summary of create
+     * Summary of create Achats Produits
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function create()
     {
         $produits = $this->depotsRepository->getAll();
-        // return view('achatProduits.nouveauxAchat'
-        // dd($produits);
+        $numAchat = $this->achatProduitsRepository->getNumAchatGenered();
+
+        
         return view('magasin.nouveauxAchat',
             [
-                'produits' => $produits
+                'produits' => $produits,
+                'numAchat' => $numAchat
             ]
         );
     }

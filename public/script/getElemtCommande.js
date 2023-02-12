@@ -74,11 +74,11 @@ function addMedicammentCommander() {
     {
         div.innerHTML = 
         `
-            <input type="hidden" name="idProduits" value="`+ codeProduits +`" class="form-control" id="`+ codeProduits +`">
-            <input type="text" desabled name="designation" value="`+ designation +`" class="form-control mb-2 mr-1 col-lg-3" id="`+ designation +`">
-            <input type="text"  name="conditionnement" value="`+ conditionnement +`" class="form-control mb-2 mr-1 col-lg-3" id="`+ conditionnement +`">
-            <input type="text"  name="quantite" value="`+ quantite +`" class="form-control mb-2 mr-1 col-lg-3" id="'`+ quantite +`">
-            <input type="text" name="observation" value="`+ etat +`" class="form-control mb-2 mr-1 col-lg-2" id="`+ etat +`">
+            <input type="hidden" name="0[idProduits]" value="`+ codeProduits +`" class="form-control" id="`+ codeProduits +`">
+            <input type="text" desabled name="0[designation]" value="`+ designation +`" class="form-control mb-2 mr-1 col-lg-3" id="`+ designation +`">
+            <input type="text"  name="0[conditionnement]" value="`+ conditionnement +`" class="form-control mb-2 mr-1 col-lg-3" id="`+ conditionnement +`">
+            <input type="text"  name="0[quantite]" value="`+ quantite +`" class="form-control mb-2 mr-1 col-lg-3" id="'`+ quantite +`">
+            <input type="text" name="0[observation]" value="`+ etat +`" class="form-control mb-2 mr-1 col-lg-2" id="`+ etat +`">
                     
         `;
         console.log(div.innerHTML);

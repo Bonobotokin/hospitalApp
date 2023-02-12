@@ -8,6 +8,8 @@ interface AchatProduitsRepositoryInterface
 
     public function getByNumAchat(int $num);
 
+    public function getNumAchatGenered();
+
     public function setRessut(int $num);
 
     public function getBydAchatId(int $id);

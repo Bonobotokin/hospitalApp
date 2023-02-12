@@ -10,24 +10,9 @@ class StockPharmacieRepository implements StockPharmacieRepositoryInterface {
     public function getAll() {
 
         $stoque = StockPharmacie::with('produit')
-            ->get()
-            ->map(function($stoque){
-                
-                $produits = $stoque->produit;  
-                
-                return [
-                    'nom' => $produits->designation_produits,
-                    'abrev' => $produits->abreviation_produits,
-                    'quantite' => $stoque->quantite_pharmacie,
-                    'conditionnement' => $stoque->conditionnement_pharmacie,
-                    'type' =>  $produits->type_produits,
-                    'num' =>    $produits->produits_id,
-                    'categorie' =>$produits->categorie,
-                    'abrev' =>$produits->abreviation_produits
-                    
-                ];
-
-            });
+            // ->select('num_Commande')
+            ->distinct()
+            ->get();
 
         return $stoque;
 

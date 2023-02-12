@@ -17,31 +17,28 @@
         <div class="col-lg-12 grid-margin stretch-card">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="card-title text-center">Liste des Produits</h4>
-                    <button type="button" class="btn btn-outline-primary btn-fw" data-toggle="modal"
-                        data-target="#newFourniture">
-                        Nouveaux Fourniture
-                    </button>
+                    <h4 class="card-title text-center">Liste des Produits </h4>
+                    <a href="{{ route('create.achat.produits') }}" type="button" class="btn btn-outline-primary btn-fw">
+                        Nouveaux Achat
+                    </a>
                     <br><br>
                     <div class="table-responsive">
                         <table id="example1" class="table table-bordered">
                             <thead>
                                 <tr>
                                     <th> Nom </th>
-                                    <th> Abreviation </th>
-                                    <th> Fabriquant </th>
-                                    <th> Type </th>
+                                    <th> Conditionnement </th>
+                                    <th> Quantite </th>
                                     <th> Prix vente U </th>
                                     <th> Action </th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ( $produitListe as $data )
+                                @foreach ( $depots as $data )
                                     <tr>
-                                        <td> {{ $data['nom'] }} </td>
-                                        <td> {{ $data['abrev'] }} </td>
-                                        <td> {{ $data['fabriquant'] }} </td>
-                                        <td> {{ $data['types'] }} </td>
+                                        <td> {{ $data['nom'] }}; {{ $data['abrev'] }} </td>
+                                        <td> {{ $data['conditionnement'] }} </td>
+                                        <td> {{ $data['quantite'] }} </td>
                                         <td> {{ $data['prix_vente'] }} Ar </td>
                                         <td>
                                             <abs type="button" class="btn btn-primary btn-icon-text" >

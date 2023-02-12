@@ -19,12 +19,25 @@ class DepotsRepository implements DepotsRepositoryInterface
                     'num' => $depots->produit_id,
                     'nom' =>    $produit->designation_produits,
                     'prix_vente' => $produit->prix_vente_produits,
+                    'conditionnement' => $depots->conditionnement_depots,
+                    'quantite' => $depots->quantite_depots,
                     'fabriquant' => $produit->fabriquant,
                     'types' => $produit->type_produits,
                     'categorie' =>$produit->categorie,
                     'abrev' =>$produit->abreviation_produits
                 ];
             });
+
+        return $depots;
+    }
+
+
+    public static function produitsHasQuantite(int $id)
+    {
+        $depots = Depot::select('quantite_depots')
+
+            ->where('produit_id', $id)
+            ->get();
 
         return $depots;
     }

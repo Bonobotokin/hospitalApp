@@ -1,5 +1,16 @@
 @extends('layouts.app')
 @section('content')
+@if ($errors->any())
+        <div class="alertDanger">
+            <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+            <strong>Danger!</strong>
+            @foreach ($errors->all() as $error)
+                <ul>
+                    <ol>{{ $error }}</ol>
+                </ul>
+            @endforeach
+        </div>
+    @endif
 <div class="row">
     <div class="col-lg-12 grid-margin stretch-card">
         <div class="card">
@@ -75,13 +86,13 @@
                             </div>
                             <div class="col-lg-4">
                                 <div class="form-group">
-                                    <label for="Quantite">Quantite : </label>
+                                    <label for="Quantite">Quantite en Unitaire : </label>
                                     <input id="quantite" type="text" placeholder="Quantiter a commander" class="form-control">
                                 </div>
                             </div>
                             <div class="col-lg-4">
                                 <div class="form-group">
-                                    <label for="Quantite">Observation : </label>
+                                    <label for="Quantite">Observation  : </label>
                                     <input id="etat" type="text" placeholder="observation" class="form-control">
                                 </div>
                             </div>
@@ -119,9 +130,12 @@
                         <input type="hidden" name="pharmacien_id" value="{{ $idPharmacien['pharmacien_id'] }}">
                     @endforeach
                     <label for="numCommande">Numero de commande :</label>
+                    
                     @if ($generedNumber->isNotempty()) 
-
-                        <input type="number" name="num_commande1" required class="form-control mb-2 mr-1 col-lg-3" placeholder="Numero du commande" value="{{ $generedNumber['num_commande'] }}">
+                        <?php
+                            $numero = $generedNumber[0]['num_commande'] + 1 ;
+                        ?>
+                        <input type="number" name="num_commande1" required class="form-control mb-2 mr-1 col-lg-3" placeholder="Numero du commande" value="{{ $numero }}">
 
                     @elseif ($generedNumber->isEmpty())
 

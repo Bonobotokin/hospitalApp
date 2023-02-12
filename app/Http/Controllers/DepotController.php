@@ -25,7 +25,7 @@ class DepotController extends Controller
     public function index()
     {
         $depotProduits = $this->depotsRepository->getAll();
-
+        
         return view('magasin.depotsProduits',
             [
                 'depots' => $depotProduits

@@ -34,10 +34,12 @@ class CommandeProduitController extends Controller
         // Envoyer Instatanner les Medicament qui a besoin d'etre Approvisonner
 
         $stockPharmacieSeuil = $this->stockPharmacieRepository->lookOfQuantite();
-        // dd($stockPharmacieSeuil);
+        $getAllCommande = $this->commandeRepository->getAll();
+        
         return view('Commandes.AllCommande',
             [
-                'pharmacieCommande' => $stockPharmacieSeuil
+                'pharmacieCommande' => $stockPharmacieSeuil,
+                'commande' => $getAllCommande
             ]
         );
     }
@@ -72,18 +74,21 @@ class CommandeProduitController extends Controller
             //code...
             $achatResponse = $action->commandeAction($request);
 
-            dd($achatResponse, 'eto1');
+            
 
             if (!is_null($achatResponse['data']))
             {
-
-                return redirect()->route('produits.achat',['reponse'=>$achatResponse])->with('success', $achatResponse['message']);
+                
+                return redirect()->route('commande.index',['reponse'=>$achatResponse])->with('success', $achatResponse['message']);
 
             }else {
+                
                 return redirect()->back()->withErrors($achatResponse)->withInput();
             }
         } catch (\Throwable $th) {
-            //throw $th;
+
+            return $th;
+
         }
     }
 
