@@ -36,7 +36,7 @@
                         <div class="col-lg-3">
                             <div class="form-group">
                                 <label for="">Numero de livraison :</label>
-                                <input type="number" class="form-control" name="numeroLivraison" placeholder="Numero de livraison">
+                                
                             </div>
                         </div>
                     </div>

@@ -54,6 +54,8 @@ class LivraisonProduitsRepository implements LivraisonProduitsRepositoryInterfac
             });
         return $detail;
     }
+
+
     public function getByNumLivraison (int $num) {
 
         $livraison = LivraisonProduits::with('achatProduits')
@@ -61,6 +63,13 @@ class LivraisonProduitsRepository implements LivraisonProduitsRepositoryInterfac
                     ->get();
         return $livraison;
 
+    }
+
+    public function getNumLivraison()
+    {
+        $numLivraison = LivraisonProduits::select('num_livraison')->distinct()->get();
+        
+        return $numLivraison;
     }
 
 }

@@ -55,7 +55,7 @@ class BonReceptionController extends Controller
 
             $reponse_depot_livraison = $actionLivraison->updateDepot($request);
 
-            // dd($reponse_depot_livraison, 'eto1');
+            dd($reponse_depot_livraison, 'eto1');
 
             if (!is_null($reponse_depot_livraison['data'])) {
 

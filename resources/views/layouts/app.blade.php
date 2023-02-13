@@ -150,7 +150,7 @@
                         <span class="menu-icon">
                             <i class="mdi mdi-home"></i>
                         </span>
-                        <span class="menu-title">Livraison & Achat</span>
+                        <span class="menu-title">Produits</span>
                         <i class="menu-arrow"></i>
                     </a>
                     <div class="collapse" id="ui-achat_livraison">

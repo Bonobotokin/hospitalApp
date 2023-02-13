@@ -24,6 +24,7 @@ return new class extends Migration
             $table->foreignIdFor(AchatProduit::class,'numAchat')->nullable();
             $table->string('conditionnement_livraison');
             $table->integer('quantiter_livraison');
+            $table->integer('total');
             $table->integer('prix_livraison');
             $table->string('type_livraison');
 

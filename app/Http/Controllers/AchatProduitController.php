@@ -10,19 +10,25 @@ use App\Repository\DepotsRepository;
 use App\Repository\AchatProduitsRepository;
 use App\Http\Requests\StoreAchatProduitRequest;
 use App\Http\Requests\UpdateAchatProduitRequest;
+use App\Repository\LivraisonProduitsRepository;
 
 class AchatProduitController extends Controller
 {
     private $depotsRepository;
     private $achatProduitsRepository;
+    private $livraisonProduitsRepository;
+
+
     public function __construct(
 
         DepotsRepository $depotsRepository,
-        AchatProduitsRepository $achatProduitsRepository
+        AchatProduitsRepository $achatProduitsRepository,
+        LivraisonProduitsRepository $livraisonProduitsRepository
 
     ){
         $this->depotsRepository = $depotsRepository;
         $this->achatProduitsRepository = $achatProduitsRepository;
+        $this->livraisonProduitsRepository = $livraisonProduitsRepository;
     }
     
 
@@ -33,6 +39,7 @@ class AchatProduitController extends Controller
     public function index()
     {
         $listeAchat = $this->achatProduitsRepository->getAllByNum();
+        
         return view('achats.listeAchatProduit',
             [
                 'liste' => $listeAchat
@@ -77,11 +84,13 @@ class AchatProduitController extends Controller
         //
         $showListeAchat = $this->achatProduitsRepository->getByNumAchat($num);
         $isRessut = $this->achatProduitsRepository->setRessut($num);
-        // dd($isRessut);
+        $numLivraison = $this->livraisonProduitsRepository->getNumLivraison();
+        
         return view('achats.writeAchat',
             [
                 'achat' => $showListeAchat,
-                'isRessut' => $isRessut
+                'isRessut' => $isRessut,
+                'livraisonNum' => $numLivraison
             ]
         );
 
@@ -89,9 +98,9 @@ class AchatProduitController extends Controller
 
     public function detailsAchat(int $num)
     {
-        $showListeAchat = $this->achatProduitsRepository->getByNumAchat($num);
+    $showListeAchat = $this->achatProduitsRepository->getByNumAchat($num);
         $isRessut = $this->achatProduitsRepository->setRessut($num);
-        // dd($isRessut);
+        dd($isRessut);
         return view('achats.detailsAchat',
             [
                 'achat' => $showListeAchat,

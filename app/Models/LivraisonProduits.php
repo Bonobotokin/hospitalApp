@@ -18,6 +18,7 @@ class LivraisonProduits extends Model
         'numAchat',
         'conditionnement_livraison',
         'quantiter_livraison',
+        'total',
         'prix_livraison',
         'type_livraison',
         'fournisseur_id',

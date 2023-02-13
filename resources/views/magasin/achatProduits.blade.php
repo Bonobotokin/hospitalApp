@@ -57,10 +57,26 @@
                                             ?>                                        
                                         </td>
                                         <td>
+
+                                            <?php
+                                                if($achatListe['ressut'] == 0)
+                                                { 
+                                            ?>
+                                            <button type="button"  class="btn  btn-outline-warning btn-fw">
+                                                <i class="mdi mdi-view"></i>
+                                                En Attente
+                                            </button>
+                                            <?php 
+                                                }
+                                                else {
+                                            ?>
                                             <a type="button" href="{{ route('listeAchat.validate', ['numAchat' => $achatListe['numAchat']]) }}" class="btn  btn-outline-success btn-fw"e
                                                 <i class="mdi mdi-view"></i>
                                                 Details
                                             </a>
+                                            <?php 
+                                                }
+                                            ?>
                                         
                                         </td>
                                     </tr>

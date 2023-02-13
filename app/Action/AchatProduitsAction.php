@@ -72,7 +72,7 @@ class AchatProduitsAction
     public function livraisonAchat($request)
     {
         try {
-
+            // dd($request);
             $data = DB::transaction(function () use ($request) {
 
                 $nombreProduitsLivred = $request->listeAchatLivred;
@@ -101,7 +101,7 @@ class AchatProduitsAction
 
                             'quantiter_livraison' => $request->$i['quantite'],
 
-                            
+                            'total' => $request->$i['total'],
 
                             'prix_livraison' => $request->$i['prix_achat'],
 

@@ -94,7 +94,7 @@ class LivraisonProduitsController extends Controller
     public function show(int $num)
     {
         $liste = $this->livraisonProduitsRepository->getListeNum($num);
-        // dd($liste);
+        dd($liste);
         return view('Livraison.detailsLivraison',
             [
                 'details' => $liste

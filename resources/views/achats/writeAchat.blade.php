@@ -15,7 +15,7 @@
     {{-- @dd($isRessut[0]) --}}
     
         
-        <div id="formLivraison" class="row" style="display: ">
+        <div id="formLivraison" class="row" >
             <div class="col-lg-12 grid-margin stretch-card">
                 <div class="card">
                     <div class="card-body">
@@ -36,7 +36,15 @@
                                 <div class="col-lg-3">
                                     <div class="form-group">
                                         <label for="">Numero de livraison :</label>
-                                        <input type="number" class="form-control" name="numeroLivraison" placeholder="Numero de livraison">
+                                        @if ($livraisonNum->isNotempty())
+                                            <?php
+                                                $numero = $livraisonNum[0]['num_livraison'] + 1 ;
+                                            ?>
+                                            <input type="number" class="form-control" name="numeroLivraison" value="{{ $numero }}">
+                                        @elseif ($livraisonNum->isEmpty())
+                                            <input type="number" class="form-control" name="numeroLivraison" value="1">
+                                        @endif  
+                                
                                     </div>
                                 </div>
                             </div>

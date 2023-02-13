@@ -60,17 +60,18 @@ class LivraisonAction
 
                         $depotsUpdate = Depot::where('id', $livraisonAll[0]['produit_id'])
                             ->get();
+
                     if (isset($depotsUpdate[0])) {
 
                         
 
-                        $entrant = $depotsUpdate[0]['quantite_depots'] + $livraisonAll[0]['quantiter_livraison'];
+                        $entrant = $depotsUpdate[0]['quantite_depots'] + $livraisonAll[0]['total'];
                         
                         $newEntrantDepot = MouvementDepot::create([
 
                             'depot_id' => $depotsUpdate[0]['id'],
                             'fournisseur_id' => $livraisonAll[0]['fournisseur_id'],
-                            'quantite_mouvement' => $entrant,
+                            'quantite_mouvement' =>  $livraisonAll[0]['total'],
                             'type_mouvement'  => 'entrant'
 
                         ]);
