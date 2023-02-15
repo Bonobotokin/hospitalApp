@@ -70,7 +70,7 @@ class LivraisonProduitsController extends Controller
 
             $reponse_depot_livraison = $action->saveLivraisonPartenariat($request);
 
-            // dd($reponse_depot_livraison, 'eto1');
+            // dd($reponse_depot_livraison, 'livraisonSave');
 
             if (!is_null($reponse_depot_livraison['data'])) {
 
@@ -94,7 +94,7 @@ class LivraisonProduitsController extends Controller
     public function show(int $num)
     {
         $liste = $this->livraisonProduitsRepository->getListeNum($num);
-        dd($liste);
+        // dd($liste);
         return view('Livraison.detailsLivraison',
             [
                 'details' => $liste

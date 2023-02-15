@@ -14,6 +14,7 @@ class CommandeProduit extends Model
         'produit_id',
         'conditionnement_commande',
         'qunantite_commande',
+        'total_commande',
         'observetion',
         'pharmacien_id',
         'magasinier_id'

@@ -11,7 +11,8 @@ class MouvementDepot extends Model
 
     protected $fillable = [
         'depot_id',
-        'fournisseur_id',
+        'livraison_produits_id',
+        'magasin_pharmacie_livraison_id',
         'quantite_mouvement',
         'type_mouvement'
     ];

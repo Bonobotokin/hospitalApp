@@ -6,6 +6,7 @@ use App\Action\CommandeAction;
 use App\Http\Requests\UpdateCommandeProduitRequest;
 use App\Models\CommandeProduit;
 use App\Repository\CommandeRepository;
+use App\Repository\DepotsRepository;
 use App\Repository\StockPharmacieRepository;
 use Illuminate\Http\Request;
 
@@ -14,14 +15,17 @@ class CommandeProduitController extends Controller
 
     private $stockPharmacieRepository;
     private $commandeRepository;
+    private $depotsRepository;
 
     public function __construct(
         StockPharmacieRepository $stockPharmacieRepository,
-        CommandeRepository $commandeRepository
+        CommandeRepository $commandeRepository,
+        DepotsRepository $depotsRepository
     )
     {
         $this->stockPharmacieRepository = $stockPharmacieRepository;
         $this->commandeRepository = $commandeRepository;
+        $this->depotsRepository = $depotsRepository;
     }
 
     /**
@@ -52,10 +56,12 @@ class CommandeProduitController extends Controller
     public function create()
     {
         $stockPharmacieSeuil = $this->stockPharmacieRepository->lookOfQuantite();
+        $depotsMagasin = $this->depotsRepository->getProduitMesdicament();
         $generedNumber = $this->commandeRepository->getGeneredNumCommande();
-        // dd($generedNumber->isEmpty());
+
         return view('Commandes.CreateCommande',
             [
+                'depots' => $depotsMagasin,
                 'produits' => $stockPharmacieSeuil,
                 'generedNumber' => $generedNumber
             ]
@@ -72,18 +78,17 @@ class CommandeProduitController extends Controller
     {
         try {
             //code...
-            $achatResponse = $action->commandeAction($request);
+            $commandeResponse = $action->newCommandeNotCommande($request);
 
-            
-
-            if (!is_null($achatResponse['data']))
+            // dd($commandeResponse, 'eto2');
+            if (!is_null($commandeResponse['data']))
             {
                 
-                return redirect()->route('commande.index',['reponse'=>$achatResponse])->with('success', $achatResponse['message']);
+                return redirect()->route('commande.index',['reponse'=>$commandeResponse])->with('success', $commandeResponse['message']);
 
             }else {
                 
-                return redirect()->back()->withErrors($achatResponse)->withInput();
+                return redirect()->back()->withErrors($commandeResponse)->withInput();
             }
         } catch (\Throwable $th) {
 

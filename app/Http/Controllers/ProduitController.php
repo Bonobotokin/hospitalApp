@@ -29,7 +29,7 @@ class ProduitController extends Controller
     {
 
         $produits = $this->produitsRepository->getAll();
-        return view('magasin.listeProduits', 
+        return view('Produits.index', 
             [
                 'produitListe' => $produits
             ]

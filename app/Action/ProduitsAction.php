@@ -70,11 +70,13 @@ class ProduitsAction
                     'produit_id' => $produits,
                     'magasinier_id' => $magasinier
                 ]);
-
+        
+        
         $initialisationDepot = MouvementDepot::create([
 
             'depot_id' => $depots->id,
-            'fournisseur_id' => null,
+            'livraison_produits_id' => null,
+            'magasin_pharmacie_livraison_id' => null,
             'quantite_mouvement' => 0,
             'type_mouvement'  => 'Initialisation du Depot'
 
@@ -95,7 +97,8 @@ class ProduitsAction
         $initialisationStock = mouvementPharmacie::create([
 
             'stock_pharmacie_id' => $pharmacie->id,
-            'magasinier_id' => $pharmacien,
+            'mouvement_depot_id' => null,
+            'magasin_pharmacie_livraison_id' => null,
             'quantite_mvm_pharmacie' => 0,
             'type_mvm_pharmacie'  => 'Initialisation du Stocage'
 

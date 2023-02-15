@@ -22,7 +22,8 @@ return new class extends Migration
             $table->foreignIdFor(Produit::class);
             $table->string('conditionnement_commande');
             $table->integer('qunantite_commande');
-            $table->string('observetion');
+            $table->integer('total_commande');
+            $table->string('observetion')->nullable();
             $table->foreignIdFor(Pharmacien::class);
             $table->foreignIdFor(Magasinier::class);
             $table->timestamps();

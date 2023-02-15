@@ -31,7 +31,7 @@ class StockPharmacieController extends Controller
     public function index()
     {
         $produits = $this->stockPharmacieRepository->getAll();
-
+        
         
         return view('Pharmacie.stockMedicament', 
             [

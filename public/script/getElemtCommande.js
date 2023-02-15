@@ -1,135 +1,87 @@
-window.onload = () => {
-    
-    const myUL = document.getElementById('myUL');
-    let ligne = myUL.getElementsByTagName('tr');
-    let content_remove = document.getElementById('myUL');
-    content_remove.remove(content_remove);
-    var tbody = document.createElement('tbody')
-    tbody.id = "myUL";
-
-    document.getElementById("tableCommandeProduits").appendChild(tbody)
-    for (let i = 0; i < ligne.length; i++) {
-
-        let tr = document.createElement('tr')
-        tr.style.cursor = 'pointer';
-        tr.id = 'content_search' + i;
-        tr.className = "content_search";
-        // tr.setAttribute('onclick','getElement()');
-        tr.innerHTML = ligne[i].innerHTML;
-        console.log(ligne[i].innerHTML);
-        document.getElementById("myUL").appendChild(tr);
-    }
-    for (let j = 0; j < ligne.length; j++) {
-        let clickContent = document.getElementById('content_search' + j);
-
-        clickContent.addEventListener('click', function () { 
-            // ajouter les Medicament dans le formulaire
-            let content_click, categorie, nom, abrev, idProduits, cardConsultation;
-
-            content_click = document.querySelector('#content_search' + j);
-            contentProduits = content_click.getElementsByTagName('td');
-
-            cardConsultation = document.getElementById('cardConsultation');
-
-            categorie = document.getElementById('categorie');
-            nom = document.getElementById('nom');
-            abrev = document.getElementById('abrev');
-            idProduits = document.getElementById('idProduits');
-
-            for (let ul = 0; ul < contentProduits.length; ul++) {
-
-                let id = contentProduits[0].innerText;
-                let designationProduits = contentProduits[2].innerText;
-                let categorieProdui = contentProduits[1].innerText;
-                let abrev = contentProduits[3].innerText;
-
-                document.getElementById("codeProduits").value = id;
-                document.getElementById("designation").value = designationProduits;
-                document.getElementById("categorieValue").value = categorieProdui;
-                document.getElementById("abrev").value = abrev;
-
-            }
 
 
-        }, false);
-
-    }
-};
 
 function addMedicammentCommander() {
-
     let codeProduits = document.getElementById("codeProduits").value;
     let designation = document.getElementById("designation").value;
-    let categorieValue = document.getElementById("categorieValue").value;
-    let conditionnement = document.getElementById("conditionnement").value;
-    let quantite = document.getElementById("quantite").value;
-    let etat = document.getElementById("etat").value;
-    let abrev = document.getElementById('abrev').value;
-    console.log(codeProduits);
+    let conditionnement = document.getElementById("condiValue").value;
+    let quantite = document.getElementById("quantiteValue").value;
+    let total = document.getElementById("total").value;
+    let observation = document.getElementById('observation').value;
+    
     let formCommande = document.querySelector('.formCommande');
     let lignes = formCommande.getElementsByTagName('div');
     let div = document.createElement('div');
-    // console.log(lignes.HTMLCollection)
-    if(lignes.length == 0)
-    {
-        div.innerHTML = 
-        `
-            <input type="hidden" name="0[idProduits]" value="`+ codeProduits +`" class="form-control" id="`+ codeProduits +`">
-            <input type="text" desabled name="0[designation]" value="`+ designation +`" class="form-control mb-2 mr-1 col-lg-3" id="`+ designation +`">
-            <input type="text"  name="0[conditionnement]" value="`+ conditionnement +`" class="form-control mb-2 mr-1 col-lg-3" id="`+ conditionnement +`">
-            <input type="text"  name="0[quantite]" value="`+ quantite +`" class="form-control mb-2 mr-1 col-lg-3" id="'`+ quantite +`">
-            <input type="text" name="0[observation]" value="`+ etat +`" class="form-control mb-2 mr-1 col-lg-2" id="`+ etat +`">
-                    
-        `;
-        console.log(div.innerHTML);
-        formCommande.appendChild(div);
-    }
-    else if (lignes.length >= 1)
-    {
-        for (let i = 0; i < lignes.length; i++) 
-        {
-           
 
-            div.innerHTML = 
-                `
-                <input type="hidden" name="`+i+`[idProduits]" value="`+ codeProduits +`" class="form-control" id="`+ codeProduits +`">
-                <input type="text" desabled name="`+i+`[designation]" value="`+ designation +`" class="form-control mb-2 mr-1 col-lg-3" id="`+ designation +`">
-                <input type="text"  name="`+i+`[conditionnement]" value="`+ conditionnement +`" class="form-control mb-2 mr-1 col-lg-3" id="`+ conditionnement +`">
-                <input type="text"  name="`+i+`[quantite]" value="`+ quantite +`" class="form-control mb-2 mr-1 col-lg-3" id="'`+ quantite +`">
-                <input type="text" name="`+i+`[observation]" value="`+ etat +`" class="form-control mb-2 mr-1 col-lg-2" id="`+ etat +`">
-                
-                `;
+    let quantiteStocker = document.getElementById('quantiteValue');
+    let quantiteLivrer = document.getElementById('total');
+    let btnAdd = document.getElementById('btnAdd');
+    let errorCalcule = document.getElementById('errorCalcule');
+
+    let stock = quantiteStocker.value;
+    let livrer = quantiteLivrer.value;
+    let result = stock - livrer;
+    console.log('stok = ' + stock + ' et livrer = ' + livrer);
+    console.log(result)
+    console.log((livrer >= stock));
+
+    if(result <=  0 )
+    {
+        console.log('true');
+        
+        errorCalcule.style.display = "block"
+        document.getElementById('btnAdd').setAttribute('disabled','disabled')
+        document.getElementById('clickTeminate').setAttribute('style','display:none')
+    }
+    else if ((result > 0) && (lignes.length == 0)) {
+        div.innerHTML = `
+            <input type="hidden" name="0[idProduits]" value="${codeProduits}" class="form-control" id="codeProduits">
+            <input type="text"  name="0[designation]" value="${designation}" class="form-control mb-2 mr-1 col-lg-3" id="designation">
+            <input type="text" name="0[conditionnement]" value="${conditionnement}" class="form-control mb-2 mr-1 col-lg-2" id="conditionnement">
+            <input type="text" name="0[quantite]" value="${quantite}" class="form-control mb-2 mr-1 col-lg-2" id="quantite">
+            <input type="text" name="0[total]" value="${total}" class="form-control mb-2 mr-1 col-lg-2" id="total">
+            <input type="text" name="0[observation]" value="${observation}" class="form-control mb-2 mr-1 col-lg-2" id="observation">
+        `;
+        
+        formCommande.appendChild(div);
+    } else {
+        for (let i = 0; i < lignes.length; i++) {
+            div.innerHTML = `
+                <input type="hidden" name="${i}[idProduits]" value="${codeProduits}" class="form-control" id="codeProduits">
+                <input type="text"  name="${i}[designation]" value="${designation}" class="form-control mb-2 mr-1 col-lg-3" id="designation">
+                <input type="text" name="${i}[conditionnement]" value="${conditionnement}" class="form-control mb-2 mr-1 col-lg-2" id="conditionnement">
+                <input type="text" name="${i}[quantite]" value="${quantite}" class="form-control mb-2 mr-1 col-lg-2" id="quantite">
+                <input type="text" name="${i}[total]" value="${total}" class="form-control mb-2 mr-1 col-lg-2" id="total">
+                <input type="text" name="${i}[observation]" value="${observation}" class="form-control mb-2 mr-1 col-lg-2" id="observation">
+            `;
             formCommande.appendChild(div);
         }
     }
     
-
 }
-
-function enregistrerCommande()
-{
-
+    
+function enregistrerCommande() {
+    
     let codeProduits = document.getElementById("codeProduits").value;
     let designation = document.getElementById("designation").value;
     let categorieValue = document.getElementById("categorieValue").value;
     let conditionnement = document.getElementById("conditionnement").value;
     let quantite = document.getElementById("quantite").value;
-    let etat = document.getElementById("etat").value;
-
+    
     const form = document.getElementById('formCommande');
     let formCommande = document.querySelector('.formCommande');
     let ligne = formCommande.getElementsByTagName('div');
     
     const btnFinished = document.getElementById('btnFinish');
-
-// remove content and insert new content with number medicament commande
-
+    
+    // remove content and insert new content with number medicament commande
+    
     let content_remove = document.getElementById('formCommande');
     content_remove.remove(content_remove); 
-
+    
     var div = document.createElement('div')
     div.id = "formCommande";
-
+    
     document.getElementById("formLine").appendChild(div);
     
     let input = document.createElement('input');
@@ -139,7 +91,7 @@ function enregistrerCommande()
     document.getElementById("formCommande").appendChild(input);
 
     for (let i = 0; i < ligne.length; i++) {
-
+    
         let div = document.createElement('div')
         div.id = 'inforMedicamentCommande';
         div.className = 'inforMedicamentCommande form-inline';
@@ -148,55 +100,15 @@ function enregistrerCommande()
         
     }
     btnFinished.style.display = 'none';
-    btnSaved.style.display = 'block';
-    
-    document.getElementById('btnSaved').style.display = 'block'
+    document.getElementById("btnSaved").style.display = "block"
     
 }
-
-
-// function savenedicamentBt()
-// {
-
-//     let codeProduits = document.getElementById("codeProduits").value;
-//     let designation = document.getElementById("designation").value;
-//     let categorieValue = document.getElementById("categorieValue").value;
-//     let conditionnement = document.getElementById("conditionnement").value;
-//     let quantite = document.getElementById("quantite").value;
-//     let etat = document.getElementById("etat").value;
-
-//     const form = document.getElementById('formCommande');
-//     let formCommande = document.querySelector('.formCommande');
-//     let ligne = formCommande.getElementsByTagName('div');
     
-//     const btnFinished = document.getElementById('btnFinish');
-//     const btnreset = document.getElementById('btnreset');
-// // remove content and insert new content with number medicament commande
-//     let content_remove = document.getElementById('formCommande');
-//     content_remove.remove(content_remove); 
+ function rafraichir() {
 
-//     var div = document.createElement('div')
-//     div.id = "formCommande";
+    document.getElementById('errorCalcule').style.display = "none"
+    document.getElementById('btnAdd').setAttribute('disabled',' ')
+    document.getElementById('clickTeminate').setAttribute('style','display:block')
 
-//     document.getElementById("formLine").appendChild(div);
-    
-//     let input = document.createElement('input');
-//     input.value = ligne.length;
-//     input.type = 'hidden';
-//     input.name = 'nombreCommande';
-//     document.getElementById("formCommande").appendChild(input);
 
-//     for (let i = 0; i < ligne.length; i++) {
-
-//         let div = document.createElement('div')
-//         div.id = 'inforMedicamentCommande';
-//         div.className = 'inforMedicamentCommande form-inline';
-//         div.innerHTML = ligne[i].innerHTML;
-//         document.getElementById("formCommande").appendChild(div);
-        
-//     }
-//     btnFinished.style.display = 'none';
-    
-
-    
-// }
+ }

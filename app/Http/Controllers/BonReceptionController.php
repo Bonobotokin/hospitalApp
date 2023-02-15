@@ -55,11 +55,11 @@ class BonReceptionController extends Controller
 
             $reponse_depot_livraison = $actionLivraison->updateDepot($request);
 
-            dd($reponse_depot_livraison, 'eto1');
+            // dd($reponse_depot_livraison, 'eto1');
 
             if (!is_null($reponse_depot_livraison['data'])) {
 
-                return redirect()->route('magasin.listeLivraison', ['reponse' => $reponse_depot_livraison])->with('success', $reponse_depot_livraison['message']);
+                return redirect()->route('liste.reception', ['reponse' => $reponse_depot_livraison])->with('success', $reponse_depot_livraison['message']);
 
             } else {
                 return redirect()->back()->withErrors($reponse_depot_livraison)->withInput();

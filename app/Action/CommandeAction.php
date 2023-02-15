@@ -12,7 +12,8 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use App\Repository\PersonnelRepository;
 
-class CommandeAction {
+class CommandeAction
+{
 
     private $personnelRepository;
     private $livraisonPharmacieRepository;
@@ -22,158 +23,110 @@ class CommandeAction {
         PersonnelRepository $personnelRepository,
         LivraisonPharmacieRepository $livraisonPharmacieRepository,
 
-    )
-    {
+    ) {
         $this->personnelRepository = $personnelRepository;
         $this->livraisonPharmacieRepository = $livraisonPharmacieRepository;
-
     }
 
-    public function commandeAction ($request)
+    public function newCommandeNotCommande($request)
     {
-        
+
         try {
-            
-            $data = DB::transaction(function () use ($request) 
-            {
-                
+
+            $data = DB::transaction(function () use ($request) {
+
                 $magasinierId = Auth::user()->id;
 
                 $nombreCommande = $request->nombreCommande;
 
                 $magasinier = $this->personnelRepository->getPersonnelConnected($magasinierId);
-
                 
+                $CommandeId = [];
+                for ($i = 0; $i < (int) $nombreCommande; $i++) {
 
-               if( $nombreCommande == 1 ) {
-                    $quantite = $request[0]['quantite'];
+                    $ifIsAsQuantite = $this->lookIs_Produit_As_Quantite($request->$i);
 
-                    $ifIsAsQuantite = $this->lookIs_Produit_As_Quantite($request[0]);
-                    
-
-                    if($ifIsAsQuantite == TRUE)
-                    {
+                    if ($ifIsAsQuantite == TRUE) {
                         return [
                             "data" => null,
                             "message" => "Desoler, veuillez remplir votre depot "
                         ];
+                    } else {
+
+                        $commanded = $request->$i;
+                        
+                        $livraison = MagasinPharmacieLivraison::create([
+                            'num_livraison' => 1,
+                            'num_commande' => null,
+                            'conditionnement_livraison' => $commanded['conditionnement'],
+                            'quantiter_livraison' => $commanded['quantite'],
+                            'total_livraison' => $commanded['total'],
+                            'type_livraison' => 'Magasin Pharmacie',
+                            'observation_livraison' => $commanded['observation'],
+                            'produit_id' => $commanded['idProduits'],
+                            'validate_magasinier' => $magasinier[0]['id']
+                        ]);
+                        
+                        $stoquePharmacie = StockPharmacie::where('produit_id', $commanded['idProduits'])
+                            ->get();
+
+                        $getIdSortantDepot = DepotsAction::sortantdepots($livraison);
+                        
+                        if ($getIdSortantDepot === FALSE) {
+                            return [
+                                "data" => null,
+                                "message" => "Desoler, votre de demanade ne peut pas fournir ce demande car votre demande est trop grand"
+                            ];
+                        } else {
+                            
+                            $mvmStockPharmacie = mouvementPharmacie::create([
+                                'stock_pharmacie_id' => $stoquePharmacie[0]['id'],
+                                'mouvement_depot_id' => $getIdSortantDepot,
+                                'magasin_pharmacie_livraison_id' => $livraison->id,
+                                'magasinier_id' => $magasinier[0]['personnel_id'],
+                                'quantite_mvm_pharmacie' => (int) $livraison['total_livraison'],
+                                'type_mvm_pharmacie' => "entrant"
+                            ]);
+                            
+                            $newEntrant = $livraison->total_livraison + $stoquePharmacie[0]['quantite_pharmacie'];
+                            
+                            $entrant = StockPharmacie::where('produit_id', $livraison['produit_id'])->get();
+                            
+                            foreach ($entrant as $key => $dataUpdate) {
+                                $dataUpdate->update([
+                                    'conditionnement_pharmacie' => $livraison['conditionnement_livraison'],
+                                    'quantite_pharmacie' => $newEntrant
+                                ]);
+                            }
+                            
+
+                            $CommandeId = $livraison->id;
+                        }
                     }
-                    $commande = CommandeProduit::create([
-                        'num_commande' => $request->num_commande2,
-                        'produit_id' => $request->idProduits ,
-                        'conditionnement_commande' => $request->conditionnement,
-                        'qunantite_commande' => $request->quantite,
-                        'observetion' => $request->observation,
-                        'pharmacien_id' => $request->pharmacien_id,
-                        'magasinier_id' => $magasinier[0]['personnel_id']
-                    ]);
-                    $numIs = $this->livraisonPharmacieRepository->seeNumLivraisonIsIn();
-                    
-                    $Livraison = MagasinPharmacieLivraison::create([
-                        'num_livraison' => 1,
-                        'num_commande' => (int) $commande->num_commande,
-                        'conditionnement_livraison' => $commande->conditionnement_commande,
-                        'quantiter_livraison' => $commande->qunantite_commande,
-                        'type_livraison' => 'Interne',
-                        'produit_id' => $commande->produit_id,
-                        'validate_magasinier' => $commande->magasinier_id
-                    ]);
-                    
-                    $stoquePharmacie = StockPharmacie::where('produit_id', $request->idProduits)
-                                                ->get();
-                    
+                }
 
-                    $mvmStockPharmacie = mouvementPharmacie::create([
-                        'stock_pharmacie_id' => $stoquePharmacie[0]['id'],
-                        'magasinier_id' => $magasinier[0]['personnel_id'],
-                        'quantite_mvm_pharmacie' => (int) $Livraison['quantiter_livraison'],
-                        'type_mvm_pharmacie' => "entrant"
-                    ]);
-                    
-                    $newEntrant = $Livraison->quantiter_livraison + $stoquePharmacie[0]['quantite_pharmacie'];
-
-                    $entrant = StockPharmacie::find((int) $Livraison->produit_id);
-                    $entrant->conditionnement_pharmacie = $Livraison->conditionnement_livraison;
-                    $entrant->quantite_pharmacie = $newEntrant;
-                    $entrant->save();
-
-                    $CommandeId = $commande->id;
-               }
-               else
-               {
-                    
-                    for ($i=0; $i < (int) $nombreCommande; $i++) { 
-                        
-
-
-                        $commande = CommandeProduit::create([
-                            'num_commande' => $request->num_commande1,
-                            'produit_id' => $request->$i['idProduits'],
-                            'conditionnement_commande' => $request->$i['conditionnement'],
-                            'qunantite_commande' => $request->$i['quantite'],
-                            'observetion' => $request->$i['observation'],
-                            'pharmacien_id' => $request->pharmacien_id,
-                            'magasinier_id' => $magasinier[0]['personnel_id']
-                        ]);
-
-                        $numLivraisonIs = $this->getNumLivraison();
-                        
-                        $Livraison = MagasinPharmacieLivraison::create([
-                            'num_livraison' =>  $numLivraisonIs,
-                            'num_commande' => (int) $commande->num_commande,
-                            'conditionnement_livraison' => $commande->conditionnement_commande,
-                            'quantiter_livraison' => $commande->qunantite_commande,
-                            'type_livraison' => 'Interne',
-                            'produit_id' => $commande->produit_id,
-                            'validate_magasinier' => $commande->magasinier_id
-                        ]);
-                        
-                        $pharmacieStoque = StockPharmacie::get();
-                        
-                        // dd($pharmacieStoque);
-                        $mvmStockPharmacie = mouvementPharmacie::create([
-                            'stock_pharmacie_id' => $pharmacieStoque[0]['id'],
-                            'magasinier_id' => $magasinier[0]['personnel_id'],
-                            'quantite_mvm_pharmacie' => (int) $request->$i['quantite'],
-                            'type_mvm_pharmacie' => "entrant"
-                        ]);
-                        // dd($pharmacieStoque[$i]['quantite_pharmacie']);
-                        $entrantStock = $request->$i['quantite'] + $pharmacieStoque[$i]['quantite_pharmacie'];
-
-                        $entrant = StockPharmacie::find((int) $Livraison->produit_id);
-                        $entrant->conditionnement_pharmacie = $Livraison->conditionnement_livraison;
-                        $entrant->quantite_pharmacie = $entrantStock;
-                        $entrant->save();
-
-                        $CommandeId = $commande->id;                        
-                    }
-               }
-
-               return [
+                return [
                     "data" => $CommandeId,
                     "message" => " Le Commande  a ete enregistrer et bien livrait "
                 ];
-
             });
 
             return $data;
-
         } catch (\Throwable $th) {
             return $th;
         }
     }
 
-    public function getNumLivraison () {
+    public function getNumLivraison()
+    {
         $numIs = $this->livraisonPharmacieRepository->seeNumLivraisonIsIn();
-                        
-        if($numIs->isNotEmpty())
-        {
-                $numeroLivraison =  $numIs[0]['num_livraison'] + 1 ;
+
+        if ($numIs->isNotEmpty()) {
+            $numeroLivraison =  $numIs[0]['num_livraison'] + 1;
 
             return  $numeroLivraison;
-        }
-        else {
-                $numeroLivraison = 1;
+        } else {
+            $numeroLivraison = 1;
 
             return  $numeroLivraison;
         }
@@ -181,9 +134,8 @@ class CommandeAction {
 
     public function lookIs_Produit_As_Quantite($quantite)
     {
-        $sortantDepots = DepotsAction::sortantdepots($quantite);
+        $sortantDepots = DepotsAction::depotHasQuantite($quantite);
 
         return $sortantDepots;
-
     }
 }

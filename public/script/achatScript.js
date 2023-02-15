@@ -24,29 +24,26 @@ window.onload = () => {
 
         clickContent.addEventListener('click', function () { 
             // ajouter les Medicament dans le formulaire
-            let content_click, categorie, nom, abrev, idProduits, cardConsultation;
+            let content_click;
 
             content_click = document.querySelector('#content_search' + j);
             contentProduits = content_click.getElementsByTagName('td');
 
             cardConsultation = document.getElementById('cardConsultation');
-
-            categorie = document.getElementById('categorie');
-            nom = document.getElementById('nom');
-            abrev = document.getElementById('abrev');
-            idProduits = document.getElementById('idProduits');
             
             for (let ul = 0; ul < contentProduits.length; ul++) {
-
+                console.log(contentProduits[ul].innerText);
                 let id = contentProduits[0].innerText;
                 let designationProduits = contentProduits[1].innerText;
-                let categorieProdui = contentProduits[2].innerText;
-                let abrev = contentProduits[3].innerText;
+                let categorieProdui = contentProduits[4].innerText;
+                let conditionnement = contentProduits[2].innerText;
+                let quantite = contentProduits[3].innerText;
 
                 document.getElementById("codeProduits").value = id;
                 document.getElementById("designation").value = designationProduits;
                 document.getElementById("categorieValue").value = categorieProdui;
-                document.getElementById("abrev").value = abrev;
+                document.getElementById("condiValue").value = conditionnement;
+                document.getElementById("quantiteValue").value = quantite;
 
             }
 

@@ -35,7 +35,7 @@ class LivraisonAction
 
     public function updateDepot($request)
     {
-
+        
         try {
 
             $livraisonAll = $this->livraisonProduitsRepository->getByNumLivraison($request->numLivraison);
@@ -44,33 +44,31 @@ class LivraisonAction
 
             $data = DB::transaction(function () use ($livraisonAll, $magasinierId) {
 
-            $magasinierValidate = $this->verifyUserIsMagasin($magasinierId);
+                $magasinierValidate = $this->verifyUserIsMagasin($magasinierId);
 
                 if (count($livraisonAll) == 1) {
 
                     $sendIsvalidate = LivraisonProduits::where('num_livraison', $livraisonAll[0]['num_livraison'])
                         ->get();
 
-                    
-                        foreach ($sendIsvalidate as $updateLivraison) {
-                            $updateLivraison->validate_magasinier = $magasinierValidate;
-                            $updateLivraison->save();
-                        }
+
+                    foreach ($sendIsvalidate as $updateLivraison) {
+                        $updateLivraison->validate_magasinier = $magasinierValidate;
+                        $updateLivraison->save();
+                    }
 
 
-                        $depotsUpdate = Depot::where('id', $livraisonAll[0]['produit_id'])
-                            ->get();
+                    $depotsUpdate = Depot::where('id', $livraisonAll[0]['produit_id'])
+                        ->get();
 
                     if (isset($depotsUpdate[0])) {
 
-                        
-
                         $entrant = $depotsUpdate[0]['quantite_depots'] + $livraisonAll[0]['total'];
-                        
+
                         $newEntrantDepot = MouvementDepot::create([
 
                             'depot_id' => $depotsUpdate[0]['id'],
-                            'fournisseur_id' => $livraisonAll[0]['fournisseur_id'],
+                            'livraison_produits_id' => $livraisonAll[0]['fournisseur_id'],
                             'quantite_mouvement' =>  $livraisonAll[0]['total'],
                             'type_mouvement'  => 'entrant'
 
@@ -80,46 +78,45 @@ class LivraisonAction
                         $depots->conditionnement_depots = $livraisonAll[0]['conditionnement_livraison'];
                         $depots->quantite_depots = $entrant;
                         $depots->save();
-                        
-
                     }
 
                     $id_enregistrement = $depotsUpdate[0]['id'];
                 } else {
 
 
-                    for ($i = 0; $i < count($livraisonAll); $i++) {
+                    foreach ($livraisonAll as $livraison) {
 
-                        $sendIsvalidate = LivraisonProduits::where('num_livraison', $livraisonAll[$i]['num_livraison'])
-                            ->get();
+                        $idLivraison = LivraisonProduits::select('id')->where('num_livraison', $livraison['num_livraison'])->get();
 
-
-                        foreach ($sendIsvalidate as $updateLivraison) {
-                            $updateLivraison->validate_magasinier = $magasinierValidate;
-                            $updateLivraison->save();
-                        }
-
-                        $depotsUpdate = Depot::where('id', $livraisonAll[$i]['id'])
-                            ->get();
-
-
-
-                        if (isset($depotsUpdate[$i])) {
-                            $newEntrantDepot[$i] = MouvementDepot::create([
-                                'depot_id' => $depotsUpdate[$i]['id'],
-                                'fournisseur_id' => $livraisonAll[$i]['fournisseur_id'],
-                                'quantite_mouvement' => $livraisonAll[$i]['quantiter_livraison'],
-                                'type_mouvement'  => 'entrant'
+                        foreach ($idLivraison as $livraisondata) {
+                            $sendIsvalidate = LivraisonProduits::find($livraisondata['id']);
+                            $sendIsvalidate->update([
+                                'validate_magasinier' => $magasinierValidate
                             ]);
-
-                            foreach ($depotsUpdate[$i] as $updateLivraison) {
-                                $updateLivraison->conditionnement_depots = $livraisonAll[$i]['conditionnement_livraison'];
-                                $updateLivraison->quantite_depots = $livraisonAll[$i]['quantiter_livraison'];
-                                $updateLivraison->save();
-                            }
-
-                            $id_enregistrement = $depotsUpdate[$i];
                         }
+                        
+                        // dd($sendIsvalidate);
+                        // $sendIsvalidate->validate_magasinier = $magasinierValidate;
+                        // $sendIsvalidate->save();
+                        
+                        
+                        $depot = Depot::find($livraison['produit_id']);
+                        
+                        $entrant = $depot->quantite_depots + $livraison['total'];
+
+                        $newEntrantDepot = MouvementDepot::create([
+                            'depot_id' => $depot->id,
+                            'fournisseur_id' => $livraison['fournisseur_id'],
+                            'quantite_mouvement' => $entrant,
+                            'type_mouvement'  => 'entrant'
+                        ]);
+
+                        $depot->update([
+                            'conditionnement_depots' => $livraison['conditionnement_livraison'],
+                            'quantite_depots' => $entrant
+                        ]);
+
+                        $id_enregistrement = $depot->id;
                     }
                 }
                 return [
@@ -151,9 +148,8 @@ class LivraisonAction
     public function saveLivraisonPartenariat($request)
     {
         try {
-
+            
             $data = DB::transaction(function () use ($request) {
-
 
                 $nombreProduitsLivred = $request->listeAchat;
 
@@ -162,7 +158,7 @@ class LivraisonAction
                 $forunisseur = $this->insertFournisseur($reqFournisseur);
 
                 for ($i = 0; $i < (int) $nombreProduitsLivred; $i++) {
-                    // dd($request->$i['idProduits']);
+
                     $livraison = LivraisonProduits::create([
 
                         'num_livraison' => (int) $request->numeroLivraison,
@@ -174,6 +170,8 @@ class LivraisonAction
                         'conditionnement_livraison' => $request->$i['conditionnement'],
 
                         'quantiter_livraison' => $request->$i['quantite'],
+
+                        'total' => (int) $request->$i['total'],
 
                         'prix_livraison' => $request->$i['prix'],
 

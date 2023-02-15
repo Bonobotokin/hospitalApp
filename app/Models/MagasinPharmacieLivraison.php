@@ -14,7 +14,9 @@ class MagasinPharmacieLivraison extends Model
         'num_commande',
         'conditionnement_livraison',
         'quantiter_livraison',
+        'total_livraison',
         'type_livraison',
+        'observation_livraison',
         'produit_id',
         'validate_magasinier'
     ];

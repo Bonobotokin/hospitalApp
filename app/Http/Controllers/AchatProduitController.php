@@ -100,7 +100,7 @@ class AchatProduitController extends Controller
     {
     $showListeAchat = $this->achatProduitsRepository->getByNumAchat($num);
         $isRessut = $this->achatProduitsRepository->setRessut($num);
-        dd($isRessut);
+        
         return view('achats.detailsAchat',
             [
                 'achat' => $showListeAchat,

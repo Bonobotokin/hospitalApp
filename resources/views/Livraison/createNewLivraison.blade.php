@@ -103,6 +103,7 @@
                                                 <td id="nom"> {{ $data['nom'] }} </td>
                                                 <td id="categorie"> {{ $data['categorie'] }} </td>
                                                 <td id="abrev"> {{ $data['abrev'] }} </td>
+                                                <td id="categorie"> {{ $data['categorie'] }} </td>
                                             </tr>
                                             @endforeach
                                         </tbody>
@@ -117,16 +118,23 @@
                                         <div class="col-lg-12">
                                             <div class="row">
                                                 <input id="codeProduits" type="hidden" class="form-control" type="number" name="numProduits">
-                                                <div class="col-lg-6">
+                                                <div class="col-lg-4">
                                                     <div class="form-group">
                                                         <label for="">Designation :</label>
                                                         <input id="designation" type="text" class="form-control" />
                                                     </div>
                                                 </div>
-                                                <div class="col-lg-6">
+                                                <div class="col-lg-4">
                                                     <div class="form-group">
                                                         <label for="">Type :</label>
                                                         <input id="categorieValue" type="text" class="form-control" />
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-lg-4">
+                                                    <div class="form-group">
+                                                        <label for="Conditionnement">Condit : </label>
+                                                        <input id="conditionnement" type="text" placeholder="Conditionnement" class="form-control">
                                                     </div>
                                                 </div>
                                             </div>
@@ -137,21 +145,21 @@
                                             <div class="row">
                                                 <div class="col-lg-4">
                                                     <div class="form-group">
-                                                        <label for="Conditionnement">Conditionnement : </label>
-                                                        <input id="conditionnement" type="text" placeholder="Conditionnement" class="form-control">
+                                                        <label for="Quantite">Q Livrer: </label>
+                                                        <input id="quantite" type="number" placeholder="Quantite totale" class="form-control">
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-4">
                                                     <div class="form-group">
-                                                        <label for="Quantite">Quantite Livrer: </label>
-                                                        <input id="quantite" type="number" placeholder="Quantite totale" class="form-control">
+                                                        <label for="Quantite">Total : </label>
+                                                        <input id="total" type="number" placeholder="Quantiter a commander" class="form-control">
                                                     </div>
                                                 </div>
-                                                <div class="col-lg-3">
+                                                <div class="col-lg-4">
                                                     <div class="form-group">
                                                         <label for="">Prix:</label>
                                                         <input type="number" class="form-control" name="" id="prix" placeholder="Prix">
-                                                        
+
                                                     </div>
                                                 </div>
                                             </div>
@@ -163,7 +171,7 @@
                                                     </button>
                                                 </div>
                                                 <div class="col-md-6">
-                                                    <button type="button" onclick="addProduitLivrais()" class="btn btn-inverse-primary btn-fw">
+                                                    <button type="button" onclick="addProduitLivraison()" class="btn btn-inverse-primary btn-fw">
                                                         <i class="mdi mdi-plus btn-icon-prepend"></i>
                                                         Ajouter
                                                     </button>

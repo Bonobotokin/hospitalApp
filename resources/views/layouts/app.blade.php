@@ -51,7 +51,15 @@
         right: 0;
         z-index: 1000;
     }
-
+    .alertWarning {
+        padding: 20px;
+        background-color: #c6a319;
+        border-color: #c6a319;
+        color: white;
+        position: fixed;
+        right: 0;
+        z-index: 1000;
+    }
     .closebtn {
         margin-left: 15px;
         color: white;
@@ -156,6 +164,11 @@
                     <div class="collapse" id="ui-achat_livraison">
                         <ul class="nav flex-column sub-menu">
                             <li class="nav-item">
+                                <a class="nav-link" href="{{ route('index.produits') }}">
+                                    Listes des Produits
+                                </a>
+                            </li>
+                            <li class="nav-item">
                                 <a class="nav-link" href="{{ route('produits.achat') }}">
                                     Achat des Produits
                                 </a>
@@ -185,11 +198,6 @@
                     </a>
                     <div class="collapse" id="ui-fourniture">
                         <ul class="nav flex-column sub-menu">
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('index.produits') }}">
-                                    Listes des Produits
-                                </a>
-                            </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="{{route('depots')}}">
                                     Depots

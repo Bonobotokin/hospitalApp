@@ -1,6 +1,8 @@
 <?php
 
 use App\Models\Magasinier;
+use App\Models\MagasinPharmacieLivraison;
+use App\Models\MouvementDepot;
 use App\Models\StockPharmacie;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
@@ -18,7 +20,8 @@ return new class extends Migration
         Schema::create('mouvement_pharmacies', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(StockPharmacie::class)->constrained();
-            $table->foreignIdFor(Magasinier::class)->constrained();
+            $table->foreignIdFor(MouvementDepot::class)->nullable()->constrained();
+            $table->foreignIdFor(MagasinPharmacieLivraison::class)->nullable()->constrained();
             $table->integer('quantite_mvm_pharmacie')->default(0);
             $table->string('type_mvm_pharmacie');
             $table->timestamps();

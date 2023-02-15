@@ -22,7 +22,7 @@ class StockPharmacieRepository implements StockPharmacieRepositoryInterface {
     public function lookOfQuantite()
     {
         $stoque = StockPharmacie::with('produit')
-                ->where('quantite_pharmacie', '<=', 50)
+                ->where('quantite_pharmacie', '<=', 50) 
                 ->get()
                 ->map(function($stoque){
                 
@@ -42,7 +42,7 @@ class StockPharmacieRepository implements StockPharmacieRepositoryInterface {
                     ];
     
                 });
-
+        
         return $stoque;
     }
 

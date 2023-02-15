@@ -38,8 +38,6 @@ Route::get('home/', [HomeController::class, 'index'])->name('home');
 #  Gestion des Magasins Depots & Produits Medicale #
 ###################################################
 
-Route::get('produits/liste', [ProduitController::class, 'index'])->name('index.produits');                                          #
-Route::post('produits/store', [ProduitController::class, 'store'])->name('store.produits');                                         #
 Route::get('magasin/depots', [DepotController::class, 'index'])->name('depots');
 
 // Achats Magasinier
@@ -71,6 +69,12 @@ Route::get('pharmacie/stock', [StockPharmacieController::class, 'index'])->name(
 
 Route::get('Pharmacie/commande/Medicament', [PharmacienController::class, 'index'])->name('commande.index');
 
+############################################################
+#  Gestion des Produits & Fournisseur Administrator #
+###########################################################
+
+Route::get('produits/liste', [ProduitController::class, 'index'])->name('index.produits');                                          
+Route::post('produits/store', [ProduitController::class, 'store'])->name('store.produits');                                         
 
 
 ############################################################
