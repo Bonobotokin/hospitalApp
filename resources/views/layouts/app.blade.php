@@ -259,6 +259,43 @@
                         </ul>
                     </div>
                 </li>
+                <!-- Dispensaire -->
+
+                <li class="nav-item menu-items">
+                    <a class="nav-link" data-toggle="collapse" href="#ui-Reception" aria-expanded="false" aria-controls="ui-Reception">
+                        <span class="menu-icon">
+                            <i class="mdi mdi-home"></i>
+                        </span>
+                        <span class="menu-title">Reception</span>
+                        <i class="menu-arrow"></i>
+                    </a>
+                    <div class="collapse" id="ui-Reception">
+                        <ul class="nav flex-column sub-menu">
+                            <li class="nav-item">
+                                <a class="nav-link" href="">
+                                    Liste des Patient
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('commande.index') }}" >
+                                    Commande Medicaments
+                                </a>
+                            </li>
+                            <!-- 
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('index.achat.produits') }}">
+                                    Achat des Produits
+                                </a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('liste.reception') }}">
+                                    Listes des Livraison
+                                </a>
+                            </li> -->
+                        </ul>
+                    </div>
+                </li>
             </ul>
         </nav>
         <!-- partial -->
