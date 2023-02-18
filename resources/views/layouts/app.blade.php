@@ -154,6 +154,24 @@
                     <p class="nav-link">Administrator</p>
                 </li>
                 <li class="nav-item menu-items">
+                    <a class="nav-link" data-toggle="collapse" href="#ui-parametres" aria-expanded="false" aria-controls="ui-parametres">
+                        <span class="menu-icon">
+                            <i class="mdi mdi-settings"></i>
+                        </span>
+                        <span class="menu-title">Parametres</span>
+                        <i class="menu-arrow"></i>
+                    </a>
+                    <div class="collapse" id="ui-parametres">
+                        <ul class="nav flex-column sub-menu">
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('index.produits') }}">
+                                    Types Consultation
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </li> 
+                <li class="nav-item menu-items">
                     <a class="nav-link" data-toggle="collapse" href="#ui-achat_livraison" aria-expanded="false" aria-controls="ui-achat_livraison">
                         <span class="menu-icon">
                             <i class="mdi mdi-home"></i>
@@ -180,8 +198,7 @@
                             </li>
                         </ul>
                     </div>
-                </li>
-                
+                </li>                
 
                 <!-- Masgasin & magasinier -->
 
@@ -272,13 +289,13 @@
                     <div class="collapse" id="ui-Reception">
                         <ul class="nav flex-column sub-menu">
                             <li class="nav-item">
-                                <a class="nav-link" href="">
-                                    Liste des Patient
+                                <a class="nav-link" href="{{ route('liste.consultation') }}" >
+                                    Consultation
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('commande.index') }}" >
-                                    Commande Medicaments
+                                <a class="nav-link" href="{{ route('liste.patient') }}">
+                                    Liste des Patient
                                 </a>
                             </li>
                             <!-- 

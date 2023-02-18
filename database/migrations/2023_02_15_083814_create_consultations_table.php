@@ -1,5 +1,9 @@
 <?php
 
+use App\Models\Medecin;
+use App\Models\Patient;
+use App\Models\Prescription;
+use App\Models\TypeConsultation;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -15,6 +19,13 @@ return new class extends Migration
     {
         Schema::create('consultations', function (Blueprint $table) {
             $table->id();
+            $table->foreignIdFor(Patient::class)->constrained();
+            $table->foreignIdFor(TypeConsultation::class)->constrained();
+            $table->foreignIdFor(Prescription::class)->constrained();
+            $table->foreignIdFor(Medecin::class)->constrained();
+            $table->boolean('consulted')->default(false);
+            $table->string('diagnostique');
+            $table->string('commentaire');
             $table->timestamps();
         });
     }

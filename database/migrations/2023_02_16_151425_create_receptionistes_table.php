@@ -1,6 +1,5 @@
 <?php
 
-use App\Models\Produit;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -14,10 +13,8 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('prescriptions', function (Blueprint $table) {
+        Schema::create('receptionistes', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(Produit::class)->nullable()->constrained();
-            $table->string('posologie');
             $table->timestamps();
         });
     }
@@ -29,6 +26,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('prescriptions');
+        Schema::dropIfExists('receptionistes');
     }
 };

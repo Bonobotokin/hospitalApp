@@ -15,6 +15,8 @@ return new class extends Migration
     {
         Schema::create('type_consultations', function (Blueprint $table) {
             $table->id();
+            $table->string('type_consultaion');
+            $table->integer('prix_consultation');
             $table->timestamps();
         });
     }

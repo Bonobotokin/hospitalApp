@@ -10,7 +10,9 @@ use App\Http\Controllers\BonReceptionController;
 use App\Http\Controllers\CommandeProduitController;
 use App\Http\Controllers\DepotController;
 use App\Http\Controllers\LivraisonProduitsController;
+use App\Http\Controllers\PatientController;
 use App\Http\Controllers\PharmacienController;
+use App\Http\Controllers\ReceptionisteController;
 use App\Http\Controllers\StockPharmacieController;
 
 
@@ -97,9 +99,11 @@ Route::post('enregistrement/livraison_fournisseur', [LivraisonProduitsController
 Route::get('details/{num_livraison}/livraison', [LivraisonProduitsController::class, 'show'])->name('livraison.show');
 
 
-###############################################################
-#  Gestion des Livraison Produits & Fournisseur Administrator #
-###############################################################
+###########################################
+#  Gestion des Receptioniste Dispensaire  #
+###########################################
 
-
+Route::get('reception/pation', [ReceptionisteController::class, 'patient'])->name('liste.patient');
+Route::get('receptioniste/consultation', [ReceptionisteController::class, 'consultation'])->name('liste.consultation');
+Route::get('receptioniste/new_consultation', [ReceptionisteController::class, 'createConsultation'])->name('create.consultation');
 

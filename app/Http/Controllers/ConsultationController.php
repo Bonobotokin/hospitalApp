@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreConsultationRequest;
 use App\Http\Requests\UpdateConsultationRequest;
 use App\Models\Consultation;
+use Illuminate\Http\Request;
 
 class ConsultationController extends Controller
 {
@@ -15,7 +16,7 @@ class ConsultationController extends Controller
      */
     public function index()
     {
-        //
+        
     }
 
     /**
@@ -34,7 +35,7 @@ class ConsultationController extends Controller
      * @param  \App\Http\Requests\StoreConsultationRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreConsultationRequest $request)
+    public function store(Request $request)
     {
         //
     }
@@ -68,7 +69,7 @@ class ConsultationController extends Controller
      * @param  \App\Models\Consultation  $consultation
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateConsultationRequest $request, Consultation $consultation)
+    public function update(Request $request, Consultation $consultation)
     {
         //
     }
