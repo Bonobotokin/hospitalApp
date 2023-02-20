@@ -29,7 +29,7 @@ class ProduitsAction
 
                 $equipeFourniture = $this->personnelRepository->getPersonnelConnected($magasinierId);
 
-                // dd($request);
+                // dd($equipeFourniture);
 
                 $produits = Produit::Create([
                     'designation_produits' => $request['designation'],

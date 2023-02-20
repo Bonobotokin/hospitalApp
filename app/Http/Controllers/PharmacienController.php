@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StorePharmacienRequest;
 use App\Http\Requests\UpdatePharmacienRequest;
 use App\Models\Pharmacien;
+use GuzzleHttp\Psr7\Request;
 
 class PharmacienController extends Controller
 {
@@ -35,7 +36,7 @@ class PharmacienController extends Controller
      * @param  \App\Http\Requests\StorePharmacienRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StorePharmacienRequest $request)
+    public function store(Request $request)
     {
         //
     }
@@ -69,7 +70,7 @@ class PharmacienController extends Controller
      * @param  \App\Models\Pharmacien  $pharmacien
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdatePharmacienRequest $request, Pharmacien $pharmacien)
+    public function update(Request $request, Pharmacien $pharmacien)
     {
         //
     }

@@ -24,12 +24,7 @@ return new class extends Migration
             $table->integer('telephone_1_personneles')->nullable();
             $table->integer('telephone_2_personneles')->nullable();
             $table->string('situation_matrimoniale_personneles',20);
-            
-            $table->foreignIdFor(User::class)->constrained();
-            // $table->integer('num_roles_personnels')->unsigned();
-            // $table->foreign('num_roles_personnels')
-            //         ->references('num_roles_personnels')
-            //         ->on('roles_personnels');
+            $table->string('titre',20)->nullable();
             $table->timestamps();
         });
     }

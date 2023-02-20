@@ -171,6 +171,30 @@
                         </ul>
                     </div>
                 </li> 
+
+                <li class="nav-item menu-items">
+                    <a class="nav-link" data-toggle="collapse" href="#ui-personnel" aria-expanded="false" aria-controls="ui-personnel">
+                        <span class="menu-icon">
+                            <i class="mdi mdi-settings"></i>
+                        </span>
+                        <span class="menu-title">Personnel</span>
+                        <i class="menu-arrow"></i>
+                    </a>
+                    <div class="collapse" id="ui-personnel">
+                        <ul class="nav flex-column sub-menu">
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('personnel.liste') }}">
+                                    Liste Personnel
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('personnel.nouveaux') }}">
+                                    Nouveaux Personnel
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </li> 
                 <li class="nav-item menu-items">
                     <a class="nav-link" data-toggle="collapse" href="#ui-achat_livraison" aria-expanded="false" aria-controls="ui-achat_livraison">
                         <span class="menu-icon">
@@ -203,7 +227,7 @@
                 <!-- Masgasin & magasinier -->
 
                 <li class="nav-item menu-items">
-                    <p class="nav-link">Depots Produits Medicale</p>
+                    <p class="nav-link">Produits Medicale</p>
                 </li>
                 <li class="nav-item menu-items">
                     <a class="nav-link" data-toggle="collapse" href="#ui-fourniture" aria-expanded="false" aria-controls="ui-fourniture">
@@ -277,7 +301,9 @@
                     </div>
                 </li>
                 <!-- Dispensaire -->
-
+                <li class="nav-item menu-items">
+                    <p class="nav-link">Dispensaire</p>
+                </li>
                 <li class="nav-item menu-items">
                     <a class="nav-link" data-toggle="collapse" href="#ui-Reception" aria-expanded="false" aria-controls="ui-Reception">
                         <span class="menu-icon">
@@ -291,6 +317,41 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('liste.consultation') }}" >
                                     Consultation
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('liste.patient') }}">
+                                    Liste des Patient
+                                </a>
+                            </li>
+                            <!-- 
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('index.achat.produits') }}">
+                                    Achat des Produits
+                                </a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('liste.reception') }}">
+                                    Listes des Livraison
+                                </a>
+                            </li> -->
+                        </ul>
+                    </div>
+                </li>
+                <li class="nav-item menu-items">
+                    <a class="nav-link" data-toggle="collapse" href="#ui-Medecin" aria-expanded="false" aria-controls="ui-Medecin">
+                        <span class="menu-icon">
+                            <i class="mdi mdi-home"></i>
+                        </span>
+                        <span class="menu-title">Medecin</span>
+                        <i class="menu-arrow"></i>
+                    </a>
+                    <div class="collapse" id="ui-Medecin">
+                        <ul class="nav flex-column sub-menu">
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('get.all.consultation') }}" >
+                                    Liste Consultation
                                 </a>
                             </li>
                             <li class="nav-item">
@@ -507,6 +568,13 @@
 <script src="{{ asset('script/getElemtCommande.js') }}"></script>
 <script src="{{ asset('script/scriptLivraisonCommande.js') }}"></script>
 <script src="{{ asset('script/achatScript.js') }}"></script>
+{{-- js for manipulation --}}
+<script src="{{ asset('script/consultation.js') }}"></script>
+<script src="{{ asset('script/examens_echographie.js')}}"></script>
+<script src="{{ asset('script/examens_laboratoire.js')}}"></script>
+<script src="{{ asset('script/symptomes.js') }}"></script>
+<script src="{{ asset('script/diagnostic.js') }}"></script>
+<script src="{{ asset('script/prescription.js')}}"></script>
 <script>
     $(function() {
         $("#example1").DataTable({

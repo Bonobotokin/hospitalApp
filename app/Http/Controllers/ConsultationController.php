@@ -5,10 +5,36 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreConsultationRequest;
 use App\Http\Requests\UpdateConsultationRequest;
 use App\Models\Consultation;
+use App\Repository\ConsultationRepository;
+use App\Repository\PatientRepository;
+use App\Repository\PersonnelRepository;
+use App\Repository\TypesConsultationRepository;
 use Illuminate\Http\Request;
 
 class ConsultationController extends Controller
 {
+    protected $typesConsultationRepository;
+    protected $personnelRepository;
+    protected $consultationRepository;
+    protected $patientRepository;
+
+    public function __construct(
+
+        ConsultationRepository $consultationRepository,
+        TypesConsultationRepository $typesConsultationRepository,
+        PersonnelRepository $personnelRepository,
+        PatientRepository $patientRepository
+
+    )
+    {
+        
+        $this->consultationRepository = $consultationRepository;
+        $this->typesConsultationRepository = $typesConsultationRepository;
+        $this->personnelRepository  = $personnelRepository;
+        $this->patientRepository = $patientRepository;
+
+    } 
+
     /**
      * Display a listing of the resource.
      *
@@ -16,7 +42,15 @@ class ConsultationController extends Controller
      */
     public function index()
     {
-        
+        $listeConsultation = $this->consultationRepository->get_patient_consultation_to_day();
+        $dateConsultation = $this->consultationRepository->date_consultation();
+        return view('Medecins.listeConsultation', 
+            [
+                'listeConsultation' => $listeConsultation,
+                'dateConsultation' => $dateConsultation
+            ]
+        );
+
     }
 
     /**
@@ -40,15 +74,12 @@ class ConsultationController extends Controller
         //
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Consultation  $consultation
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Consultation $consultation)
-    {
-        //
+    
+    public function consultePatient(int $id)
+    {   
+        // dd($id);
+        $patietnInfo = $this->consultationRepository->getPatientById($id);
+        return view('Medecins.patientConsulter');
     }
 
     /**

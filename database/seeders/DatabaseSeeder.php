@@ -4,10 +4,6 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
-
-use App\Models\Magasinier;
-use App\Models\Personnel;
-use App\Models\Pharmacien;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -20,8 +16,23 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         
-        Personnel::factory(1)->create();
-        Magasinier::factory(1)->create();
-        Pharmacien::factory(1)->create();
+        // Personnel::factory(1)->create();
+        // Magasinier::factory(1)->create();
+        // Pharmacien::factory(1)->create();
+
+        $this->call([
+            ServiceMedicaleSeeder::class,
+            UserSeeder::class,
+            PersonnelSeeder::class,
+            RoleSeeder::class,
+            FonctionSeeder::class,
+            CompteSeeder::class,
+            PersonnelRoleSeeder::class,
+            TypeConsultationSeeder::class,
+            MagasinierSeeder::class,
+            PharmacienSeeder::class,
+            MedecinSeeder::class,
+            ReceptionisteSeeder::class
+        ]);
     }
 }

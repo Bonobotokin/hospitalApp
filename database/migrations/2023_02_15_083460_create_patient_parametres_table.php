@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Patient;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -15,12 +16,13 @@ return new class extends Migration
     {
         Schema::create('patient_parametres', function (Blueprint $table) {
             $table->id();
-            $table->integer('poids');
-            $table->decimal('taills');
-            $table->integer('temperature');
-            $table->decimal('tension');
-            $table->integer('pouls');
-            $table->decimal('frequence');
+            $table->foreignIdFor(Patient::class);
+            $table->decimal('poids')->nullable();
+            $table->decimal('taills')->nullable();
+            $table->decimal('temperature')->nullable();
+            $table->decimal('tension')->nullable();
+            $table->decimal('pouls')->nullable();
+            $table->decimal('frequence')->nullable();
             $table->timestamps();
         });
     }

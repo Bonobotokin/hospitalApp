@@ -2,7 +2,6 @@
 
 namespace Database\Factories;
 
-use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -27,9 +26,6 @@ class PersonnelFactory extends Factory
             'telephone_1_personneles' =>  '0346697188',
             'telephone_2_personneles' => '0347927260',
             'situation_matrimoniale_personneles' => 'célibataire',
-            // 'departement_id' => 1,
-            // 'num_roles_personnels' => 1
-            'user_id' => User::factory()
         ];
     }
 }

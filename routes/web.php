@@ -8,13 +8,14 @@ use App\Http\Controllers\MagasinierController;
 use App\Http\Controllers\AchatProduitController;
 use App\Http\Controllers\BonReceptionController;
 use App\Http\Controllers\CommandeProduitController;
+use App\Http\Controllers\ConsultationController;
 use App\Http\Controllers\DepotController;
 use App\Http\Controllers\LivraisonProduitsController;
 use App\Http\Controllers\PatientController;
 use App\Http\Controllers\PharmacienController;
 use App\Http\Controllers\ReceptionisteController;
 use App\Http\Controllers\StockPharmacieController;
-
+use App\Http\Controllers\PersonnelController;
 
 /*
 |--------------------------------------------------------------------------
@@ -98,12 +99,27 @@ Route::post('enregistrement/livraison_fournisseur', [LivraisonProduitsController
 // Route::get('Bon_livraison/details/{num_livraison}/Magasien', [BonReceptionController::class, 'detailLivraison'])->name('detail.livraison');
 Route::get('details/{num_livraison}/livraison', [LivraisonProduitsController::class, 'show'])->name('livraison.show');
 
+###########################################
+#  Gestion des Personnels  #
+###########################################
+
+Route::get('listePersonnel', [PersonnelController::class , 'index'])->name('personnel.liste');
+Route::get('nouveauxPersonnel', [PersonnelController::class, 'create'])->name('personnel.nouveaux');
+
 
 ###########################################
 #  Gestion des Receptioniste Dispensaire  #
 ###########################################
 
-Route::get('reception/pation', [ReceptionisteController::class, 'patient'])->name('liste.patient');
+Route::get('reception/patient', [ReceptionisteController::class, 'patient'])->name('liste.patient');
 Route::get('receptioniste/consultation', [ReceptionisteController::class, 'consultation'])->name('liste.consultation');
 Route::get('receptioniste/new_consultation', [ReceptionisteController::class, 'createConsultation'])->name('create.consultation');
+Route::post('Enregistre_pation/Consultation', [ReceptionisteController::class, 'storeConsultation'])->name('store.consultation');
 
+
+###########################################
+#  Gestion des Medecin Consultation  #
+###########################################
+
+Route::get('Medecin/listeConsultation', [ConsultationController::class, 'index'])->name('get.all.consultation');
+Route::get('consulted/{id}/patient', [ConsultationController::class, 'consultePatient'])->name('consulte.patient');

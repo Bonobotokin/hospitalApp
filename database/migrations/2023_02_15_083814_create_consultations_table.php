@@ -20,12 +20,11 @@ return new class extends Migration
         Schema::create('consultations', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(Patient::class)->constrained();
-            $table->foreignIdFor(TypeConsultation::class)->constrained();
-            $table->foreignIdFor(Prescription::class)->constrained();
+            $table->foreignIdFor(TypeConsultation::class)->constrained();            
             $table->foreignIdFor(Medecin::class)->constrained();
             $table->boolean('consulted')->default(false);
-            $table->string('diagnostique');
-            $table->string('commentaire');
+            $table->string('diagnostique')->nullable();
+            $table->string('commentaire')->nullable();
             $table->timestamps();
         });
     }
