@@ -72,6 +72,10 @@ Route::get('pharmacie/stock', [StockPharmacieController::class, 'index'])->name(
 
 Route::get('Pharmacie/commande/Medicament', [PharmacienController::class, 'index'])->name('commande.index');
 
+// mettre a jour le depots by magasin
+
+
+
 ############################################################
 #  Gestion des Produits & Fournisseur Administrator #
 ###########################################################

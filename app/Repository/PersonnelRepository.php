@@ -39,11 +39,11 @@ class PersonnelRepository implements PersonnelRepositoryInterface
     {
 
         $personnelLogin = Compte::with('personnel','user')->get();
-
+        // dd($personnelLogin);
         $personnelMagasinier = Magasinier::with('personnel')
-            ->where('personnel_id', $personnelLogin['personnel_id'])
+            ->where('id', $personnelLogin[0]['personnel_id'])
             ->get();
-        
+        // dd($personnelMagasinier);
         return $personnelMagasinier;
     }
 

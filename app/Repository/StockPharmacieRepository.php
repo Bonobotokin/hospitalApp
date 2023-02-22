@@ -16,7 +16,7 @@ class StockPharmacieRepository implements StockPharmacieRepositoryInterface
             ->map(function ($stoque) {
 
                 $produits = $stoque->produit;
-                // dd($stoque);
+                
                 return [
                     'num' => $stoque->produit_id,
                     'nom' => $produits->designation_produits,
@@ -26,6 +26,7 @@ class StockPharmacieRepository implements StockPharmacieRepositoryInterface
                     'type' =>  $produits->type_produits,
                     'categorie' => $produits->categorie,
                     'abrev' => $produits->abreviation_produits,
+                    'prix' => $produits->prix_vente_produits,
                     'pharmacien_id' => $stoque->pharmacien_id
 
                 ];

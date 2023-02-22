@@ -18,10 +18,6 @@
             <div class="card">
                 <div class="card-body">
                     <h4 class="card-title text-center">Liste des Produits </h4>
-                    <a href="{{ route('create.achat.produits') }}" type="button" class="btn btn-outline-primary btn-fw">
-                        Nouveaux Achat
-                    </a>
-                    
                     <div class="table-responsive">
                         <table id="example1" class="table table-bordered">
                             <thead>
@@ -34,20 +30,6 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ( $depots as $data )
-                                    <tr>
-                                        <td> {{ $data['nom'] }}; {{ $data['abrev'] }} </td>
-                                        <td> {{ $data['conditionnement'] }} </td>
-                                        <td> {{ $data['quantite'] }} </td>
-                                        <td> {{ $data['prix_vente'] }} Ar </td>
-                                        <td>
-                                            <abs type="button" class="btn btn-primary btn-icon-text" >
-                                                Plus details
-                                                <i class="mdi mdi-refresh float-right"></i>
-                                            </a>
-                                        </td>
-                                    </tr>
-                                @endforeach
                             </tbody>
                         </table>
                     </div>

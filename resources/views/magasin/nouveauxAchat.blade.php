@@ -25,7 +25,7 @@
 
                     <div class="col-lg-12">
                         <div class="row">
-                            <div class="col-md-4 grid-margin" id="listeMedicament" style="">
+                            <div class="col-md-4 grid-margin" id="listeMedicament">
 
                                 <div class="table-responsive">
                                     <input onkeyup="searchIng()" type="text" id="inputSearch" class="form-control" placeholder="Search products">

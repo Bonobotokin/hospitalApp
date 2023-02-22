@@ -43,7 +43,7 @@ class ProduitsAction
                 
                 $depots = $this->insertNewProduitsDepots($produits_id, $equipeFourniture[0]['id']);
 
-                if($request['categori'] == 'Medicaments')
+                if(($request['categori'] == 'Medicaments') || ($request['categori'] == 'Fourniture'))
                 {
                     $pharmacie = $this->regenereStockPharmacie($produits_id, $equipeFourniture[0]['id']);
                 }
@@ -56,7 +56,7 @@ class ProduitsAction
             });
             return $data;
         } catch (Exception $th) {
-            dd($th, "eto pharmacie");
+            // dd($th, "eto pharmacie");
             return $th;
         }
 

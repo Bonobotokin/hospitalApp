@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Repository\ProduitsRepository;
 use App\Http\Requests\StoreProduitRequest;
 use App\Http\Requests\UpdateProduitRequest;
+use Illuminate\Http\Request;
 
 class ProduitController extends Controller
 {
@@ -100,7 +101,7 @@ class ProduitController extends Controller
      * @param  \App\Models\Produit  $produit
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateProduitRequest $request, Produit $produit)
+    public function update(Request $request, Produit $produit)
     {
         //
     }

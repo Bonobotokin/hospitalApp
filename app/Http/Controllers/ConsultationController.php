@@ -8,6 +8,7 @@ use App\Models\Consultation;
 use App\Repository\ConsultationRepository;
 use App\Repository\PatientRepository;
 use App\Repository\PersonnelRepository;
+use App\Repository\StockPharmacieRepository;
 use App\Repository\TypesConsultationRepository;
 use Illuminate\Http\Request;
 
@@ -17,13 +18,15 @@ class ConsultationController extends Controller
     protected $personnelRepository;
     protected $consultationRepository;
     protected $patientRepository;
+    private $stockPharmacieRepository;
 
     public function __construct(
 
         ConsultationRepository $consultationRepository,
         TypesConsultationRepository $typesConsultationRepository,
         PersonnelRepository $personnelRepository,
-        PatientRepository $patientRepository
+        PatientRepository $patientRepository,
+        StockPharmacieRepository $stockPharmacieRepository
 
     )
     {
@@ -32,6 +35,7 @@ class ConsultationController extends Controller
         $this->typesConsultationRepository = $typesConsultationRepository;
         $this->personnelRepository  = $personnelRepository;
         $this->patientRepository = $patientRepository;
+        $this->stockPharmacieRepository = $stockPharmacieRepository;
 
     } 
 
@@ -78,8 +82,15 @@ class ConsultationController extends Controller
     public function consultePatient(int $id)
     {   
         // dd($id);
-        $patietnInfo = $this->consultationRepository->getPatientById($id);
-        return view('Medecins.patientConsulter');
+        $patientInfo = $this->consultationRepository->getPatientById($id);
+        $produits = $this->stockPharmacieRepository->getAll();
+        
+        return view('Medecins.patientConsulter', 
+            [
+                'patient' => $patientInfo[0],
+                'produitListe' => $produits
+            ]
+        );
     }
 
     /**

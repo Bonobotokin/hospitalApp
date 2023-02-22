@@ -206,11 +206,6 @@
                     <div class="collapse" id="ui-achat_livraison">
                         <ul class="nav flex-column sub-menu">
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('index.produits') }}">
-                                    Listes des Produits
-                                </a>
-                            </li>
-                            <li class="nav-item">
                                 <a class="nav-link" href="{{ route('produits.achat') }}">
                                     Achat des Produits
                                 </a>
@@ -239,6 +234,11 @@
                     </a>
                     <div class="collapse" id="ui-fourniture">
                         <ul class="nav flex-column sub-menu">
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('index.produits') }}">
+                                    Listes des Produits
+                                </a>
+                            </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="{{route('depots')}}">
                                     Depots
@@ -467,6 +467,7 @@
                             <div class="form-group">
                                 <label for="cateogorie">Categorie : </label>
                                 <select name="categori" class="form-control" id="">
+                                    <option value="Materiels">Fourniture</option>
                                     <option value="Fourniture">Fourniture</option>
                                     <option value="Medicaments">Medicament</option>
                                 </select>
@@ -575,6 +576,7 @@
 <script src="{{ asset('script/symptomes.js') }}"></script>
 <script src="{{ asset('script/diagnostic.js') }}"></script>
 <script src="{{ asset('script/prescription.js')}}"></script>
+<script src="{{ asset('script/manupilation.js')}}"></script>
 <script>
     $(function() {
         $("#example1").DataTable({

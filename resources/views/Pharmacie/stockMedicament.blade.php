@@ -18,10 +18,16 @@
             <div class="card">
                 <div class="card-body">
                     <h4 class="card-title text-center">Liste des Produits en Stock</h4>
-                    <!-- <button type="button" class="btn btn-outline-primary btn-fw" data-toggle="modal"
-                        data-target="#newFourniture">
-                        Nouveaux Fourniture
-                    </button> -->
+                    <!-- <a type="button" href="#" class="nav-link" style="color:white">
+                        <blockquote class="blockquote blockquote-warning">
+                            
+                            <p >
+                                Le Magasin depots a des nouveaux produits, veuillez me click 
+                                pour en savoire quelle produits s'agit-il !
+                            </p>
+                        
+                        </blockquote>
+                    </a> -->
                     <br><br>
                     <div class="table-responsive">
                         <table id="example1" class="table table-bordered">

@@ -126,7 +126,7 @@ class CommandeProduitController extends Controller
      * @param  \App\Models\CommandeProduit  $commandeProduit
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateCommandeProduitRequest $request, CommandeProduit $commandeProduit)
+    public function update(Request $request, CommandeProduit $commandeProduit)
     {
         //
     }

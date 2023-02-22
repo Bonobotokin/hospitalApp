@@ -25,9 +25,9 @@ class PharmacienController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function showAllNewProduits()
     {
-        //
+        return view('Pharmacie.metreAjourStock');
     }
 
     /**

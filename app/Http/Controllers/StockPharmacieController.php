@@ -7,6 +7,7 @@ use App\Repository\ProduitsRepository;
 use App\Http\Requests\StoreStockPharmacieRequest;
 use App\Http\Requests\UpdateStockPharmacieRequest;
 use App\Repository\StockPharmacieRepository;
+use Illuminate\Http\Request;
 
 class StockPharmacieController extends Controller
 {
@@ -57,7 +58,7 @@ class StockPharmacieController extends Controller
      * @param  \App\Http\Requests\StoreStockPharmacieRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreStockPharmacieRequest $request)
+    public function store(Request $request)
     {
         //
     }
@@ -91,7 +92,7 @@ class StockPharmacieController extends Controller
      * @param  \App\Models\StockPharmacie  $stockPharmacie
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateStockPharmacieRequest $request, StockPharmacie $stockPharmacie)
+    public function update(Request $request, StockPharmacie $stockPharmacie)
     {
         //
     }
