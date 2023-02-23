@@ -59,9 +59,9 @@ function addMedicamentBtn() {
     let designation = document.getElementById("designation").value;
     let categorieValue = document.getElementById("categorieValue").value;
     let conditionnement = document.getElementById("conditionnement").value;
-    let quantite = document.getElementById("quantite").value;
-    
+    let quantite = document.getElementById("quantite").value;    
     let abrev = document.getElementById('abrev').value;
+    
     let formCommande = document.querySelector('.formCommande');
     let lignes = formCommande.getElementsByTagName('div');
     let div = document.createElement('div');

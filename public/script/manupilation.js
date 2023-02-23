@@ -1,177 +1,135 @@
 // Manipulation consultation 
 window.onload = () => {
+        // Utilisation de const et let
+        const medicamentUl = document.getElementById('medicamentUl');
+        const lignes = Array.from(medicamentUl.getElementsByTagName('tr'));
+        const content_remove = medicamentUl.parentNode.removeChild(medicamentUl);
+        const tbody = document.createElement('tbody');
+        tbody.id = "medicamentUl";
+        document.getElementById("tableMedicament").appendChild(tbody);
 
-    const medicamentUl = document.getElementById('medicamentUl');
-    let ligne = medicamentUl.getElementsByTagName('tr');
-    let content_remove = document.getElementById('medicamentUl');
-    content_remove.remove(content_remove);
-    var tbody = document.createElement('tbody')
-    tbody.id = "medicamentUl";
+        // Utilisation de querySelector() pour sélectionner les éléments
+        const prescription = document.querySelector('#prescription');
+        const contentExamens = document.querySelector("#examens");
+        const contentParametre = document.querySelector("#parametre");
+        const contentResultat = document.querySelector("#resultatExamens");
+        const contentDiagnostic = document.querySelector("#diagnostic");
 
-    document.getElementById("tableMedicament").appendChild(tbody)
-    for (let i = 0; i < ligne.length; i++) {
+        for (let i = 0; i < lignes.length; i++) {
+            const tr = document.createElement('tr');
+            tr.style.cursor = 'pointer';
+            tr.id = 'content_search_medicament' + i;
+            tr.className = "content_search_medicament";
+            tr.innerHTML = lignes[i].innerHTML;
+            document.getElementById("medicamentUl").appendChild(tr);
 
-        let tr = document.createElement('tr')
-        tr.style.cursor = 'pointer';
-        tr.id = 'content_search_medicament' + i;
-        tr.className = "content_search_medicament";
-        // tr.setAttribute('onclick', 'addPrecription()')
-        tr.innerHTML = ligne[i].innerHTML;
-        console.log(ligne[i].innerHTML);
-        document.getElementById("medicamentUl").appendChild(tr);
-    }
+            const clickContent = document.getElementById('content_search_medicament' + i);
+            clickContent.addEventListener('click', function () {
+                contentDiagnostic.style.display = "none";
+                contentResultat.style.display = "none";
+                contentParametre.style.display = "none";
+                contentExamens.style.display = "none";
+                prescription.style.display = "flex";
 
-    let prescription = document.getElementById('prescription');
-    let contentExamens = document.getElementById("examens");
-    let contentParametre = document.getElementById("parametre");
-    let contentResultat = document.getElementById("resultatExamens");
-    let contentDiagnostic = document.getElementById("diagnostic");
+                const contentProduits = clickContent.getElementsByTagName('td');
+                const medicamentForm = document.querySelector('.medicamentForm');
+                const div = document.createElement('div');
+                div.className = 'form-inline abotProduits';
+                const id = contentProduits[0].innerText;
+                const designationProduits = contentProduits[1].innerText;
+                const type = contentProduits[2].innerText;
+                const prix = contentProduits[3].innerText;
 
-
-    for (let j = 0; j < ligne.length; j++) {
-        let clickContent = document.getElementById('content_search_medicament' + j);
-
-        clickContent.addEventListener('click', function () {
-            // ajouter les Medicament dans le formulaire
-            let content_click;
-            contentDiagnostic.style.display = "none";
-            contentResultat.style.display = "none";
-            contentParametre.style.display = "none";
-            contentExamens.style.display = "none";
-            prescription.style.display = "flex"
-
-            content_click = document.querySelector('#content_search_medicament' + j);
-            contentProduits = content_click.getElementsByTagName('td');
-
-            let medicamentForm = document.querySelector('.medicamentForm');
-            let lignes = medicamentForm.getElementsByTagName('div')
-            let div = document.createElement('div');
-            div.className = 'form-inline';
-            let id = contentProduits[0].innerText;
-            let designationProduits = contentProduits[1].innerText;
-            let type = contentProduits[2].innerText;
-            let prix = contentProduits[3].innerText;
-           
-            if (lignes.length == 0) {
-                div.innerHTML =
-                    `
-                        <input type="hidden" name="0[produits_id]" value="`+ id + `" class="form-control" id="id">
-                        <input type="text" desabled name="0[designation]" value="`+ designationProduits + `" class="form-control mb-2 mr-1 col-lg-3" id="designationProduits">
-                        <input type="text"  name="0[type]" value="`+ type + `" class="form-control mb-2 mr-1 col-lg-3" id="type">
-                        <input type="text"  name="0[quantite]" placeholder="quantite" class="form-control mb-2 mr-1 col-lg-2" id="quantite">
-                        <input type="text"  name="0[durer]" placeholder="durer" class="form-control mb-2 mr-1 col-lg-2" id="durer">
-                        <i id="ligne_0" class="remove mdi mdi-close-circle-outline"></i>
+                if (lignes.length == 1) {
+                    div.innerHTML = `
+                        <input type="hidden" name="0[produits_id]" value="${id}" class="form-control" id="id">
+                        <input type="text" name="0[designation]" value="${designationProduits}" class="form-control mb-2 mr-1 col-lg-3" id="designationProduits">
+                        <input type="text" name="0[type]" value="${type}" class="form-control mb-2 mr-1 col-lg-3" id="type">
+                        <input type="text" name="0[quantite]" placeholder="quantite" class="form-control mb-2 mr-1 col-lg-3" id="quantite">
                     `;
-                medicamentForm.appendChild(div);
-            }
-            else if (lignes.length >= 1) {
-                for (let i = 0; i < lignes.length; i++) {
-
-
-                    div.innerHTML =
-                        `
-                            <input type="hidden" name="`+ i + `[produits_id]" value="` + id + `" class="form-control" id="id">
-                            <input type="text" desabled name="`+ i + `[designationProduits]" value="` + designationProduits + `" class="form-control mb-2 mr-1 col-lg-3" id="designationProduits">
-                            <input type="text"  name="`+ i + `[type]" value="` + type + `" class="form-control mb-2 mr-1 col-lg-3" id="type">
-                            <input type="text"  name="`+ i + `[quantite]" placeholder="quantite" class="form-control mb-2 mr-1 col-lg-2" id="quantite">
-                            <input type="text"  name="`+ i + `[durer]" placeholder="durer" class="form-control mb-2 mr-1 col-lg-2" id="durer">
-                            <i id="ligne_0" class="remove mdi mdi-close-circle-outline"></i>
-                            `;
                     medicamentForm.appendChild(div);
+                } else {
+                    for (let j = 0; j < lignes.length; j++) {
+                        div.innerHTML = `
+                            <input type="hidden" name="${j}[produits_id]" value="${id}" class="form-control" id="id">
+                            <input type="text" name="${j}[designationProduits]" value="${designationProduits}" class="form-control mb-2 mr-1 col-lg-3" id="designationProduits">
+                            <input type="text" name="${j}[type]" value="${type}" class="form-control mb-2 mr-1 col-lg-3" id="type">
+                            <input type="text" name="${j}[quantite]" placeholder="quantite" class="form-control mb-2 mr-1 col-lg-3" id="quantite">
+    
+                        `;
+                        medicamentForm.appendChild(div);
+                    }
                 }
-            }
 
-        }, false);
+            }, false);
 
-    }
+        }
 };
 
 
-function btnvalide() {
-    let id = document.getElementById("id");
-    let designationProduits = document.getElementById("designationProduits");
-    let type = document.getElementById("type");
-    let quantite = document.getElementById("quantite");
-    let durer = document.getElementById("durer");
-    
-    const form = document.getElementById('medicamentForm');
-    let medicamentForm = document.querySelector('.medicamentForm');
-    let ligne = medicamentForm.getElementsByTagName('div');
-    
-    // remove content and insert new content with number medicament commande
+    function btnvalide() {
 
-    let content_remove = document.getElementById('medicamentForm');
-    content_remove.remove(content_remove);
+        const divs = document.querySelectorAll('#medicamentForm div');
+        const listeMedicamentPrescription = document.getElementById('listeMedicamentPrescription');
+        const posologie = document.getElementById('posologie');
+
+        // Itérer sur tous les divs et les ajouter à listeMedicamentPrescription
+        divs.forEach((div) => {
+            listeMedicamentPrescription.appendChild(div);
+        });
+
+        // Récupérer les valeurs de tous les champs d'entrée avec un retour à la ligne entre chaque div
+        let values = '';
+        divs.forEach((div, index) => {
+            const inputs = div.querySelectorAll('input');
+            inputs.forEach((input, inputIndex) => {
+                values += input.value;
+                if (inputIndex < inputs.length - 1) {
+                    values += ' ';
+                }
+            });
+            if (index < divs.length - 1) {
+                values += '\n';
+            }
+        });
+
+        // Créer une textarea avec les valeurs récupérées
+        const textarea = document.createElement('textarea');
+        const h4 = document.createElement('h4');
+        h4.innerText = "Pologie et conseille"
+        textarea.classList.add('form-control');
+        textarea.setAttribute('cols', '50');
+        textarea.setAttribute('rows', '10');
+        textarea.value = values;
+        posologie.appendChild(h4);
+        posologie.appendChild(textarea);
+        console.log(textarea);
 
 
-    var div = document.createElement('div')
-    div.id = "formCommande";
+    }
 
-    let formLine =  document.getElementById("formLine");
-    formLine.appendChild(div);
-
-    let input = document.createElement('input');
-    input.value = ligne.length;
-    input.type = 'hidden';
-    input.name = 'listeMedicaments';
-    document.getElementById("formCommande").appendChild(input);
-
-    for (let i = 0; i < ligne.length; i++) {
-        console.log(ligne[i])
-        let div = document.createElement('div')
-        div.id = 'inforMedicament';
-        div.className = 'inforMedicament form-inline';
-        div.innerHTML = ligne[i].innerHTML;
-        document.getElementById("listeMedicamentPrescription").appendChild(div);
-        
+    function btnAnnuler() {
+        // Récupérer tous les éléments d'entrée du formulaire
+        const inputs = document.querySelectorAll('#listeMedicamentPrescription div');
+        const div = document.createElement('div');
+        const medicamentForm = document.getElementById('medicamentForm');
+        const posologie = document.getElementById('posologie');
+        const textarea = document.querySelector('textarea');
+        const h4 = document.querySelector('h4');
+        // Itérer sur tous les champs d'entrée et récupérer leur valeur
+        inputs.forEach((div) => {
+            console.log(div, 'iii');
+            medicamentForm.appendChild(div);
+        });
+        h4.remove()
+        textarea.remove()
     }
 
 
-    let getValue = document.querySelector('.inforMedicament');
-    let getInputValue = getValue.getElementsByTagName('input');
-    
-    for (let li = 0; li < getInputValue.length; li++) {
-        const element = getInputValue[li];
-        console.log(element.value);
-        
+
+    function hideShowParamaetre() {
+        let showparametre = document.getElementById('parametre');
     }
-
-
-
-    // btnFinished.style.display = 'none';
-    // btnreset.style.display = 'none';
-    // document.getElementById('btnSaved').style.display = 'block'
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-function hideShowParamaetre() {
-    let showparametre = document.getElementById('parametre');
-}
 
 
 

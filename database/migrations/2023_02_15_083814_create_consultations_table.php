@@ -24,7 +24,6 @@ return new class extends Migration
             $table->foreignIdFor(Medecin::class)->constrained();
             $table->boolean('consulted')->default(false);
             $table->string('diagnostique')->nullable();
-            $table->string('commentaire')->nullable();
             $table->timestamps();
         });
     }

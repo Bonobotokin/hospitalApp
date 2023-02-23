@@ -19,8 +19,7 @@ class Consultation extends Model
         'type_consultation_id',
         'medecin_id',
         'consulted',
-        'diagnostique',
-        'commentaire'
+        'diagnostique'
     ];
 
 

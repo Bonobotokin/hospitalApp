@@ -1,8 +1,5 @@
 <?php
 
-use App\Models\Consultation;
-use App\Models\Medecin;
-use App\Models\Produit;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -16,12 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('prescriptions', function (Blueprint $table) {
+        Schema::create('examen_laboratoires', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(Produit::class)->nullable()->constrained();
-            $table->integer('quantite')->nullable();
-            $table->foreignIdFor(Medecin::class);
-            $table->foreignIdFor(Consultation::class);
+            $table->string('designation_examens_labo');
+            $table->integer('prix_examen');
             $table->timestamps();
         });
     }
@@ -33,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('prescriptions');
+        Schema::dropIfExists('examen_laboratoires');
     }
 };

@@ -4,6 +4,8 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
+use App\Models\ExamenEchoType;
+use App\Models\ExamenLaboratoire;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -32,7 +34,10 @@ class DatabaseSeeder extends Seeder
             MagasinierSeeder::class,
             PharmacienSeeder::class,
             MedecinSeeder::class,
-            ReceptionisteSeeder::class
+            ReceptionisteSeeder::class,
+            ExamenLaboratoireSeeder::class,
+            ExamenEchoTypeSeeder::class,
+            ExamenEchographieSeeder::class,
         ]);
     }
 }

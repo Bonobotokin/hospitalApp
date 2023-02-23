@@ -1,8 +1,6 @@
 <?php
 
-use App\Models\Consultation;
-use App\Models\Medecin;
-use App\Models\Produit;
+use App\Models\ExamenEchoType;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -16,12 +14,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('prescriptions', function (Blueprint $table) {
+        Schema::create('examen_echographies', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(Produit::class)->nullable()->constrained();
-            $table->integer('quantite')->nullable();
-            $table->foreignIdFor(Medecin::class);
-            $table->foreignIdFor(Consultation::class);
+            $table->foreignIdFor(ExamenEchoType::class)->constrained();
+            $table->string('designation_examens_echo');
+            $table->string('image_examens_echo')->nullable();
+            $table->integer('prix_examen');
             $table->timestamps();
         });
     }
@@ -33,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('prescriptions');
+        Schema::dropIfExists('examen_echographies');
     }
 };

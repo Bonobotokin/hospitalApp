@@ -71,15 +71,7 @@
                     <div class="col-md-5">
                         <h6 class="preview-subject">Symptomes</h6>
                         <div class="template-demo">
-                            <div class="add-items d-flex">
-                                <input type="text" class="form-control symptomesInput" placeholder="enter task..">
-                                <button class="add btn btn-primary symptomes-list-add-btn">Add</button>
-                            </div>
-                            <div class="list-wrapper">
-                                <ul class="d-flex flex-column-reverse text-white symptomes todo-list-custom">
-
-                                </ul>
-                            </div>
+                            <textarea name="symptomes" placeholder="Liste des symptomes ... " class="form-control" id="" cols="30" rows="10"></textarea>
                         </div>
                     </div>
                 </div>
@@ -90,21 +82,28 @@
                     <div class="col-sm-6">
                         <h6 class="preview-subject">Echographie</h6>
                         <div class="template-demo">
-                            <div class="add-items d-flex">
-                                {{-- <input type="text" class="form-control echographieInput" placeholder="enter task.."> --}}
-                                <select class="js-example-basic-single echographieInput" style="width:100%">
-                                    <option value="AL">Alabama</option>
-                                    <option value="WY">Wyoming</option>
-                                    <option value="AM">America</option>
-                                    <option value="CA">Canada</option>
-                                    <option value="RU">Russia</option>
-                                </select>
-                                <button class="add btn btn-primary echographie-list-add-btn">Add</button>
-                            </div>
-                            <div class="list-wrapper">
-                                <ul class="d-flex flex-column-reverse text-white echographie todo-list-custom">
-
-                                </ul>
+                            <div class="row">
+                                <div class="col-lg-4 form-check form-check-flat form-check-primary">
+                                    <label class="form-check-label">
+                                        <input type="checkbox" class="form-check-input">
+                                        Remember me
+                                        <i class="input-helper"></i>
+                                    </label>
+                                </div>
+                                <div class="col-lg-4 form-check form-check-flat form-check-primary">
+                                    <label class="form-check-label">
+                                        <input type="checkbox" class="form-check-input">
+                                        Remember me
+                                        <i class="input-helper"></i>
+                                    </label>
+                                </div>
+                                <div class="col-lg-4 form-check form-check-flat form-check-primary">
+                                    <label class="form-check-label">
+                                        <input type="checkbox" class="form-check-input">
+                                        Remember me
+                                        <i class="input-helper"></i>
+                                    </label>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -172,16 +171,7 @@
                     </div>
                     <div class="col-sm-12">
                         <div class="template-demo">
-                            <div class="add-items d-flex">
-                                <input type="text" class="form-control diagnosticInput" placeholder="Entrer ici votre diagnostic">
-
-                                <button class="add btn btn-primary diagnostic-list-add-btn">Add</button>
-                            </div>
-                            <div class="list-wrapper">
-                                <ul class="d-flex flex-column-reverse text-white diagnostic todo-list-custom">
-
-                                </ul>
-                            </div>
+                            <textarea name="diagnostic" placeholder="Diagnostic ... " class="form-control" id="" cols="30" rows="10"></textarea>
                         </div>
                     </div>
                 </div>
@@ -216,26 +206,27 @@
                         </div>
                     </div>
                     <div class="col-md-6 ">
-                        <h6 class="preview-subject text-center">Prescription</h6>
+                        <h6 class="preview-subject text-center">Medicament a prescrire</h6>
                         <div class="row">
                             <div id="medicamentForm" class="medicamentForm form-inline">
 
                             </div>
-                            <div id="formLine" class="medicamentForm form-inline">
+
+                            <div id="listeMedicamentPrescription" class="col-lg-12 listeMedicamentPrescription form-inline">
 
                             </div>
                             <div class="col-md-12" style="padding:25px">
                                 <div class="form-group">
-                                    <button onclick="" class="btn btn-danger btn-fw">
+                                    <button onclick="btnAnnuler()" class="btn btn-danger btn-fw">
                                         Annuler
                                     </button>
                                     <button onclick="btnvalide()" class="btn btn-primary btn-fw">
-                                        Valider
+                                        Valider la liste
                                     </button>
                                 </div>
                             </div>
 
-                            <div id="listeMedicamentPrescription" class="col-lg-12">
+                            <div id="posologie" class="posologie">
 
                             </div>
                         </div>
