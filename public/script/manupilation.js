@@ -107,7 +107,6 @@ function btnvalide() {
 		const tdPrix = document.createElement('td');
 		const tFoot = document.getElementById('tFoot');
 
-
 		tdId.textContent = id;
 		tdDesignationProduits.textContent = designationProduits;
 		tdQuantite.textContent = quantite;
