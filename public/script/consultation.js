@@ -2,11 +2,11 @@
  * function to show new Consultation and hidden Antecedants
  * */
 function newConsultation () {
-    let medicamentIteam = document.getElementById('listeMedicament');
-    let consltationContent = document.getElementById('cardConsultation');
+    let medicamentIteam = document.querySelector('listeMedicament');
+    let consltationContent = document.querySelector('cardConsultation');
 
-    let antecedantsIteam = document.getElementById('listeAntecedant');
-    let cradAntecedants = document.getElementById('cardAntecedant');
+    let antecedantsIteam = document.querySelector('listeAntecedant');
+    let cradAntecedants = document.querySelector('cardAntecedant');
 
     antecedantsIteam.style.display = "none";
     cradAntecedants.style.display = "none";
@@ -19,14 +19,15 @@ function newConsultation () {
 
 
 function examensConsultation () {
-    const contentExamens = document.getElementById("examens");
-    const contentParametre = document.getElementById("parametre");
-    const contentResultat = document.getElementById("resultatExamens");
-    const contentPrescription = document.getElementById("prescription");
-    const contentDiagnostic = document.getElementById("diagnostic");
+    const contentExamens = document.querySelector("#examens");
+    const contentParametre = document.querySelector("#parametre");
+    const contentResultat = document.querySelector("#resultatExamens");
+    const contentPrescription = document.querySelector("#prescription");
+    const contentDiagnostic = document.querySelector("#diagnostic");
+    const facture = document.querySelector("#facture");
 
     contentDiagnostic.style.display = "none";
-
+    facture.style.display = "none";
     contentPrescription.style.display = "none";
 
     contentResultat.style.display = "none";
@@ -36,14 +37,15 @@ function examensConsultation () {
 }
 
 function showParametres () {
-    const contentExamens = document.getElementById("examens");
-    const contentParametre = document.getElementById("parametre");
-    const contentResultat = document.getElementById("resultatExamens");
-    const contentPrescription = document.getElementById("prescription");
-    const contentDiagnostic = document.getElementById("diagnostic");
+    const contentExamens = document.querySelector("#examens");
+    const contentParametre = document.querySelector("#parametre");
+    const contentResultat = document.querySelector("#resultatExamens");
+    const contentPrescription = document.querySelector("#prescription");
+    const contentDiagnostic = document.querySelector("#diagnostic");
+    const facture = document.querySelector("#facture");
 
     contentDiagnostic.style.display = "none";
-
+    facture.style.display = "none";
     contentPrescription.style.display = "none";
 
     contentResultat.style.display = "none";
@@ -53,14 +55,15 @@ function showParametres () {
 }
 
 function examensResultaConsultation () {
-    const contentExamens = document.getElementById("examens");
-    const contentParametre = document.getElementById("parametre");
-    const contentResultat = document.getElementById("resultatExamens");
-    const contentPrescription = document.getElementById("prescription");
-    const contentDiagnostic = document.getElementById("diagnostic");
+    const contentExamens = document.querySelector("#examens");
+    const contentParametre = document.querySelector("#parametre");
+    const contentResultat = document.querySelector("#resultatExamens");
+    const contentPrescription = document.querySelector("#prescription");
+    const contentDiagnostic = document.querySelector("#diagnostic");
+    const facture = document.querySelector("#facture");
 
     contentDiagnostic.style.display = "none";
-
+    facture.style.display = "none";
     contentPrescription.style.display = "none";
 
     contentResultat.style.display = "flex";
@@ -69,11 +72,11 @@ function examensResultaConsultation () {
 }
 
 function presciption () {
-    const contentExamens = document.getElementById("examens");
-    const contentParametre = document.getElementById("parametre");
-    const contentResultat = document.getElementById("resultatExamens");
-    const contentPrescription = document.getElementById("prescription");
-    const contentDiagnostic = document.getElementById("diagnostic");
+    const contentExamens = document.querySelector("#examens");
+    const contentParametre = document.querySelector("#parametre");
+    const contentResultat = document.querySelector("#resultatExamens");
+    const contentPrescription = document.querySelector("#prescription");
+    const contentDiagnostic = document.querySelector("#diagnostic");
 
     contentDiagnostic.style.display = "none";
 
@@ -85,11 +88,11 @@ function presciption () {
 
 
 function presciptionConsultation () {
-    const contentExamens = document.getElementById("examens");
-    const contentParametre = document.getElementById("parametre");
-    const contentResultat = document.getElementById("resultatExamens");
-    const contentPrescription = document.getElementById("prescription");
-    const contentDiagnostic = document.getElementById("diagnostic");
+    const contentExamens = document.querySelector("#examens");
+    const contentParametre = document.querySelector("#parametre");
+    const contentResultat = document.querySelector("#resultatExamens");
+    const contentPrescription = document.querySelector("#prescription");
+    const contentDiagnostic = document.querySelector("#diagnostic");
 
     contentDiagnostic.style.display = "none";
 
@@ -99,16 +102,38 @@ function presciptionConsultation () {
     contentExamens.style.display = "none";
 }
 
+function facturationConsultation () {
+    const contentExamens = document.querySelector("#examens");
+    const contentParametre = document.querySelector("#parametre");
+    const contentResultat = document.querySelector("#resultatExamens");
+    const contentPrescription = document.querySelector("#prescription");
+    const contentDiagnostic = document.querySelector("#diagnostic");
+    const facture = document.querySelector('#facture');
+
+    contentDiagnostic.style.display = "none";
+
+    contentPrescription.style.display = "none";
+    contentResultat.style.display = "none";
+    contentParametre.style.display = "none";
+    contentExamens.style.display = "none";
+    facture.style.display = "flex";
+}
+
+
+
+
 
 function diagnosticonsultation () {
-    const contentExamens = document.getElementById("examens");
-    const contentParametre = document.getElementById("parametre");
-    const contentResultat = document.getElementById("resultatExamens");
-    const contentPrescription = document.getElementById("prescription");
-    const contentDiagnostic = document.getElementById("diagnostic");
+    const contentExamens = document.querySelector("#examens");
+    const contentParametre = document.querySelector("#parametre");
+    const contentResultat = document.querySelector("#resultatExamens");
+    const contentPrescription = document.querySelector("#prescription");
+    const contentDiagnostic = document.querySelector("#diagnostic");
+    const facture = document.querySelector("#facture");
 
     contentDiagnostic.style.display = "flex";
     contentPrescription.style.display = "none";
+    facture.style.display = "none"
     contentResultat.style.display = "none";
     contentParametre.style.display = "none";
     contentExamens.style.display = "none";
@@ -119,11 +144,11 @@ function diagnosticonsultation () {
 
 function showAntecedant () {
 
-    let medicamentIteam = document.getElementById('listeMedicament');
-    let consltationContent = document.getElementById('cardConsultation');
+    let medicamentIteam = document.querySelector('listeMedicament');
+    let consltationContent = document.querySelector('cardConsultation');
 
-    let antecedantsIteam = document.getElementById('listeAntecedant');
-    let cradAntecedants = document.getElementById('cardAntecedant');
+    let antecedantsIteam = document.querySelector('listeAntecedant');
+    let cradAntecedants = document.querySelector('cardAntecedant');
 
     medicamentIteam.style.display = "none";
     consltationContent.style.display = "none";

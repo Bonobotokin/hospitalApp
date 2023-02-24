@@ -30,9 +30,9 @@ class Patient extends Model
         'IsHospitaled'
     ];
 
-    public function parametres() : BelongsTo
+    public function parametres() : HasMany
     {
-        return $this->belongsTo(PatientParametre::class);
+        return $this->hasMany(PatientParametre::class);
     }
 
     public function consultations() : HasMany

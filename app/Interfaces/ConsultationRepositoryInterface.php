@@ -10,5 +10,7 @@ interface ConsultationRepositoryInterface
 
     public function getPatientById(int $id);
 
+    
+
 
 }

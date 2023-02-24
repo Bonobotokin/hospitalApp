@@ -127,3 +127,4 @@ Route::post('Enregistre_pation/Consultation', [ReceptionisteController::class, '
 
 Route::get('Medecin/listeConsultation', [ConsultationController::class, 'index'])->name('get.all.consultation');
 Route::get('consulted/{id}/patient', [ConsultationController::class, 'consultePatient'])->name('consulte.patient');
+Route::post('enregistrer/Consultation', [ConsultationController::class, 'store'])->name('storePatient.consultation');

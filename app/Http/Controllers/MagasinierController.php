@@ -123,7 +123,7 @@ class MagasinierController extends Controller
      * @param  \App\Models\Magasinier  $magasinier
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateMagasinierRequest $request, Magasinier $magasinier)
+    public function update(Request $request, Magasinier $magasinier)
     {
         //
     }

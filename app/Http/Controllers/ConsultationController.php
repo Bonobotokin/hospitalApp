@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Action\ConsultationAction;
 use App\Http\Requests\StoreConsultationRequest;
 use App\Http\Requests\UpdateConsultationRequest;
 use App\Models\Consultation;
@@ -73,9 +74,25 @@ class ConsultationController extends Controller
      * @param  \App\Http\Requests\StoreConsultationRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, ConsultationAction $action)
     {
-        //
+        try {
+            //code...
+            $consultationResponse = $action->newPatientConsulted($request);
+
+            // dd($consultationResponse, 'eto1');
+
+            if (!is_null($consultationResponse['data']))
+            {
+
+                return redirect()->route('index.achat.produits',['reponse'=>$consultationResponse])->with('success', $consultationResponse['message']);
+
+            }else {
+                return redirect()->back()->withErrors($consultationResponse)->withInput();
+            }
+        } catch (\Throwable $th) {
+            //throw $th;
+        }
     }
 
     
@@ -84,11 +101,14 @@ class ConsultationController extends Controller
         // dd($id);
         $patientInfo = $this->consultationRepository->getPatientById($id);
         $produits = $this->stockPharmacieRepository->getAll();
+        $parametre = $this->patientRepository->getParametrepatient($id);
         
+        // dd($produits);
         return view('Medecins.patientConsulter', 
             [
                 'patient' => $patientInfo[0],
-                'produitListe' => $produits
+                'produitListe' => $produits,
+                'parametre' => $parametre[0]
             ]
         );
     }
