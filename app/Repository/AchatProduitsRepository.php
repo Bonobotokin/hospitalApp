@@ -34,13 +34,14 @@ class AchatProduitsRepository implements AchatProduitsRepositoryInterface
     public function getMagasinier(int $id)
     {
         $magasinier = Magasinier::with('personnel')
-            ->where('personnel_id', $id)
+            ->where('id', $id)
             ->get()
             ->map(function ($magasinier) {
                 return [
                     'nom' => $magasinier->personnel->nom_personneles
                 ];
             });
+        
         return $magasinier;
     }
 
@@ -55,6 +56,7 @@ class AchatProduitsRepository implements AchatProduitsRepositoryInterface
                    
                     ->get()
                     ->map(function ($liste) {
+                        // dd($liste->demandeur);
                         $dateAchat = Carbon::parse($liste->created_at)->format('m/d/Y');
                         $produits = $liste->produit;
                         $administrator = $liste->personnel;

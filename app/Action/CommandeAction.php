@@ -66,10 +66,11 @@ class CommandeAction
                             'produit_id' => $commanded['idProduits'],
                             'validate_magasinier' => $magasinier[0]['id']
                         ]);
-                        
+                        // dd($commanded);
                         $stoquePharmacie = StockPharmacie::where('produit_id', $commanded['idProduits'])
                             ->get();
 
+                        dd($stoquePharmacie);
                         $getIdSortantDepot = DepotsAction::sortantdepots($livraison);
                         
                         if ($getIdSortantDepot === FALSE) {
@@ -78,7 +79,6 @@ class CommandeAction
                                 "message" => "Desoler, votre de demanade ne peut pas fournir ce demande car votre demande est trop grand"
                             ];
                         } else {
-                            
                             $mvmStockPharmacie = mouvementPharmacie::create([
                                 'stock_pharmacie_id' => $stoquePharmacie[0]['id'],
                                 'mouvement_depot_id' => $getIdSortantDepot,

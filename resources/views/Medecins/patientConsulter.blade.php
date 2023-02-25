@@ -19,6 +19,10 @@
             <div class="card-body">
                 <form action="{{ route('storePatient.consultation') }}" method="POST">
                     @csrf
+                    <input type="hidden" value="{{ $patient['consultation_id'] }}" name="consultation_id">
+                    <input type="hidden" value="{{ $patient['patient_id'] }}" name="patient_id">
+                    <input type="hidden" value="{{ $patient['type_consultation_id'] }}" name="type_consultation_id">
+                    <input type="hidden" value="{{ $patient['medecin'] }}" name="medecin_id">
                     <div class="col-md-12 " style="margin-bottom: 30px">
                         <div class="template-demo">
                             <button type="button" onclick="showParametres()" class="btn btn-inverse-primary btn-fw">Parametres & Symptomes</button>
@@ -197,7 +201,7 @@
                                     </thead>
                                     <tbody id="medicamentUl">
                                         @foreach ( $produitListe as $key => $list)
-                                        <tr id="content_search_medicament" onclick="addPrecription()">
+                                        <tr id="content_search_medicament"  class="content_search" style="cursor:pointer">
                                             <td>{{ $list['num'] }}</td>
                                             <td>{{ $list['abrev'] }}</td>
                                             <td>{{ $list['type'] }}</td>
@@ -212,6 +216,7 @@
                         <div class="col-md-6 ">
                             <h6 class="preview-subject text-center">Medicament a prescrire</h6>
                             <div class="row">
+                                
                                 <div id="medicamentForm" class="medicamentForm form-inline">
 
                                 </div>

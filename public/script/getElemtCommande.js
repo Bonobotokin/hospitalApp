@@ -1,6 +1,4 @@
 
-
-
 function addMedicammentCommander() {
     let codeProduits = document.getElementById("codeProduits").value;
     let designation = document.getElementById("designation").value;

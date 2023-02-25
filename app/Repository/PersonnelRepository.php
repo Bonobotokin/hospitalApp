@@ -38,26 +38,28 @@ class PersonnelRepository implements PersonnelRepositoryInterface
     public function getPersonnelConnected(int $userId)
     {
 
-        $personnelLogin = Compte::with('personnel','user')->get();
-        // dd($personnelLogin);
+        $personnelLogin = Compte::with('personnel','user')
+                                ->where('user_id', $userId)
+                                ->get();
+        
         $personnelMagasinier = Magasinier::with('personnel')
-            ->where('id', $personnelLogin[0]['personnel_id'])
+            ->Where('personnel_id', $personnelLogin[0]['personnel_id'])
             ->get();
-        // dd($personnelMagasinier);
+        
         return $personnelMagasinier;
     }
 
     public function tranPersonnelTovalidate(int $userId)
     {
-        $idUser = Personnel::with('User')
-            ->select('id')
-            ->where('user_id', $userId)
-            ->get();
-
-        // $personnelMagasinier = Magasinier::with('personnel')
-        //     ->where('personnel_id', $idUser[0]['id'])
-        //     ->get();
-
+        $idUser = Compte::with('personnel','user')
+                ->where('user_id', $userId)
+                ->get()
+                ->map( function($idUser) {
+                    return [
+                        'id' => $idUser->personnel->id
+                    ];
+                });
+        
         return $idUser;
     }
 

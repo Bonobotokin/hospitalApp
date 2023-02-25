@@ -30,6 +30,13 @@ class ProduitsAction
                 $equipeFourniture = $this->personnelRepository->getPersonnelConnected($magasinierId);
 
                 // dd($equipeFourniture);
+                if($equipeFourniture->isEmpty()) {
+                    return [
+                        "data" => null,
+                        "message" => "Vous ne peut pas faire cette action car elle est attribuer aux responsable de magasin"
+                    ];
+                }
+
 
                 $produits = Produit::Create([
                     'designation_produits' => $request['designation'],

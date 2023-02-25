@@ -120,7 +120,7 @@ class LivraisonProduitsController extends Controller
      * @param  \App\Models\LivraisonProduits  $livraisonProduits
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateLivraisonProduitsRequest $request, LivraisonProduits $livraisonProduits)
+    public function update(Request $request, LivraisonProduits $livraisonProduits)
     {
         //
     }

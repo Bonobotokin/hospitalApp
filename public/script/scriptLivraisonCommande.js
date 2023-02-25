@@ -19,7 +19,7 @@ function addProduitLivraison() {
 
     let codeProduits = document.getElementById("codeProduits").value;
     let designation = document.getElementById("designation").value;
-    let categorieValue = document.getElementById("categorieValue").value;
+    let categorieValue = document.getElementById("typeValue").value;
     let conditionnement = document.getElementById("conditionnement").value;
     let quantite = document.getElementById("quantite").value;
     let total = document.getElementById("total").value;

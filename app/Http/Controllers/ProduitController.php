@@ -52,7 +52,7 @@ class ProduitController extends Controller
      * @param StoreProduitRequest $request
      * @return \Exception|\Illuminate\Http\RedirectResponse
      */
-    public function store(StoreProduitRequest $request, ProduitsAction $action)
+    public function store(Request $request, ProduitsAction $action)
     {
         try {
 

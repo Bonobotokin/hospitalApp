@@ -80,7 +80,7 @@ class CommandeProduitController extends Controller
             //code...
             $commandeResponse = $action->newCommandeNotCommande($request);
 
-            // dd($commandeResponse, 'eto2');
+            dd($commandeResponse, 'eto2');
             if (!is_null($commandeResponse['data']))
             {
                 

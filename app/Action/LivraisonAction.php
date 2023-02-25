@@ -185,9 +185,9 @@ class LivraisonAction
 
                     ]);
 
-                    $UserId = Auth::user()->id;
+                    // $UserId = Auth::user()->id;
 
-                    $personnelValidate = $this->personnelRepository->tranPersonnelTovalidate($UserId);
+                    // $personnelValidate = $this->personnelRepository->tranPersonnelTovalidate($UserId);
                     // dd($livraison->id);
 
                     $livraisonId = $livraison->id;

@@ -127,7 +127,7 @@ class AchatProduitController extends Controller
      * @param  \App\Models\AchatProduit  $achatProduit
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateAchatProduitRequest $request, AchatProduit $achatProduit)
+    public function update(Request $request, AchatProduit $achatProduit)
     {
         //
     }

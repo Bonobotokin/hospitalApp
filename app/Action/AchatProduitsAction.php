@@ -116,7 +116,7 @@ class AchatProduitsAction
                         ]);
                     
                     $UserId = Auth::user()->id;
-
+                    
                     $personnelValidate = $this->personnelRepository->tranPersonnelTovalidate($UserId);
                     
                     $changeAchat = AchatProduit::where('numAchat', (int) $numAchat)

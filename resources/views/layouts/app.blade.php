@@ -467,7 +467,7 @@
                             <div class="form-group">
                                 <label for="cateogorie">Categorie : </label>
                                 <select name="categori" class="form-control" id="">
-                                    <option value="Materiels">Fourniture</option>
+                                    <option value="Materiels">Materiels</option>
                                     <option value="Fourniture">Fourniture</option>
                                     <option value="Medicaments">Medicament</option>
                                 </select>
@@ -552,7 +552,6 @@
 <script src="{{ asset('script/symptomes.js') }}"></script>
 <script src="{{ asset('script/diagnostic.js') }}"></script>
 <script src="{{ asset('script/diagnostic.js') }}"></script>
-<script src="{{ asset('script/manupilation.js') }}"></script>
 <script src="{{ asset('assets/js/select2.js ') }}"></script>
 <!-- endinject -->
 <!-- inject:js -->
@@ -568,6 +567,7 @@
 <script src="{{ asset('assets/js/select2.js') }}"></script>
 <script src="{{ asset('script/getElemtCommande.js') }}"></script>
 <script src="{{ asset('script/scriptLivraisonCommande.js') }}"></script>
+<script src="{{ asset('script/manupilation.js')}}"></script>
 <script src="{{ asset('script/achatScript.js') }}"></script>
 {{-- js for manipulation --}}
 <script src="{{ asset('script/consultation.js') }}"></script>
@@ -576,7 +576,7 @@
 <script src="{{ asset('script/symptomes.js') }}"></script>
 <script src="{{ asset('script/diagnostic.js') }}"></script>
 <script src="{{ asset('script/prescription.js')}}"></script>
-<script src="{{ asset('script/manupilation.js')}}"></script>
+
 <script>
     $(function() {
         $("#example1").DataTable({

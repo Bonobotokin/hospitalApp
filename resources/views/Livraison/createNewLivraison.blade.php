@@ -91,8 +91,9 @@
                                             <tr>
                                                 <th> Code </th>
                                                 <th> Nom</th>
-                                                <th> Type</th>
+                                                <th> categorie</th>
                                                 <th> Abrev</th>
+                                                <th> Type</th>
                                             </tr>
                                         </thead>
                                         <tbody id="myUL">
@@ -103,7 +104,7 @@
                                                 <td id="nom"> {{ $data['nom'] }} </td>
                                                 <td id="categorie"> {{ $data['categorie'] }} </td>
                                                 <td id="abrev"> {{ $data['abrev'] }} </td>
-                                                <td id="categorie"> {{ $data['categorie'] }} </td>
+                                                <td id="type"> {{ $data['types'] }} </td>
                                             </tr>
                                             @endforeach
                                         </tbody>
@@ -127,7 +128,7 @@
                                                 <div class="col-lg-4">
                                                     <div class="form-group">
                                                         <label for="">Type :</label>
-                                                        <input id="categorieValue" type="text" class="form-control" />
+                                                        <input id="typeValue" type="text" class="form-control" />
                                                     </div>
                                                 </div>
 

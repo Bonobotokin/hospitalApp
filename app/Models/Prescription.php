@@ -13,6 +13,8 @@ class Prescription extends Model
         'produit_id',
         'quantite',
         'medecin_id',
-        'consultation_id'
+        'consultation_id',
+        'prix_unitaire',
+        'prix_total'
     ];
 }

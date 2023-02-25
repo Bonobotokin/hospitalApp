@@ -36,6 +36,7 @@
                                                 <th>Nom</th>
                                                 <th>Type</th>
                                                 <th>Abrev</th>
+                                                <th>Cate</th>
                                             </tr>
                                         </thead>
                                         <tbody id="myUL">
@@ -44,8 +45,9 @@
                                             <tr id="content_search" onclick="getElement()" class="content_search" style="cursor:pointer">
                                                 <td id="idProduits"> {{ $data['num'] }} </td>
                                                 <td id="nom"> {{ $data['nom'] }} </td>
-                                                <td id="categorie"> {{ $data['categorie'] }} </td>
+                                                <td id="nom"> {{ $data['types'] }} </td>
                                                 <td id="abrev"> {{ $data['abrev'] }} </td>
+                                                <td id="categorie"> {{ $data['categorie'] }} </td>
                                             </tr>
                                             @endforeach
                                         </tbody>
@@ -72,7 +74,7 @@
                                                 <div class="col-lg-6">
                                                     <div class="form-group">
                                                         <label for="">Type :</label>
-                                                        <input id="categorieValue" type="text" class="form-control" />
+                                                        <input id="typeValue" type="text" class="form-control" />
                                                     </div>
                                                 </div>
                                             </div>

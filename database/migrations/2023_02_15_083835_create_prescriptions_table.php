@@ -22,6 +22,8 @@ return new class extends Migration
             $table->integer('quantite')->nullable();
             $table->foreignIdFor(Medecin::class);
             $table->foreignIdFor(Consultation::class);
+            $table->integer('prix_unitaire')->default(0);
+            $table->integer('prix_total')->default(0);
             $table->timestamps();
         });
     }

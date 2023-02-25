@@ -98,11 +98,13 @@ class ConsultationRepository implements ConsultationRepositoryInterface
                 $typeConsultation = $patientConsultation->consultationType;
                 $patient = $patientConsultation->patient;
 
-                $medecin = $patientConsultation->medecin->personnel;
-                
+                $medecin = $patientConsultation->medecin;
+                // dd($medecin);
                 return
                     [
+                        'consultation_id' => $patientConsultation->id,
                         'prix' => $patientConsultation->prix,
+                        'patient_id' => $patient->id,
                         'matricule' => $patient->matricule,
                         'id' => $patientConsultation->id,
                         'num_patient' => $patient->id,
@@ -113,10 +115,11 @@ class ConsultationRepository implements ConsultationRepositoryInterface
                         'contacte_patient' => $patient->contacte_patient,
                         'profession' => $patient->profession,
                         'type_consultation' => $typeConsultation->type_consultaion,
+                        'type_consultation_id' => $typeConsultation->id,
                         'consultation' => $patientConsultation->id,
                         'etat_consultation' => $patientConsultation->consulted,
-                        'medecin' => $medecin->personnel,
-                        'nom_medecin' =>$medecin->nom_personneles,
+                        'medecin' => $medecin->id,
+                        // 'nom_medecin' =>$medecin->nom_personneles,
                         'date_enregistrement' => Carbon::parse($patientConsultation->created_at)->format('Y-m-d')
                     ];
 

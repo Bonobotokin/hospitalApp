@@ -25,6 +25,7 @@ return new class extends Migration
             $table->boolean('consulted')->default(false);
             $table->string('diagnostique')->nullable();
             $table->string('symptome')->nullable();
+            $table->string('prxi')->default(5000);
             $table->timestamps();
         });
     }

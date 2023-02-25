@@ -1,6 +1,6 @@
 <?php
 
-use App\Models\Pharmacien;
+use App\Models\Consultation;
 use App\Models\Prescription;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
@@ -15,12 +15,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('distribution_pharmacies', function (Blueprint $table) {
+        Schema::create('facture_dispensaires', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(Prescription::class)->constrained();
-            $table->foreignIdFor(Pharmacien::class)->nullable()->constrained();
-            $table->integer('distribuer')->nullable();
-            $table->integer('reste')->nullable();
+            $table->integer('num_facture_patient');
+            $table->foreignIdFor(Prescription::class)->nullable()->constrained();
+            $table->foreignIdFor(Consultation::class)->nullable()->constrained();
+            
             $table->timestamps();
         });
     }
@@ -32,6 +32,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('distribution_pharmacies');
+        Schema::dropIfExists('facture_dispensaires');
     }
 };

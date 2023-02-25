@@ -48,7 +48,7 @@
                         <tbody id="myUL">
 
                             @foreach ($depots as $data)
-                            <tr id="content_search_commande" onclick="getElement()" class="content_search" style="cursor:pointer">
+                            <tr id="content_search_commande" class="content_search" style="cursor:pointer">
                                 <td id="idProduits"> {{ $data['num'] }} </td>
                                 <td id="nom"> {{ $data['nom'] }} </td>
                                 <td id="conditionnement"> {{ $data['conditionnement'] }} </td>

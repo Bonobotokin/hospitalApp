@@ -30,6 +30,7 @@
                                     <th> Nom </th>
                                     <th> Abreviation </th>
                                     <th> Fabriquant </th>
+                                    <th> Categorie </th>
                                     <th> Type </th>
                                     <th> Prix vente U </th>
                                     <th> Action </th>
@@ -41,6 +42,7 @@
                                         <td> {{ $data['nom'] }} </td>
                                         <td> {{ $data['abrev'] }} </td>
                                         <td> {{ $data['fabriquant'] }} </td>
+                                        <td> {{ $data['categorie'] }} </td>
                                         <td> {{ $data['types'] }} </td>
                                         <td> {{ $data['prix_vente'] }} Ar </td>
                                         <td>
