@@ -56,12 +56,12 @@ class CommandeProduitController extends Controller
     public function create()
     {
         $stockPharmacieSeuil = $this->stockPharmacieRepository->lookOfQuantite();
-        $depotsMagasin = $this->depotsRepository->getProduitMesdicament();
+        // $depotsMagasin = $this->depotsRepository->getProduitMesdicament();
         $generedNumber = $this->commandeRepository->getGeneredNumCommande();
-
+        // dd(count($stockPharmacieSeuil));
         return view('Commandes.CreateCommande',
             [
-                'depots' => $depotsMagasin,
+                // 'depots' => $depotsMagasin,
                 'produits' => $stockPharmacieSeuil,
                 'generedNumber' => $generedNumber
             ]
@@ -80,7 +80,7 @@ class CommandeProduitController extends Controller
             //code...
             $commandeResponse = $action->newCommandeNotCommande($request);
 
-            dd($commandeResponse, 'eto2');
+            // dd($commandeResponse, 'eto2');
             if (!is_null($commandeResponse['data']))
             {
                 

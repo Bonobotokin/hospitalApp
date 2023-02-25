@@ -99,7 +99,7 @@ class ConsultationRepository implements ConsultationRepositoryInterface
                 $patient = $patientConsultation->patient;
 
                 $medecin = $patientConsultation->medecin;
-                // dd($medecin);
+                
                 return
                     [
                         'consultation_id' => $patientConsultation->id,

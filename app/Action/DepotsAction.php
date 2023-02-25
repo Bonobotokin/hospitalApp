@@ -63,7 +63,7 @@ class DepotsAction
     {
         $depots = depotsRepository::produitsHasQuantite($data['idProduits']);
 
-        if (($depots[0]['quantite_depots'] == 0) && ($depots[0]['quantite_depots'] <= 50)) {
+        if (($depots[0]['quantite_depots'] == 0) && ($depots[0]['quantite_depots'] < 50)) {
             return true;
         } else {
             return false;

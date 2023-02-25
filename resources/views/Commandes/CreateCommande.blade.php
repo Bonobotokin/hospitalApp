@@ -1,15 +1,15 @@
 @extends('layouts.app')
 @section('content')
 @if ($errors->any())
-    <div class="alertDanger">
-        <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
-        <strong>Danger!</strong>
-        @foreach ($errors->all() as $error)
-        <ul>
-            <ol>{{ $error }}</ol>
-        </ul>
-        @endforeach
-    </div>
+<div class="alertDanger">
+    <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+    <strong>Danger!</strong>
+    @foreach ($errors->all() as $error)
+    <ul>
+        <ol>{{ $error }}</ol>
+    </ul>
+    @endforeach
+</div>
 @endif
 
 <div class="text-center alertWarning" style="display:none" id="errorCalcule">
@@ -18,7 +18,7 @@
     <p>Le depots ne peut pas fournir ce Demande clic ici pour</p>
 
     <button onclick="rafraichir()" class="btn btn-inverse-default btn-fw" type="button">Rafrechir</button>
-            
+
 </div>
 <div class="row">
     <div class="col-lg-12 grid-margin stretch-card">
@@ -47,15 +47,17 @@
                         </thead>
                         <tbody id="myUL">
 
-                            @foreach ($depots as $data)
+                            @foreach ($produits as $data)
                             <tr id="content_search_commande" class="content_search" style="cursor:pointer">
-                                <td id="idProduits"> {{ $data['num'] }} </td>
+                                <td id="idProduits"> {{ $data['produit_id'] }} </td>
                                 <td id="nom"> {{ $data['nom'] }} </td>
                                 <td id="conditionnement"> {{ $data['conditionnement'] }} </td>
                                 <td id="quantite"> {{ $data['quantite'] }} </td>
                                 <td id="categorie"> {{ $data['categorie'] }} </td>
+                                
                             </tr>
                             @endforeach
+
                         </tbody>
                     </table>
                 </div>
@@ -176,7 +178,7 @@
                             </button>
                         </div>
                         <div class="col-md-6" id="clickTeminate">
-                            
+
                             <button id="btnTerminer" type="button" onclick="enregistrerCommande()" class="btn btn-inverse-primary btn-fw">
                                 <i class="mdi mdi-plus btn-icon-prepend"></i>
                                 Terminer

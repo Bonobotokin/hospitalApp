@@ -103,7 +103,6 @@ class ConsultationController extends Controller
         $produits = $this->stockPharmacieRepository->getAll();
         $parametre = $this->patientRepository->getParametrepatient($id);
         
-        // dd($produits);
         return view('Medecins.patientConsulter', 
             [
                 'patient' => $patientInfo[0],

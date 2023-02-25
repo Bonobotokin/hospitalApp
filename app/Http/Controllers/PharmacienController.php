@@ -16,7 +16,7 @@ class PharmacienController extends Controller
      */
     public function index()
     {
-        dd('ok');
+        // dd('ok');
         return view('Pharmacie.CommandeProduits');
     }
 

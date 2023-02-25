@@ -4,6 +4,7 @@ namespace App\Action;
 
 use App\Models\Consultation;
 use App\Models\DistributionPharmacie;
+use App\Models\FactureDispensaire;
 use App\Models\Posologie;
 use App\Models\Prescription;
 use App\Repository\PersonnelRepository;
@@ -17,7 +18,7 @@ class ConsultationAction
     public function __construct(
 
         PersonnelRepository $personnelRepository
-    ){
+    ) {
         $this->personnelRepository = $personnelRepository;
     }
 
@@ -55,7 +56,7 @@ class ConsultationAction
                 ]);
 
                 $magasinierId = Auth::user()->id;
-                
+
                 $equipeFourniture = $this->personnelRepository->getPersonnelConnected($magasinierId);
 
                 $nombreMedicaments = (int) $request->input('nombreMedicament');
@@ -82,7 +83,13 @@ class ConsultationAction
                         'reste' => 0
                     ]);
 
-                    dd($distribution);
+                    $idDistribution = $distribution->id;
+                    dd($request);
+
+                    $facture = FactureDispensaire::create([
+                        'num_facture_patient',
+                        'prescription_id',
+                    ]);
                 }
             });
 

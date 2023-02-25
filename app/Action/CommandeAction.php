@@ -70,7 +70,7 @@ class CommandeAction
                         $stoquePharmacie = StockPharmacie::where('produit_id', $commanded['idProduits'])
                             ->get();
 
-                        dd($stoquePharmacie);
+                        // dd($stoquePharmacie);
                         $getIdSortantDepot = DepotsAction::sortantdepots($livraison);
                         
                         if ($getIdSortantDepot === FALSE) {
