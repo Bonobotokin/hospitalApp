@@ -102,6 +102,7 @@ class ConsultationRepository implements ConsultationRepositoryInterface
                 
                 return
                     [
+                        'prix' => $patientConsultation->prix,
                         'matricule' => $patient->matricule,
                         'id' => $patientConsultation->id,
                         'num_patient' => $patient->id,

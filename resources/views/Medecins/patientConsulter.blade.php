@@ -251,7 +251,7 @@
                                         <tbody>
                                             <tr>
                                                 <td>Consultation</td>
-                                                <td class="text-right"> 70 </td>
+                                                <td class="text-right" id="PrixConsultaion"> {{ $patient['prix'] }} Ar </td>
                                             </tr>
                                         </tbody>
                                     </table>
@@ -306,7 +306,7 @@
                                         </tbody>
                                         <tfoot>
                                             <tr>
-                                                <td colspan="2">Total</td>
+                                                <td colspan="2" class="text-right">Total</td>
                                                 <td id="tFoot"></td>
                                             </tr>
                                         </tfoot>
@@ -314,14 +314,20 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col-md-6 text-center">
+                        <div class="row text-center">
+                            <div class="col-lg-12">
+                                <div class="form-group">
+                                    <label for="factureTotal">Facture Total :</label>
+                                    <input type="text" name="facture" id="facturePaye" class="form-control" placeholder="{{ $patient['prix'] }}">
+                                </div>
+                            </div>
+                            <div class="col-lg-6 ">
                                 <button type="reset" class="btn btn-inverse-danger btn-fw">
                                     <i class="mdi mdi-refresh btn-icon-prepend"></i>
                                     Annuler
                                 </button>
                             </div>
-                            <div class="col-md-6 text-center">
+                            <div class="col-lg-6 ">
                                 <button type="submit" class="btn btn-inverse-primary btn-fw">
                                     <i class="mdi mdi-plus btn-icon-prepend"></i>
                                     Enregistrer
