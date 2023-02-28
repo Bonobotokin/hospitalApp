@@ -51,6 +51,7 @@
         right: 0;
         z-index: 1000;
     }
+
     .alertWarning {
         padding: 20px;
         background-color: #c6a319;
@@ -60,6 +61,7 @@
         right: 0;
         z-index: 1000;
     }
+
     .closebtn {
         margin-left: 15px;
         color: white;
@@ -170,7 +172,7 @@
                             </li>
                         </ul>
                     </div>
-                </li> 
+                </li>
 
                 <li class="nav-item menu-items">
                     <a class="nav-link" data-toggle="collapse" href="#ui-personnel" aria-expanded="false" aria-controls="ui-personnel">
@@ -194,7 +196,7 @@
                             </li>
                         </ul>
                     </div>
-                </li> 
+                </li>
                 <li class="nav-item menu-items">
                     <a class="nav-link" data-toggle="collapse" href="#ui-achat_livraison" aria-expanded="false" aria-controls="ui-achat_livraison">
                         <span class="menu-icon">
@@ -217,7 +219,7 @@
                             </li>
                         </ul>
                     </div>
-                </li>                
+                </li>
 
                 <!-- Masgasin & magasinier -->
 
@@ -281,7 +283,7 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('commande.index') }}" >
+                                <a class="nav-link" href="{{ route('commande.index') }}">
                                     Commande Medicaments
                                 </a>
                             </li>
@@ -315,7 +317,7 @@
                     <div class="collapse" id="ui-Reception">
                         <ul class="nav flex-column sub-menu">
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('liste.consultation') }}" >
+                                <a class="nav-link" href="{{ route('liste.consultation') }}">
                                     Consultation
                                 </a>
                             </li>
@@ -350,13 +352,48 @@
                     <div class="collapse" id="ui-Medecin">
                         <ul class="nav flex-column sub-menu">
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('get.all.consultation') }}" >
+                                <a class="nav-link" href="{{ route('get.all.consultation') }}">
                                     Liste Consultation
                                 </a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('liste.patient') }}">
                                     Liste des Patient
+                                </a>
+                            </li>
+                            <!-- 
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('index.achat.produits') }}">
+                                    Achat des Produits
+                                </a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('liste.reception') }}">
+                                    Listes des Livraison
+                                </a>
+                            </li> -->
+                        </ul>
+                    </div>
+                </li>
+                <li class="nav-item menu-items">
+                    <a class="nav-link" data-toggle="collapse" href="#ui-Caisse" aria-expanded="false" aria-controls="ui-Caisse">
+                        <span class="menu-icon">
+                            <i class="mdi mdi-home"></i>
+                        </span>
+                        <span class="menu-title">Caisse</span>
+                        <i class="menu-arrow"></i>
+                    </a>
+                    <div class="collapse" id="ui-Caisse">
+                        <ul class="nav flex-column sub-menu">
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('all.patient.payeable') }}">
+                                    Patient Caisse
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="">
+                                    Caisse Journaliere
                                 </a>
                             </li>
                             <!-- 
@@ -568,7 +605,7 @@
 <script src="{{ asset('script/getElemtCommande.js') }}"></script>
 <script src="{{ asset('script/scriptLivraisonCommande.js') }}"></script>
 <script src="{{ asset('script/manupilation.js')}}"></script>
-<!-- <script src="{{ asset('script/achatScript.js') }}"></script> -->
+<script src="{{ asset('script/achatScript.js') }}"></script>
 {{-- js for manipulation --}}
 <script src="{{ asset('script/consultation.js') }}"></script>
 <script src="{{ asset('script/examens_echographie.js')}}"></script>

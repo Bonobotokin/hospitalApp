@@ -80,12 +80,12 @@ class ConsultationController extends Controller
             //code...
             $consultationResponse = $action->newPatientConsulted($request);
 
-            dd($consultationResponse, 'eto1');
+            // dd($consultationResponse, 'consultationController');
 
             if (!is_null($consultationResponse['data']))
             {
 
-                return redirect()->route('index.achat.produits',['reponse'=>$consultationResponse])->with('success', $consultationResponse['message']);
+                return redirect()->route('get.all.consultation',['reponse'=>$consultationResponse])->with('success', $consultationResponse['message']);
 
             }else {
                 return redirect()->back()->withErrors($consultationResponse)->withInput();
@@ -102,7 +102,7 @@ class ConsultationController extends Controller
         $patientInfo = $this->consultationRepository->getPatientById($id);
         $produits = $this->stockPharmacieRepository->getAll();
         $parametre = $this->patientRepository->getParametrepatient($id);
-        
+        // dd($patientInfo, 'eto');
         return view('Medecins.patientConsulter', 
             [
                 'patient' => $patientInfo[0],

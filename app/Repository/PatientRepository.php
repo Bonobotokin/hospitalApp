@@ -46,7 +46,7 @@ class PatientRepository implements PatientRepositoryInterface
                 ];
             });
 
-
+        // dd($parametre);
         return $parametre;
     }
 }

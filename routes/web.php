@@ -7,6 +7,7 @@ use App\Http\Controllers\ProduitController;
 use App\Http\Controllers\MagasinierController;
 use App\Http\Controllers\AchatProduitController;
 use App\Http\Controllers\BonReceptionController;
+use App\Http\Controllers\CaisseController;
 use App\Http\Controllers\CommandeProduitController;
 use App\Http\Controllers\ConsultationController;
 use App\Http\Controllers\DepotController;
@@ -128,3 +129,18 @@ Route::post('Enregistre_pation/Consultation', [ReceptionisteController::class, '
 Route::get('Medecin/listeConsultation', [ConsultationController::class, 'index'])->name('get.all.consultation');
 Route::get('consulted/{id}/patient', [ConsultationController::class, 'consultePatient'])->name('consulte.patient');
 Route::post('enregistrer/Consultation', [ConsultationController::class, 'store'])->name('storePatient.consultation');
+
+
+###########################################
+#  Gestion des Payement Patient Caisse    #
+###########################################
+
+Route::get('Caisse/payementPatient', [CaisseController::class, 'index'])->name('all.patient.payeable');
+
+
+
+###########################################
+#  Api for aafficher les info in Js     #
+###########################################
+
+Route::get('facture/getAll', [facturePatienApiContronller::class, 'facturePatient'])->name('information.facture.patien');

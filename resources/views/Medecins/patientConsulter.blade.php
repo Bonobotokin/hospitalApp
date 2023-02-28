@@ -320,7 +320,13 @@
                             </div>
                         </div>
                         <div class="row text-center">
-                            <div class="col-lg-12">
+                        <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label for="factureTotal">Numero facture :</label>
+                                    <input type="text" name="numFacture"  class="form-control" placeholder="012345">
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
                                 <div class="form-group">
                                     <label for="factureTotal">Facture Total :</label>
                                     <input type="text" name="facture" id="facturePaye" class="form-control" placeholder="{{ $patient['prix'] }}">

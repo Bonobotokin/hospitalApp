@@ -43,5 +43,10 @@ class Produit extends Model
         return $this->hasMany(StockPharmacie::class);
     }
 
+    public function prescription() : HasMany
+    {
+        return $this->hasMany(Prescription::class);
+    }
+
 
 }

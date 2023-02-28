@@ -44,7 +44,10 @@ class ConsultationRepository implements ConsultationRepositoryInterface
     public function get_patient_consultation_to_day()
     {
         $consultation = Consultation::with('patient', 'consultationType','medecin')
-            // ->where('consultations.created_at', '=', $date_now)
+            // ->where('consultations.created_at', '=', $date_now)?
+            // ->orWhereHas('patient', function($query) {
+            //     $query->where('id', 'Medicaments');
+            // })
             ->orderBy('id','DESC')
             ->get()
             ->map(function ($consultation) {
@@ -57,7 +60,8 @@ class ConsultationRepository implements ConsultationRepositoryInterface
                     [
                         'matricule' => $patient->matricule,
                         'id' => $consultation->id,
-                        'num_patient' => $patient->id,
+                        'patient_id' => $patient->id,
+                        'num_patient' => $patient->matricule,
                         'nom' => $patient->nom_patient,
                         'prenom' => $patient->prenom_patient,
                         'sexe' => $patient->sexe_patient,
@@ -85,6 +89,7 @@ class ConsultationRepository implements ConsultationRepositoryInterface
     {
 
         $date_now = Carbon::parse(now())->format('Y-m-d');
+        
         return $date_now;
     }
 
@@ -92,7 +97,9 @@ class ConsultationRepository implements ConsultationRepositoryInterface
     {
         // dd($id);
         $patientConsultation = Consultation::with('patient', 'consultationType','medecin')
-            ->where('id', '=', $id)
+             ->orWhereHas('patient', function($query) use ($id) {
+                $query->where('id', $id);
+            })
             ->get()
             ->map( function($patientConsultation) {
                 $typeConsultation = $patientConsultation->consultationType;

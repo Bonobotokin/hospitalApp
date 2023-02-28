@@ -20,10 +20,9 @@ return new class extends Migration
             $table->id();
             $table->foreignIdFor(Produit::class)->nullable()->constrained();
             $table->integer('quantite')->nullable();
-            $table->foreignIdFor(Medecin::class);
-            $table->foreignIdFor(Consultation::class);
-            $table->integer('prix_unitaire')->default(0);
-            $table->integer('prix_total')->default(0);
+            $table->foreignIdFor(Medecin::class)->constrained();
+            $table->double('prix_unitaire', 8, 2);
+            $table->double('prix_total', 8, 2);
             $table->timestamps();
         });
     }
