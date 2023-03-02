@@ -17,7 +17,7 @@
         <div class="card">
             <div class="card-body">
                 <h4 class="card-title">Nouveaux Personnels</h4>
-                <form class="form-sample" action="" method="POST">
+                <form class="form-sample" action="{{ route('personnels.store') }}" method="POST">
                     @csrf
                     <p class="card-description"> Information sur les Personnels </p>
                     <div class="row">
@@ -115,17 +115,6 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group row">
-                                <label class="col-sm-3 col-form-label">Titre </label>
-                                <div class="col-sm-9">
-                                    <input type="text" class="form-control" name="rolePersonnels[grade]" placeholder="Titre">
-                                </div>
-                            </div>
-                        </div>
                         <div class="col-md-6">
                             <div class="form-group row">
                                 <label class="col-sm-3 col-form-label">Specialite </label>
@@ -159,7 +148,7 @@
                                 <div class="col-sm-9">
                                     <select name="users[role_id]" class="form-control">
                                         @foreach($allRoles as $role)
-                                            <option value="{{$role['role_id']}}">{{$role->designation_role}}</option>
+                                            <option value="{{$role['id']}}">{{$role->designation_role}}</option>
                                         @endforeach
                                     </select>
                                 </div>

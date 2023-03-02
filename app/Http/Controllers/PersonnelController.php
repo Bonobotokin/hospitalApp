@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Action\PersonnelsAction;
+use App\Http\Requests\StorePersonnelsRequest;
 use App\Repository\FonctionsRepository;
 use App\Repository\PersonnelRepository;
 use App\Repository\RolesRepository;
@@ -44,6 +46,7 @@ class PersonnelController extends Controller
         
         $fonction = $this->fonctionsRepository->getAllFonctions();
         $role = $this->rolesRepository->getAllRoles();
+        // dd($role);
         return view('Personnels.nouveauxPersonnels',
             [
                 
@@ -52,5 +55,31 @@ class PersonnelController extends Controller
             ]
         );
 
+    }
+
+    public function store(StorePersonnelsRequest $request, PersonnelsAction $action)
+    {
+        // dd($request,'eto 1');exit;
+        try {
+
+            $response_action = $action->handle($request);
+            // dd($response_action);
+            if (!is_null($response_action['data'])) {
+
+            // dd($response_action);
+                return redirect()->route('personnel.liste',['reponse'=>$response_action])->with('success', $response_action['message']);
+                
+            }else {
+                
+                // dd($response_action);
+                // return redirect()::back()->withErrors($errors)->withInput();
+                return redirect()->route('personnel.nouveaux',['reponse'=>$response_action])->with('errors',$response_action['message']);
+            }
+        } catch (\exception $th) {
+            //throw $th;
+            return $th;
+        }
+
+        
     }
 }

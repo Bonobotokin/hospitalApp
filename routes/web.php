@@ -111,7 +111,7 @@ Route::get('details/{num_livraison}/livraison', [LivraisonProduitsController::cl
 
 Route::get('listePersonnel', [PersonnelController::class , 'index'])->name('personnel.liste');
 Route::get('nouveauxPersonnel', [PersonnelController::class, 'create'])->name('personnel.nouveaux');
-
+Route::post('personnels/store', [PersonnelController::class, 'store'])->name('personnels.store');
 
 ###########################################
 #  Gestion des Receptioniste Dispensaire  #

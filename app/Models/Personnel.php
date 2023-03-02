@@ -23,7 +23,6 @@ class Personnel extends Model
         'telephone_1_naissance_personneles',
         'telephone_2_naissance_personneles',
         'situation_matrimoniale_personneles',
-        'titre',
         // 'num_roles_personnels'
     ];
 
