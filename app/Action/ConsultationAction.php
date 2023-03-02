@@ -31,18 +31,21 @@ class ConsultationAction
 
             $data = DB::transaction(function () use ($request) {
 
-
-
                 $magasinierId = Auth::user()->id;
-
+            
                 $equipeFourniture = $this->personnelRepository->getPersonnelConnected($magasinierId);
-
+            
                 $nombreMedicaments = (int) $request->input('nombreMedicament');
+            
+                $consultation = Consultation::find($request->consultation_id);
+            
+                // On crée un tableau pour stocker les ids des prescriptions créées
+                $prescriptionIds = [];
+            
                 for ($i = 0; $i < $nombreMedicaments; $i++) {
-
+            
                     $medeque = $request->$i;
-
-
+            
                     $prescription = Prescription::create([
                         'produit_id' => $medeque['produits_id'],
                         'quantite' => (int) $medeque['quantite'],
@@ -50,53 +53,37 @@ class ConsultationAction
                         'prix_unitaire' => (int) $medeque['prix'],
                         'prix_total' => (int) $medeque['prix'] *  (int) $medeque['quantite']
                     ]);
-                    $prescriptionId = $prescription->id;
-
-                    $consultedUpdate = Consultation::select('id')->where('id', $request['consultation_id'])->get();
-
-                    foreach ($consultedUpdate as $dataConsultation) {
-
-                        $dataConsultation->patient_id = $request->patient_id;
-                        $dataConsultation->prescription_id = $prescriptionId;
-                        $dataConsultation->type_consultation_id = $request->type_consultation_id;
-                        $dataConsultation->medecin_id = $request->medecin_id;
-                        $dataConsultation->consulted = true;
-                        $dataConsultation->diagnostique = $request->diagnostic;
-                        $dataConsultation->symptome = $request->symptomes;
-
-                        $dataConsultation->save();
-
-                        $idConsulation = $dataConsultation->id;
-                    }
-
-                    $consultationId = $idConsulation;
-
+            
+                    // On ajoute l'id de la prescription créée dans le tableau
+                    $prescriptionIds[] = $prescription->id;
+            
                     $posologie = Posologie::create([
                         'details_posologie' => $request->posologie,
-                        'consultation_id' => $consultationId
+                        'consultation_id' => $consultation->id
                     ]);
-                    
+            
                     $distribution = DistributionPharmacie::create([
-                        'prescription_id' => $prescriptionId,
                         'pharmacien_id' => null,
+                        'prescription_id' => $prescription->id,
                         'distribuer' => 0,
                         'reste' => 0
                     ]);
-                    
-                    $idDistribution = $distribution->id;
-
+            
                     $facture = FactureDispensaire::create([
                         'num_facture_patient' => (int) $request->numFacture,
-                        'consultation_id' => $consultationId
+                        'consultation_id' => $consultation->id
                     ]);
-
-                    // dd($facture);
                 }
+            
+                // On synchronise la relation many-to-many entre consultations et prescriptions
+                $consultation->prescriptions()->sync($prescriptionIds);
+            
                 return [
-                    "data" => $consultationId,
-                    "message" => "L'enregistrement de ce consultation a etait bbien enregistrer"
+                    "data" => $consultation->id,
+                    "message" => "L'enregistrement de cette consultation a été bien enregistré"
                 ];
             });
+            
 
             return $data;
         } catch (\Throwable $th) {

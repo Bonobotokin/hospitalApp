@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Action\FactureAction;
+use App\Action\factureDispensaireAction;
 use App\Http\Requests\StoreFactureDispensaireRequest;
 use App\Http\Requests\UpdateFactureDispensaireRequest;
 use App\Models\FactureDispensaire;
+use Illuminate\Http\Request;
 
 class FactureDispensaireController extends Controller
 {
@@ -34,9 +37,25 @@ class FactureDispensaireController extends Controller
      * @param  \App\Http\Requests\StoreFactureDispensaireRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreFactureDispensaireRequest $request)
+    public function store(Request $request, FactureAction $action)
     {
-        //
+        try {
+            //code...
+            $Response = $action->savePayement($request);
+
+            // dd($Response, 'consultationController');
+
+            if (!is_null($Response['data']))
+            {
+
+                return redirect()->route('all.patient.payeable',['reponse'=>$Response])->with('success', $Response['message']);
+
+            }else {
+                return redirect()->back()->withErrors($Response)->withInput();
+            }
+        } catch (\Throwable $th) {
+            //throw $th;
+        }
     }
 
     /**

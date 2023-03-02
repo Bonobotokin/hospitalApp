@@ -11,6 +11,7 @@ use App\Http\Controllers\CaisseController;
 use App\Http\Controllers\CommandeProduitController;
 use App\Http\Controllers\ConsultationController;
 use App\Http\Controllers\DepotController;
+use App\Http\Controllers\FactureDispensaireController;
 use App\Http\Controllers\LivraisonProduitsController;
 use App\Http\Controllers\PatientController;
 use App\Http\Controllers\PharmacienController;
@@ -136,6 +137,7 @@ Route::post('enregistrer/Consultation', [ConsultationController::class, 'store']
 ###########################################
 
 Route::get('Caisse/payementPatient', [CaisseController::class, 'index'])->name('all.patient.payeable');
+Route::post('caisse/enregistremenFacture', [FactureDispensaireController::class, 'store'])->name('enregistrement.Facture');
 
 
 

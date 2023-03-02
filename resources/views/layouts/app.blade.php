@@ -236,14 +236,15 @@
                     </a>
                     <div class="collapse" id="ui-fourniture">
                         <ul class="nav flex-column sub-menu">
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('index.produits') }}">
-                                    Listes des Produits
-                                </a>
-                            </li>
+
                             <li class="nav-item">
                                 <a class="nav-link" href="{{route('depots')}}">
                                     Depots
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('index.produits') }}">
+                                    Listes des Produits
                                 </a>
                             </li>
                             <li class="nav-item">

@@ -14,7 +14,9 @@ class FactureDispensaire extends Model
 
         'num_facture_patient',
         'consultation_id',
-        'isNotPayed'
+        'isNotPayed',
+        'montantPayer',
+        'resterPayed'
 
     ];
 

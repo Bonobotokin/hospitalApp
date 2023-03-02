@@ -20,9 +20,9 @@ class Prescription extends Model
     ];
 
 
-    public function consultation () : HasMany
+    public function consultations()
     {
-        return $this->hasMany(Consultation::class);
+        return $this->belongsToMany(Consultation::class, 'consultation_prescriptions');
     }
 
     public function produit () : BelongsTo

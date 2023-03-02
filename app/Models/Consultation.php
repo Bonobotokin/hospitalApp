@@ -17,7 +17,6 @@ class Consultation extends Model
     protected $fillable = [
         'patient_id',
         'type_consultation_id',
-        'prescription_id',
         'medecin_id',
         'consulted',
         'diagnostique',
@@ -41,12 +40,13 @@ class Consultation extends Model
         return $this->belongsTo(Medecin::class);
     }
 
-    public function prescription() : BelongsTo
+    
+    public function prescriptions()
     {
-        return $this->belongsTo(Prescription::class);
+        return $this->belongsToMany(Prescription::class, 'consultation_prescriptions');
     }
 
-    public function facture () : HasMany
+    public function factureDispensaire () : HasMany
     {
         return $this->hasMany(FactureDispensaire::class);
     }

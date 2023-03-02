@@ -171,5 +171,16 @@ async function getInfoPatientFacture() {
 }
 
 
+function getMonantReste()
+{
+	const totalMontantDefault = document.getElementById('totalMontantDefault');
+	const montantPayed = document.getElementById('montantPayed');
+	const RestePayed = document.getElementById('RestePayed');
 
+	
+	const resteData = totalMontantDefault.value - montantPayed.value
+	RestePayed.value = resteData;
+	
+
+}
 

@@ -27,7 +27,7 @@ class CaisseController extends Controller
     public function index()
     {
         $facture = $this->factureRepository->getAll();
-        dd($facture);
+        // dd($facture);
         return view('caisses.payementPatient', 
             [
                 'factures' => $facture
