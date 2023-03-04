@@ -71,8 +71,6 @@ class PersonnelController extends Controller
                 
             }else {
                 
-                // dd($response_action);
-                // return redirect()::back()->withErrors($errors)->withInput();
                 return redirect()->route('personnel.nouveaux',['reponse'=>$response_action])->with('errors',$response_action['message']);
             }
         } catch (\exception $th) {

@@ -100,6 +100,11 @@
                         <div class="profile-pic">
                             <div class="count-indicator">
                                 <img class="img-xs rounded-circle " src="{{ asset('assets/images/faces/face15.jpg') }}" alt="">
+                                @if($personnel['sexe'] == FALSE)
+                                    <img src="{{asset('assets/images/faces-clipart/pic-3.png')}}" alt="image">
+                                @else
+                                    <img src="{{asset('assets/images/faces-clipart/pic-8.png')}}" alt="image">
+                                @endif
                                 <span class="count bg-success"></span>
                             </div>
                             <div class="profile-name">
@@ -155,7 +160,7 @@
                 <li class="nav-item menu-items">
                     <p class="nav-link">Administrator</p>
                 </li>
-                <li class="nav-item menu-items">
+                <!-- <li class="nav-item menu-items">
                     <a class="nav-link" data-toggle="collapse" href="#ui-parametres" aria-expanded="false" aria-controls="ui-parametres">
                         <span class="menu-icon">
                             <i class="mdi mdi-settings"></i>
@@ -172,7 +177,7 @@
                             </li>
                         </ul>
                     </div>
-                </li>
+                </li> -->
 
                 <li class="nav-item menu-items">
                     <a class="nav-link" data-toggle="collapse" href="#ui-personnel" aria-expanded="false" aria-controls="ui-personnel">
