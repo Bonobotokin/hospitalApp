@@ -100,11 +100,7 @@
                         <div class="profile-pic">
                             <div class="count-indicator">
                                 <img class="img-xs rounded-circle " src="{{ asset('assets/images/faces/face15.jpg') }}" alt="">
-                                @if($personnel['sexe'] == FALSE)
-                                    <img src="{{asset('assets/images/faces-clipart/pic-3.png')}}" alt="image">
-                                @else
-                                    <img src="{{asset('assets/images/faces-clipart/pic-8.png')}}" alt="image">
-                                @endif
+
                                 <span class="count bg-success"></span>
                             </div>
                             <div class="profile-name">
@@ -398,7 +394,7 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="">
+                                <a class="nav-link" href="{{ route('journaliere.encaissement') }}">
                                     Caisse Journaliere
                                 </a>
                             </li>
@@ -647,6 +643,17 @@
             "responsive": true,
         });
     });
+</script>
+<script>
+    var total = 0;
+    var montantElements = document.querySelectorAll("#example1 tbody td:nth-child(4)");
+
+    for (var i = 0; i < montantElements.length; i++) {
+        total += parseFloat(montantElements[i].textContent);
+    }
+
+    console.log(total);
+    document.getElementById('total').textContent = total + ' Ar ';
 </script>
 
 </html>

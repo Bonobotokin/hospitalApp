@@ -20,6 +20,8 @@ class PatientAction
                 $parametreRequest = $request->parametres;
                 $consultation_data = $request->consultantion;
                 
+                // $matricule = $this->look_matricule($patientRequest['matricule']);
+
                 $patient = Patient::Create([
                     'matricule' => $patientRequest['matricule'],
                     'nom_patient' => $patientRequest['nom_patient'],
@@ -84,5 +86,14 @@ class PatientAction
 
             return (int) $data['type_consultaion_2'];
         } 
+    }
+
+
+    public function look_matricule($num) {
+        // dd($num);
+        $num = (int) $num;
+        $consultation = Consultation::select('matricule')->where('matricule', '=' ,$num)->get();
+
+        dd($consultation);
     }
 }

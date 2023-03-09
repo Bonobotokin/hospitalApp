@@ -20,6 +20,12 @@ class PharmacienController extends Controller
         return view('Pharmacie.CommandeProduits');
     }
 
+    public function listeDistibution()
+    {
+        // dd('ok');
+        return view('Pharmacie.CommandeProduits');
+    }
+
     /**
      * Show the form for creating a new resource.
      *

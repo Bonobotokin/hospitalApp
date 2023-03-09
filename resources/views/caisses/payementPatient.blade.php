@@ -71,7 +71,7 @@
                                                             <div class="preview-item border-bottom">
                                                                 <div class="preview-item-content d-sm-flex flex-grow">
                                                                     <div class="flex-grow">
-                                                                        <h6 class="preview-subject">{{$produit['produit_nom']}}</h6>
+                                                                        <h6 class="preview-subject">{{$produit['produit_nom']}} (Qt = {{ $produit['quantite'] }})</h6>
                                                                     </div>
                                                                     <div class="mr-auto text-sm-right pt-2 pt-sm-0">
                                                                         <p class="text-muted">{{ $produit['prix_totale'] }} Ar</p>
@@ -89,6 +89,7 @@
                                                                         <p class="preview-subject">{{ $facture['montant'] }} Ar</p>
                                                                         <input type="hidden" name="id" value="{{ $facture['id'] }}">
                                                                         <input type="hidden" id="totalMontantDefault" value="{{ $facture['montant'] }}">
+                                                                        <input type="hidden" name="description" value="{{ $facture['matricule'] }}">
                                                                     </div>
 
                                                                 </div>
@@ -112,7 +113,7 @@
                                                                         <div class="input-group-prepend">
                                                                             <span class="input-group-text bg-warning text-white">Reste</span>
                                                                         </div>
-                                                                        <input type="text" class="form-control" name="RestePayed" id="RestePayed" aria-label="Repayed" placeholder="0000.00">
+                                                                        <input type="text" value="0" class="form-control" name="restePayed" id="RestePayed" aria-label="Repayed" placeholder="0000.00">
                                                                         <div class="input-group-append">
                                                                             <span class="input-group-text">.00</span>
                                                                         </div>

@@ -44,7 +44,7 @@ class ConsultationRepository implements ConsultationRepositoryInterface
     public function get_patient_consultation_to_day()
     {
         $consultation = Consultation::with('patient', 'consultationType','medecin')
-            // ->where('consultations.created_at', '=', $date_now)?
+            // ->where('consulted', '!=', FALSE)
             // ->orWhereHas('patient', function($query) {
             //     $query->where('id', 'Medicaments');
             // })

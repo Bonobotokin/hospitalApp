@@ -25,7 +25,7 @@ class FactureRepository implements FactureRepositoryInterface
                     ->select(['id', 'quantite', 'medecin_id', 'prix_unitaire', 'prix_total']);
             }
         ])
-            ->where('isNotPayed', false)
+            // ->where('isNotPayed', false)
             ->get();
         $facturesInfo = $factures->map(function ($facture) {
             $consultation = $facture->consultation;
@@ -61,37 +61,5 @@ class FactureRepository implements FactureRepositoryInterface
         return $facturesInfo;
     }
 
-    // $consultations = Consultation::with(['patient', 'prescription.produit'])
-    //         ->whereHas('patient', function ($query) {
-    //             $query->whereNotNull('id');
-    //         })
-    //         ->get()
-    //         ->map(function ($consultation) {
-    //             $patient = $consultation->patient;
-    //             $produits = $consultation->prescription->pluck('produit_id');
-    //             $medicaments = Produit::whereIn('id', $produits)
-    //                 // ->select(['designation_produits', 'categorie'])
-    //                 ->get()
-    //                 ->map(function($medicaments){
-    //                     return [
-    //                         'nomProduit' => $medicaments->designation_produits,
-    //                         'categorie' => $medicaments->categorie,
-    //                     ];
-    //                 });                
-    //             return [
-    //                 'id' => $patient->id,
-    //                 'matricule' => $patient->matricule,
-    //                 'nom' => $patient->nom_patient,
-    //                 'prenom' => $patient->prenom_patient,
-    //                 'sexe' => $patient->sexe_patient,
-    //                 'age' => $patient->Age_patient,
-    //                 'IsHospitaled' => !is_null($patient->IsHospitaled) ? null : 'Hospiliser',
-    //                 'medicaments' => $medicaments,
-    //             ];
-    //         });
-
-
-
-    //     dd($consultations);
-    //     return $consultations;
+   
 }

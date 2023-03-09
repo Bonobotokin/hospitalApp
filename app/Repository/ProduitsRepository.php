@@ -21,7 +21,7 @@ class ProduitsRepository implements ProduitsRepositoryInterface
             ->map(function ($produit) {
                                 // dd($produit);
                                 return [
-                                    'num' =>    $produit->produits_id,
+                                    'num' =>    $produit->id,
                                     'nom' =>    $produit->designation_produits,
                                     'prix_vente' => $produit->prix_vente_produits,
                                     'fabriquant' => $produit->fabriquant,

@@ -38,8 +38,14 @@ class ConsultationAction
                 $nombreMedicaments = (int) $request->input('nombreMedicament');
             
                 $consultation = Consultation::find($request->consultation_id);
-            
+                
+                $consultation->consulted = true;
+                $consultation->diagnostique =  $request->symptomes;
+                $consultation->symptome = $request->diagnostic;
+                $consultation->save();
+
                 // On crée un tableau pour stocker les ids des prescriptions créées
+
                 $prescriptionIds = [];
             
                 for ($i = 0; $i < $nombreMedicaments; $i++) {
@@ -68,16 +74,17 @@ class ConsultationAction
                         'distribuer' => 0,
                         'reste' => 0
                     ]);
-            
-                    $facture = FactureDispensaire::create([
-                        'num_facture_patient' => (int) $request->numFacture,
-                        'consultation_id' => $consultation->id
-                    ]);
                 }
             
                 // On synchronise la relation many-to-many entre consultations et prescriptions
                 $consultation->prescriptions()->sync($prescriptionIds);
             
+            
+                $facture = FactureDispensaire::create([
+                    'num_facture_patient' => (int) $request->numFacture,                    
+                    'consultation_id' => $consultation->id
+                ]);
+                // dd($facture);
                 return [
                     "data" => $consultation->id,
                     "message" => "L'enregistrement de cette consultation a été bien enregistré"

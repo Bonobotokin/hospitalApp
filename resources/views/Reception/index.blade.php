@@ -20,8 +20,10 @@
 								</tr>
 							</thead>
                             <tbody>
+                                
                                @foreach ( $listePatient as $liste )
-                                    <td> {{ $liste['matricule']}} </td>
+                                   <tr>
+                                   <td> {{ $liste['matricule']}} </td>
                                     <td> {{ $liste['nom'] }} {{ $liste['prenom'] }} </td>
                                     <td> {{ $liste['age']}} </td>
                                     <td> 
@@ -42,6 +44,7 @@
                                             <i class="mdi mdi-hospital float-right"></i>
                                         </a>                                                
                                     </td>
+                                   </tr>
                                @endforeach
                             </tbody>
 						</table>

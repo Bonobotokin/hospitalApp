@@ -5,25 +5,23 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreCaisseRequest;
 use App\Http\Requests\UpdateCaisseRequest;
 use App\Models\Caisse;
+use App\Repository\CaisseRepository;
 use App\Repository\FactureRepository;
 
 class CaisseController extends Controller
 {
 
-    protected $factureRepository;
+    protected $factureRepository, $caisseRepository;
 
     public function __construct(
-        FactureRepository $factureRepository
+        FactureRepository $factureRepository,
+        CaisseRepository $caisseRepository, 
     )
     {
         $this->factureRepository = $factureRepository;
+        $this->caisseRepository = $caisseRepository;
     }
 
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
         $facture = $this->factureRepository->getAll();
@@ -31,6 +29,18 @@ class CaisseController extends Controller
         return view('caisses.payementPatient', 
             [
                 'factures' => $facture
+            ]
+        );
+
+    }
+
+    public function encaisseMentJournaliere()
+    {
+        $jour_encaissement = $this->caisseRepository->getEncaissementJournaliere();
+        // dd(sum($jour_encaissement['montant']));
+        return view('caisses.encaissementJournaliere', 
+            [
+                'encaissement' => $jour_encaissement
             ]
         );
 

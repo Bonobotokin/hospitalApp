@@ -42,10 +42,10 @@
                                         <tbody id="myUL">
                                             {{-- @dd($produits) --}}
                                             @foreach ($produits as $data)
-                                            <tr id="content_search" onclick="getElement()" class="content_search" style="cursor:pointer">
+                                            <tr id="content_search"  class="content_search" style="cursor:pointer">
                                                 <td id="idProduits"> {{ $data['num'] }} </td>
                                                 <td id="nom"> {{ $data['nom'] }} </td>
-                                                <td id="nom"> {{ $data['types'] }} </td>
+                                                <td id="type"> {{ $data['types'] }} </td>
                                                 <td id="abrev"> {{ $data['abrev'] }} </td>
                                                 <td id="categorie"> {{ $data['categorie'] }} </td>
                                             </tr>

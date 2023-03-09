@@ -62,10 +62,12 @@ class DepotsAction
     public static function depotHasQuantite($data)
     {
         $depots = depotsRepository::produitsHasQuantite($data['idProduits']);
-
-        if (($depots[0]['quantite_depots'] == 0) && ($depots[0]['quantite_depots'] < 50)) {
+        
+        if (($depots[0]['quantite_depots'] == 0) || ($depots[0]['quantite_depots'] < 50)) {
+            // dd($depots);
             return true;
         } else {
+            // dd($depots,'false');
             return false;
         }
     }

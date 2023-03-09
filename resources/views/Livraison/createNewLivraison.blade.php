@@ -93,6 +93,7 @@
                                                 <th> Nom</th>
                                                 <th> Type</th>
                                                 <th> Abrev</th>
+                                                <th> Caategori</th>
                                             </tr>
                                         </thead>
                                         <tbody id="myUL">
@@ -101,7 +102,7 @@
                                             <tr id="content_search" onclick="getElement()" class="content_search" style="cursor:pointer">
                                                 <td id="idProduits"> {{ $data['num'] }} </td>
                                                 <td id="nom"> {{ $data['nom'] }} </td>
-                                                <td id="categorie"> {{ $data['categorie'] }} </td>
+                                                <td id="type"> {{ $data['types'] }} </td>
                                                 <td id="abrev"> {{ $data['abrev'] }} </td>
                                                 <td id="categorie"> {{ $data['categorie'] }} </td>
                                             </tr>
@@ -127,7 +128,7 @@
                                                 <div class="col-lg-4">
                                                     <div class="form-group">
                                                         <label for="">Type :</label>
-                                                        <input id="categorieValue" type="text" class="form-control" />
+                                                        <input id="typeValue" type="text" class="form-control" />
                                                     </div>
                                                 </div>
 

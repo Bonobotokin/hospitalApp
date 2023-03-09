@@ -91,7 +91,7 @@ class ReceptionisteController extends Controller
         try {
 
             $response_action = $action->add_hadle_patient($request);
-            // dd($response_action, 'receptionisteController');
+            dd($response_action, 'receptionisteController');
             if (!is_null($response_action['data'])) {
 
                 return redirect()->route('liste.consultation',['reponse'=>$response_action])->with('success', $response_action['message']);

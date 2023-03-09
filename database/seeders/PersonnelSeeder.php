@@ -28,7 +28,6 @@ class PersonnelSeeder extends Seeder
                 'telephone_1_personneles' =>  '0346697188',
                 'telephone_2_personneles' => '0347927260',
                 'situation_matrimoniale_personneles' => 'célibataire',
-                'titre' => 'Ingenieur',
             ],
             [
                 'nom_personneles' =>  'Benja',
@@ -39,7 +38,6 @@ class PersonnelSeeder extends Seeder
                 'telephone_1_personneles' =>  '0346697188',
                 'telephone_2_personneles' => '0347927260',
                 'situation_matrimoniale_personneles' => 'Marier',
-                'titre' => 'Chef',
             ],
             [
                 'nom_personneles' =>  'Justine',
@@ -50,7 +48,6 @@ class PersonnelSeeder extends Seeder
                 'telephone_1_personneles' =>  '0346697188',
                 'telephone_2_personneles' => '0347927260',
                 'situation_matrimoniale_personneles' => 'célibataire',
-                'titre' => null,
             ],
             [
                 'nom_personneles' =>  'Bezoo',
@@ -61,7 +58,6 @@ class PersonnelSeeder extends Seeder
                 'telephone_1_personneles' =>  '0346697188',
                 'telephone_2_personneles' => '0347927260',
                 'situation_matrimoniale_personneles' => 'Marier',
-                'titre' => 'Superviseur',
             ],
             [
                 'nom_personneles' =>  'julliana',
@@ -72,7 +68,6 @@ class PersonnelSeeder extends Seeder
                 'telephone_1_personneles' =>  '0346697188',
                 'telephone_2_personneles' => '0347927260',
                 'situation_matrimoniale_personneles' => 'Marier',
-                'titre' => 'Titulaire',
             ],
             [
                 'nom_personneles' =>  'Razafy',
@@ -83,7 +78,6 @@ class PersonnelSeeder extends Seeder
                 'telephone_1_personneles' =>  '0346697188',
                 'telephone_2_personneles' => '0347927260',
                 'situation_matrimoniale_personneles' => 'Marier',
-                'titre' => 'Titulaire',
             ],
             [
                 'nom_personneles' =>  'Bonnie',
@@ -94,7 +88,6 @@ class PersonnelSeeder extends Seeder
                 'telephone_1_personneles' =>  '0346697188',
                 'telephone_2_personneles' => '0347927260',
                 'situation_matrimoniale_personneles' => 'Marier',
-                'titre' => 'Principale',
                 ]
         ];
 

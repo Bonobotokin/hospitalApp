@@ -2,6 +2,7 @@
 
 namespace App\Action;
 
+use App\Models\Caisse;
 use App\Models\FactureDispensaire;
 use Illuminate\Support\Facades\DB;
 
@@ -12,17 +13,26 @@ class FactureAction
         try {
 
             $data = DB::transaction(function () use ($request) {
-                // dd($request);
-                $facture = FactureDispensaire::find((int) $request['id']);
-                $facture->montantPayer = (double) $request['montantPayed'];
-                $facture->isNotPayed = true;
-                $facture->resterPayed = 0.00;
-                $facture->save();
-
                 
+                $facture = FactureDispensaire::find((int) $request['id']);
+                $facture->montant = $request['montantPayed'];
+                $facture->reste = $request['restePayed'];
+                $facture->isNotPayed = true;
+                $facture->save();
+                // dd($request);
+                $caisse = Caisse::updateOrCreate(
+                    ['description' => $request['description']],
+                    [
+                        'encaissement' => (double) $request['montantPayed'],
+                        'decaissement' => (double) 0.0,
+                        'Ispaed' => true,
+                    ]
+                );
+                
+                // dd($caisse);
                 return [
                     "data" => $facture->id,
-                    "message" => "Enregistrement de facture Reussit"
+                    "message" => "Le payement de la facture $facture->num_facture_patient a etait bien Reussit"
                 ];
             });
 

@@ -1,73 +1,73 @@
 // Manipulation consultation 
-window.onload = () => {
+// window.onload = () => {
 
-	const prescription = document.querySelector('#prescription');
-	const contentExamens = document.querySelector("#examens");
-	const contentParametre = document.querySelector("#parametre");
-	const contentResultat = document.querySelector("#resultatExamens");
-	const contentDiagnostic = document.querySelector("#diagnostic");
-	if (prescription.innerText == null) {
+// 	const prescription = document.querySelector('#prescription');
+// 	const contentExamens = document.querySelector("#examens");
+// 	const contentParametre = document.querySelector("#parametre");
+// 	const contentResultat = document.querySelector("#resultatExamens");
+// 	const contentDiagnostic = document.querySelector("#diagnostic");
+// 	// if (prescription.innerText == null) {
 
-	} else {
+// 	// } else {
 
 
-		const medicamentUl = document.getElementById('medicamentUl');
-		const lignes = medicamentUl.getElementsByTagName('tr');
+// 		const medicamentUl = document.getElementById('medicamentUl');
+// 		const lignes = medicamentUl.getElementsByTagName('tr');
 
-		const content_remove = medicamentUl.parentNode.removeChild(medicamentUl);
-		const tbody = document.createElement('tbody');
-		tbody.id = "medicamentUl";
-		document.getElementById("tableMedicament").appendChild(tbody);
+// 		const content_remove = medicamentUl.parentNode.removeChild(medicamentUl);
+// 		const tbody = document.createElement('tbody');
+// 		tbody.id = "medicamentUl";
+// 		document.getElementById("tableMedicament").appendChild(tbody);
 
-		for (let i = 0; i < lignes.length; i++) {
-			const tr = document.createElement('tr');
-			tr.style.cursor = 'pointer';
-			tr.id = 'content_search_medicament' + i;
-			tr.className = "content_search_medicament";
-			tr.innerHTML = lignes[i].innerHTML;
-			document.getElementById("medicamentUl").appendChild(tr);
+// 		for (let i = 0; i < lignes.length; i++) {
+// 			const tr = document.createElement('tr');
+// 			tr.style.cursor = 'pointer';
+// 			tr.id = 'content_search_medicament' + i;
+// 			tr.className = "content_search_medicament";
+// 			tr.innerHTML = lignes[i].innerHTML;
+// 			document.getElementById("medicamentUl").appendChild(tr);
 
-		}
-		const ulMedicament = document.getElementById('medicamentUl');
-		const tableLigne = ulMedicament.getElementsByTagName('tr');
-		const medicamentForm = document.querySelector('.medicamentForm');
-		let elementCount = 0;
+// 		}
+// 		const ulMedicament = document.getElementById('medicamentUl');
+// 		const tableLigne = ulMedicament.getElementsByTagName('tr');
+// 		const medicamentForm = document.querySelector('.medicamentForm');
+// 		let elementCount = 0;
 
-		for (let y = 0; y < tableLigne.length; y++) {
-			const clickContent = document.getElementById('content_search_medicament' + y);
-			clickContent.addEventListener('click', function () {
-				contentDiagnostic.style.display = "none";
-				contentResultat.style.display = "none";
-				contentParametre.style.display = "none";
-				contentExamens.style.display = "none";
-				prescription.style.display = "flex";
+// 		for (let y = 0; y < tableLigne.length; y++) {
+// 			const clickContent = document.getElementById('content_search_medicament' + y);
+// 			clickContent.addEventListener('click', function () {
+// 				contentDiagnostic.style.display = "none";
+// 				contentResultat.style.display = "none";
+// 				contentParametre.style.display = "none";
+// 				contentExamens.style.display = "none";
+// 				prescription.style.display = "flex";
 
-				const contentProduits = clickContent.getElementsByTagName('td');
-				const div = document.createElement('div');
-				div.className = 'form-inline abotProduits';
-				div.id = 'abotProduits';
+// 				const contentProduits = clickContent.getElementsByTagName('td');
+// 				const div = document.createElement('div');
+// 				div.className = 'form-inline abotProduits';
+// 				div.id = 'abotProduits';
 
-				const id = contentProduits[0].innerText;
-				const designationProduits = contentProduits[1].innerText;
-				const type = contentProduits[2].innerText;
-				const prix = contentProduits[3].innerText;
+// 				const id = contentProduits[0].innerText;
+// 				const designationProduits = contentProduits[1].innerText;
+// 				const type = contentProduits[2].innerText;
+// 				const prix = contentProduits[3].innerText;
 
-				div.innerHTML = `
-				<input type="hidden" name="${elementCount}[produits_id]" value="${id}" class="form-control" id="id">
-				<input type="text" name="${elementCount}[designationProduits]" value="${designationProduits}" class="form-control mb-2 mr-1 col-lg-3" id="designationProduits">
-				<input type="text" name="${elementCount}[type]" value="${type}" class="form-control mb-2 mr-1 col-lg-3" id="type">
-				<input type="hidden" name="${elementCount}[prix]" value="${prix}" class="form-control mb-2 mr-1 col-lg-2" id="prix">
-				<input type="text" name="${elementCount}[quantite]" placeholder="quantite" class="form-control mb-2 mr-1 col-lg-3" id="quantite">
-				`;
-				medicamentForm.appendChild(div);
-				elementCount++;
-				const numElements = elementCount;
-				console.log(numElements)
-			}, false);
-		}
+// 				div.innerHTML = `
+// 				<input type="hidden" name="${elementCount}[produits_id]" value="${id}" class="form-control" id="id">
+// 				<input type="text" name="${elementCount}[designationProduits]" value="${designationProduits}" class="form-control mb-2 mr-1 col-lg-3" id="designationProduits">
+// 				<input type="text" name="${elementCount}[type]" value="${type}" class="form-control mb-2 mr-1 col-lg-3" id="type">
+// 				<input type="hidden" name="${elementCount}[prix]" value="${prix}" class="form-control mb-2 mr-1 col-lg-2" id="prix">
+// 				<input type="text" name="${elementCount}[quantite]" placeholder="quantite" class="form-control mb-2 mr-1 col-lg-3" id="quantite">
+// 				`;
+// 				medicamentForm.appendChild(div);
+// 				elementCount++;
+// 				const numElements = elementCount;
+// 				console.log(numElements)
+// 			}, false);
+// 		}
 
-	}
-};
+// 	// }
+// };
 
 
 function btnvalide() {

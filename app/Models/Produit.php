@@ -43,6 +43,11 @@ class Produit extends Model
         return $this->hasMany(StockPharmacie::class);
     }
 
+    public function commandeProduit() : HasMany
+    {
+        return $this->hasMany(CommandeProduit::class);
+    }
+
     public function prescription() : HasMany
     {
         return $this->hasMany(Prescription::class);

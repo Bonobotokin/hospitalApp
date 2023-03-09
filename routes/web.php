@@ -74,7 +74,8 @@ Route::get('pharmacie/stock', [StockPharmacieController::class, 'index'])->name(
 
 Route::get('Pharmacie/commande/Medicament', [PharmacienController::class, 'index'])->name('commande.index');
 
-// mettre a jour le depots by magasin
+// distribution Medicament 
+
 
 
 
@@ -138,11 +139,12 @@ Route::post('enregistrer/Consultation', [ConsultationController::class, 'store']
 
 Route::get('Caisse/payementPatient', [CaisseController::class, 'index'])->name('all.patient.payeable');
 Route::post('caisse/enregistremenFacture', [FactureDispensaireController::class, 'store'])->name('enregistrement.Facture');
+Route::get('encaissement/journaliere', [caisseController::class, 'encaisseMentJournaliere'])->name('journaliere.encaissement');
 
 
 
 ###########################################
-#  Api for aafficher les info in Js     #
+#  Api for afficher les info in Js     #
 ###########################################
 
 Route::get('facture/getAll', [facturePatienApiContronller::class, 'facturePatient'])->name('information.facture.patien');

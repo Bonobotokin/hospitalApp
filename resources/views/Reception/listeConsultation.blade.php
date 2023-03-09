@@ -27,7 +27,6 @@
 							</thead>
                             <tbody>
                                 @foreach ( $listeConsultation as $liste)
-                                    @if ($liste['date_enregistrement'] = $dateConsultation)
                                         <tr>
                                             <td> {{$liste['matricule'] }} </td>
                                             <td> {{$liste['nom'] }} {{$liste['prenom'] }} </td>
@@ -59,7 +58,6 @@
                                                 </a>                                                  
                                             </td>
                                         </tr>  
-                                    @endif                                  
                                 @endforeach
                             </tbody>
 						</table>

@@ -39,7 +39,7 @@ class CommandeProduitController extends Controller
 
         $stockPharmacieSeuil = $this->stockPharmacieRepository->lookOfQuantite();
         $getAllCommande = $this->commandeRepository->getAll();
-        
+        // dd($getAllCommande);
         return view('Commandes.AllCommande',
             [
                 'pharmacieCommande' => $stockPharmacieSeuil,
