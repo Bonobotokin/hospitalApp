@@ -29,4 +29,9 @@ class Prescription extends Model
     {
         return $this->belongsTo(Produit::class);
     }
+
+    public function distribution() : HasMany
+    {
+        return $this->hasMany(DistributionPharmacie::class);
+    }
 }

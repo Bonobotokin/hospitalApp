@@ -17,7 +17,7 @@ return new class extends Migration
     {
         Schema::create('patients', function (Blueprint $table) {
             $table->id();
-            $table->string('matricule');
+            $table->string('matricule')->unique();
             $table->string('nom_patient');
             $table->string('prenom_patient')->nullable();
             $table->boolean('sexe_patient');

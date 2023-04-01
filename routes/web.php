@@ -75,8 +75,8 @@ Route::get('pharmacie/stock', [StockPharmacieController::class, 'index'])->name(
 Route::get('Pharmacie/commande/Medicament', [PharmacienController::class, 'index'])->name('commande.index');
 
 // distribution Medicament 
-
-
+Route::get('pharmacie/distribution/prescription', [PharmacienController::class, 'listeDistibution'])->name('distribution.prescription');
+Route::get('pharmacie/patient_distribuer/{id}', [PharmacienController::class, 'detailsDistribution'])->name('details.patient.distribution');
 
 
 ############################################################

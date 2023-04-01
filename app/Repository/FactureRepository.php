@@ -20,19 +20,19 @@ class FactureRepository implements FactureRepositoryInterface
             'consultation' => function ($query) {
                 $query->with('patient', 'prescriptions.produit');
             },
-            'consultation.prescriptions' => function ($query) {
-                $query->with('produit', 'medecin')
-                    ->select(['id', 'quantite', 'medecin_id', 'prix_unitaire', 'prix_total']);
-            }
-        ])
+                'consultation.prescriptions' => function ($query) {
+                    $query->with('produit', 'medecin')
+                        ->select(['id', 'quantite', 'medecin_id', 'prix_unitaire', 'prix_total']);
+                }
+            ])
             // ->where('isNotPayed', false)
             ->get();
-        $facturesInfo = $factures->map(function ($facture) {
-            $consultation = $facture->consultation;
-            $patient = $consultation->patient;
-            $prescriptions = $consultation->prescriptions;
+            $facturesInfo = $factures->map(function ($facture) {
+                $consultation = $facture->consultation;
+                $patient = $consultation->patient;
+                $prescriptions = $consultation->prescriptions;
 
-            $produits = $prescriptions->map(function ($prescription) {
+                $produits = $prescriptions->map(function ($prescription) {
                 // return $prescription->produit->designation_produits;
                 return $prod = [
                     'produit_nom' => $prescription->produit->designation_produits,

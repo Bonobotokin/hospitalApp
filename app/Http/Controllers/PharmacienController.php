@@ -5,15 +5,20 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StorePharmacienRequest;
 use App\Http\Requests\UpdatePharmacienRequest;
 use App\Models\Pharmacien;
+use App\Repository\StockPharmacieRepository;
 use GuzzleHttp\Psr7\Request;
 
 class PharmacienController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    protected $stockPharmacieRepository;
+
+    public function __construct(
+        StockPharmacieRepository $stockPharmacieRepository
+    )
+    {
+       $this->stockPharmacieRepository = $stockPharmacieRepository; 
+    }
+
     public function index()
     {
         // dd('ok');
@@ -22,8 +27,13 @@ class PharmacienController extends Controller
 
     public function listeDistibution()
     {
-        // dd('ok');
-        return view('Pharmacie.CommandeProduits');
+        $distributionFill = $this->stockPharmacieRepository->distribution();
+        // dd($distributionFill);
+        return view('Pharmacie.distibution', 
+            [
+                'liste' => $distributionFill
+            ]
+        );
     }
 
     /**
@@ -53,9 +63,16 @@ class PharmacienController extends Controller
      * @param  \App\Models\Pharmacien  $pharmacien
      * @return \Illuminate\Http\Response
      */
-    public function show(Pharmacien $pharmacien)
+    public function detailsDistribution(int $data)
     {
-        //
+        $dataShow = $this->stockPharmacieRepository->getPrescriptionById($data);
+        // dd($dataShow[0]);
+        return view('Pharmacie.patientDistribution', 
+    
+            [
+                'liste' => $dataShow[0]
+            ]
+        );
     }
 
     /**

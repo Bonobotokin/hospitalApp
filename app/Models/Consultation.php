@@ -21,7 +21,8 @@ class Consultation extends Model
         'consulted',
         'diagnostique',
         'symptome',
-        'prix'
+        'prix',
+        'posologie'
     ];
 
 

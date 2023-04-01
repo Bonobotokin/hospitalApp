@@ -36,11 +36,11 @@ class CommandeAction
             $data = DB::transaction(function () use ($request) {
 
                 $magasinierId = Auth::user()->id;
-
+                // dd( Auth::user()->name);
                 $nombreCommande = $request->nombreCommande;
 
                 $magasinier = $this->personnelRepository->getPersonnelConnected($magasinierId);
-                // dd($request);
+                // dd($magasinier);
                 $CommandeId = [];
                 for ($i = 0; $i < (int) $nombreCommande; $i++) {
 
@@ -51,7 +51,14 @@ class CommandeAction
                             "data" => null,
                             "message" => "Desoler, veuillez remplir votre depot "
                         ];
-                    } else {
+                    }
+                    else if($magasinier->isEmpty()){
+                        return [
+                            "data" => null,
+                            "message" => "Vous ne peut pas faire cette action car elle est attribuer aux responsable de magasin"
+                        ];
+                    }
+                     else {
 
                         $commanded = $request->$i;
                         
@@ -79,7 +86,7 @@ class CommandeAction
                                 "message" => "Desoler, votre de demanade ne peut pas fournir ce demande car votre demande est trop grand"
                             ];
                         } else {
-                            // dd($stoquePharmacie[0]['id']);
+                            // dd($getIdSortantDepot);
                             $mvmStockPharmacie = mouvementPharmacie::create([
                                 'stock_pharmacie_id' => $stoquePharmacie[0]['id'],
                                 'mouvement_depot_id' => $getIdSortantDepot,
@@ -88,6 +95,7 @@ class CommandeAction
                                 'quantite_mvm_pharmacie' => (int) $livraison['total_livraison'],
                                 'type_mvm_pharmacie' => "entrant"
                             ]);
+                            // dd($mvmStockPharmacie);
                             $newEntrant = $livraison->total_livraison + $stoquePharmacie[0]['quantite_pharmacie'];
                             
                             $entrant = StockPharmacie::where('produit_id', $livraison['produit_id'])->get();
@@ -98,7 +106,7 @@ class CommandeAction
                                     'quantite_pharmacie' => $newEntrant
                                 ]);
                             }
-                            
+                            // dd($entrant);
 
                             $CommandeId = $livraison->id;
                         }
