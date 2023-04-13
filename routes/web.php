@@ -18,6 +18,7 @@ use App\Http\Controllers\PharmacienController;
 use App\Http\Controllers\ReceptionisteController;
 use App\Http\Controllers\StockPharmacieController;
 use App\Http\Controllers\PersonnelController;
+use App\Http\Controllers\PageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -37,6 +38,11 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('home/', [HomeController::class, 'index'])->name('home');
+
+####################################################
+#  Gestion des Magasins Depots & Produits Medicale #
+###################################################
+Route::get('administrator/', [PageController::class, 'administrator'])->name('administrator.page');
 
 
 ####################################################
@@ -147,4 +153,4 @@ Route::get('encaissement/journaliere', [caisseController::class, 'encaisseMentJo
 #  Api for afficher les info in Js     #
 ###########################################
 
-Route::get('facture/getAll', [facturePatienApiContronller::class, 'facturePatient'])->name('information.facture.patien');
+// Route::get('facture/getAll', [facturePatienApiContronller::class, 'facturePatient'])->name('information.facture.patien');

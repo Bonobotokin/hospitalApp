@@ -193,13 +193,13 @@ body {}
 	float: right;
 }
 .nav.notika-top-nav .open>a, .nav.notika-top-nav .open>a:focus, .nav.notika-top-nav .open>a:hover {
-    background: #00c292;
-    border-color: 0px solid #00c292;
+    background: #098f6e;
+    border-color: 0px solid #098f6e;
 	
 }
 .nav.notika-top-nav>li>a:focus, .nav.notika-top-nav>li>a:hover {
     text-decoration: none;
-    background-color: #00c292;
+    background-color: #098f6e;
 }
 .navbar-nav>li>a{
 	color:#fff;
@@ -304,7 +304,7 @@ body {}
     margin-top: 15px;
 }
 .header-top-menu .nav.notika-top-nav li .message-dd .hd-mg-va a:hover{
-    color: #00c292;
+    color: #098f6e;
 }
 .hd-task-info {
     overflow: hidden;
