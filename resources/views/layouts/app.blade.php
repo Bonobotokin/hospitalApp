@@ -125,7 +125,7 @@
                                 </a>
                             </li>
                             <li class="nav-item dropdown">
-                                <a href="#" class="nav-link waves-effect" data-toggle="tooltip"
+                                <a href="{{route('magasin.depots')}}" class="nav-link waves-effect" data-toggle="tooltip"
                                  data-placement="bottom" title="" data-original-title="Magasin">
                                     <i class="fa fa-archive"></i>
                                 </a>
@@ -149,7 +149,7 @@
                                 </a>
                             </li>
                             <li class="nav-item dropdown">
-                                <a href="#" class="nav-link waves-effect" data-toggle="tooltip"
+                                <a href="{{ route('journaliere.encaissement') }}" class="nav-link waves-effect" data-toggle="tooltip"
                                  data-placement="bottom" title="" data-original-title="Caisse">
                                     <i class="fa fa-money"></i>
                                 </a>
@@ -170,9 +170,11 @@
     </div>
     <!-- Main Menu area End-->
 
-    
+    <div class="main-menu-area mg-tb-40">
+
     <div class="container">
         @yield('content')
+    </div>
     </div>
 
     <!-- jquery ============================================ -->

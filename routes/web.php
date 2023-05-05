@@ -49,7 +49,7 @@ Route::get('administrator/', [PageController::class, 'administrator'])->name('ad
 #  Gestion des Magasins Depots & Produits Medicale #
 ###################################################
 
-Route::get('magasin/depots', [DepotController::class, 'index'])->name('depots');
+Route::get('magasin/depots', [DepotController::class, 'index'])->name('magasin.depots');
 
 // Achats Magasinier
 
