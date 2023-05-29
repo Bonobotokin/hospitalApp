@@ -554,11 +554,6 @@
 </div>
 
 
-
-
-
-<script src="{{ asset('script/examens_echographie.js') }}"></script>
-
 <script src="{{ asset('assets/vendors/js/vendor.bundle.base.js') }}"></script>
 
 <!-- Plugin js for this page -->
@@ -590,7 +585,6 @@
 <!-- Page specific script -->
 <script src="{{ asset('script/symptomes.js') }}"></script>
 <script src="{{ asset('script/diagnostic.js') }}"></script>
-<script src="{{ asset('script/diagnostic.js') }}"></script>
 <script src="{{ asset('assets/js/select2.js ') }}"></script>
 <!-- endinject -->
 <!-- inject:js -->
@@ -613,7 +607,6 @@
 <script src="{{ asset('script/examens_echographie.js')}}"></script>
 <script src="{{ asset('script/examens_laboratoire.js')}}"></script>
 <script src="{{ asset('script/symptomes.js') }}"></script>
-<script src="{{ asset('script/diagnostic.js') }}"></script>
 <script src="{{ asset('script/prescription.js')}}"></script>
 
 <script>
@@ -644,7 +637,7 @@
         });
     });
 </script>
-<script>
+<!-- <script>
     var total = 0;
     var montantElements = document.querySelectorAll("#example1 tbody td:nth-child(4)");
 
@@ -654,6 +647,6 @@
 
     console.log(total);
     document.getElementById('total').textContent = total + ' Ar ';
-</script>
+</script> -->
 
 </html>

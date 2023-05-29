@@ -79,7 +79,6 @@ class ExamenLaboratoireSeeder extends Seeder
                 'prix_examen' => '3000'
             ],
 
-            ##########################
             [ 
                 'designation_examens_labo' => 'GE/FM',
                 'prix_examen' => '3000'
