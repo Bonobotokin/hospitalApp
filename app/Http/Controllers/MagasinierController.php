@@ -22,6 +22,7 @@ class MagasinierController extends Controller
     ){
         $this->depotsRepository = $depotsRepository;
         $this->achatProduitsRepository = $achatProduitsRepository;
+        
     }
     
 

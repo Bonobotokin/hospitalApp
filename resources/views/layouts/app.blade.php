@@ -100,12 +100,7 @@
                         <div class="profile-pic">
                             <div class="count-indicator">
                                 <img class="img-xs rounded-circle " src="{{ asset('assets/images/faces/face15.jpg') }}" alt="">
-                                @if($personnel['sexe'] == FALSE)
-                                    <img src="{{asset('assets/images/faces-clipart/pic-3.png')}}" alt="image">
-                                @else
-                                    <img src="{{asset('assets/images/faces-clipart/pic-8.png')}}" alt="image">
-                                @endif
-                                <span class="count bg-success"></span>
+                               
                             </div>
                             <div class="profile-name">
                                 <h5 class="mb-0 font-weight-normal">{{ Auth::user()->name }}</h5>
@@ -611,7 +606,7 @@
 <script src="{{ asset('script/getElemtCommande.js') }}"></script>
 <script src="{{ asset('script/scriptLivraisonCommande.js') }}"></script>
 <script src="{{ asset('script/manupilation.js')}}"></script>
-<script src="{{ asset('script/achatScript.js') }}"></script>
+<!-- <script src="{{ asset('script/achatScript.js') }}"></script> -->
 {{-- js for manipulation --}}
 <script src="{{ asset('script/consultation.js') }}"></script>
 <script src="{{ asset('script/examens_echographie.js')}}"></script>
