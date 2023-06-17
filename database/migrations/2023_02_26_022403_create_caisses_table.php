@@ -18,12 +18,10 @@ return new class extends Migration
     {
         Schema::create('caisses', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(Consultation::class)->nullable();
-            $table->foreignIdFor(Prescription::class)->nullable();
-            $table->foreignIdFor(Examen::class)->nullable();
-            $table->integer('montant')->default(0);
-            $table->integer('reste')->default(0);
-            $table->boolean('Ispaed');
+            $table->string('description');
+            $table->integer('encaissement')->default(0.00);
+            $table->integer('decaissement')->default(0.00);
+            $table->boolean('Ispaed')->default(false);
             $table->timestamps();
         });
     }

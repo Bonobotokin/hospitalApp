@@ -49,4 +49,18 @@ class PatientRepository implements PatientRepositoryInterface
         // dd($parametre);
         return $parametre;
     }
+
+    public function findMatricule(string $matricule)
+    {
+        // dd($matricule);
+        $patient = Patient::where('matricule', $matricule)
+                    ->get();
+
+        if(count($patient) > 0){
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
 }

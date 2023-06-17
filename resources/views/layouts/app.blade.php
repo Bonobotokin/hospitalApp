@@ -100,7 +100,7 @@
                         <div class="profile-pic">
                             <div class="count-indicator">
                                 <img class="img-xs rounded-circle " src="{{ asset('assets/images/faces/face15.jpg') }}" alt="">
-                               
+
                             </div>
                             <div class="profile-name">
                                 <h5 class="mb-0 font-weight-normal">{{ Auth::user()->name }}</h5>
@@ -466,7 +466,7 @@
                         <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
                         <strong>Success!</strong>
                         {{ $message }}
-                    </div> 
+                    </div>
                     @endif
                     @yield('content')
                 </div>
@@ -642,6 +642,22 @@
             "responsive": true,
         });
     });
+
+    function getMontantReste() {
+        var montantPayed = parseFloat(document.getElementById("montantPayed").value);
+        var restePayed = document.getElementById("restePayed");
+        var totalMontantDefault = parseFloat(document.getElementById("totalMontantDefault").value);
+
+        if (totalMontantDefault > montantPayed) {
+            restePayed.value = montantPayed.toFixed(2);
+        } else if (totalMontantDefault <= montantPayed) {
+            restePayed.value = '0.00';
+        }
+
+
+    }
+
+
 </script>
 
 </html>

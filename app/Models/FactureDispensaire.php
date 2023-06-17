@@ -13,10 +13,11 @@ class FactureDispensaire extends Model
     protected $fillable = [ 
 
         'num_facture_patient',
+        'prix_total',
         'consultation_id',
         'isNotPayed',
-        'montantPayer',
-        'resterPayed'
+        'montant',
+        'reste'
 
     ];
 

@@ -93,12 +93,12 @@ class ReceptionisteController extends Controller
             $response_action = $action->add_hadle_patient($request);
             // dd($response_action, 'receptionisteController');
             if (!is_null($response_action['data'])) {
-
+                // dd($response_action, 'receptionisteController');exit;
                 return redirect()->route('liste.consultation',['reponse'=>$response_action])->with('success', $response_action['message']);
 
             }else {
-
-                return redirect()->route('liste.consultation',['reponse'=>$response_action])->with('errors', $response_action['message']);
+                // dd($response_action, 'receptionisteController');exit;
+                return redirect()->back()->withErrors($response_action)->withInput();
             }
         } catch (\exception $th) {
             return $th;

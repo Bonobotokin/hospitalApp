@@ -17,49 +17,55 @@ class FactureRepository implements FactureRepositoryInterface
     public function getAll()
     {
         $factures = FactureDispensaire::with([
-            'consultation' => function ($query) {
-                $query->with('patient', 'prescriptions.produit');
-            },
-            'consultation.prescriptions' => function ($query) {
-                $query->with('produit', 'medecin')
-                    ->select(['id', 'quantite', 'medecin_id', 'prix_unitaire', 'prix_total']);
-            }
+            'consultation.patient',
+            'consultation.prescriptions.produit'
         ])
             ->where('isNotPayed', false)
+            ->distinct()
             ->get();
-        $facturesInfo = $factures->map(function ($facture) {
+        
+        $facturesInfo = $factures->groupBy(function ($facture) {
             $consultation = $facture->consultation;
             $patient = $consultation->patient;
-            $prescriptions = $consultation->prescriptions;
+            return $facture->num_facture_patient . '-' . $consultation->patient->matricule . '-' . $consultation->patient->nom_patient;
 
+            
+        })->map(function ($groupedFactures, $key) {
+            $facture = $groupedFactures->first();
+            $consultation = $facture->consultation;
+            
+            $prescriptions = $consultation->prescriptions;
+        
             $produits = $prescriptions->map(function ($prescription) {
-                // return $prescription->produit->designation_produits;
-                return $prod = [
-                    'produit_nom' => $prescription->produit->designation_produits,
+                $produit = $prescription->produit;
+                return [
+                    'produit_nom' => $produit->designation_produits,
                     'quantite' => $prescription->quantite,
-                    'categorie' => $prescription->produit->categorie,
-                    'prix_unitaire' => $prescription->produit->prix_vente_produits,
+                    'categorie' => $produit->categorie,
+                    'prix_unitaire' => $produit->prix_vente_produits,
                     'prix_totale' => $prescription->prix_total,
                 ];
             });
-
+        
             return [
                 'id' => $facture->id,
                 'facture' => $facture->num_facture_patient,
-                'patient' => $patient->nom_patient . ' ' . $patient->prenom,
-                'matricule' => $patient->matricule,
-                'montant' => $prescriptions->sum('prix_total') + $consultation->prix,
+                'prixTotal' => $prescriptions->sum('prix_total') + $consultation->prix,
+                'matricule' => $consultation->patient->matricule,
+                'patient' => $consultation->patient->nom_patient." ".$consultation->patient->prenom_patient,
+                'montant' => (double) $facture->montant,
+                'reste' => (double) $facture->reste,
                 'consultation_prix' => $consultation->prix,
-                'produits' => $produits
+                'produits' => $produits,
             ];
-        });
+        });      
 
         // dd($facturesInfo);
-
-
-
+    
         return $facturesInfo;
     }
+    
+    
 
     // $consultations = Consultation::with(['patient', 'prescription.produit'])
     //         ->whereHas('patient', function ($query) {

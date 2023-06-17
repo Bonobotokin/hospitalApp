@@ -49,6 +49,7 @@ class ConsultationController extends Controller
     {
         $listeConsultation = $this->consultationRepository->get_patient_consultation_to_day();
         $dateConsultation = $this->consultationRepository->date_consultation();
+        
         return view('Medecins.listeConsultation', 
             [
                 'listeConsultation' => $listeConsultation,
@@ -80,7 +81,7 @@ class ConsultationController extends Controller
             //code...
             $consultationResponse = $action->newPatientConsulted($request);
 
-            // dd($consultationResponse, 'consultationController');
+            dd($consultationResponse, 'consultationController');
 
             if (!is_null($consultationResponse['data']))
             {

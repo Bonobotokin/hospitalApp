@@ -32,13 +32,18 @@ class ConsultationAction
             $data = DB::transaction(function () use ($request) {
 
                 $magasinierId = Auth::user()->id;
-            
+                
                 $equipeFourniture = $this->personnelRepository->getPersonnelConnected($magasinierId);
             
                 $nombreMedicaments = (int) $request->input('nombreMedicament');
             
                 $consultation = Consultation::find($request->consultation_id);
-            
+                $consultation->consulted = true;
+                $consultation->symptome = $request->symptomes;
+                $consultation->diagnostique = $request->diagnostic;
+                $consultation->save();
+
+                // dd($consultation);exit;
                 // On crée un tableau pour stocker les ids des prescriptions créées
                 $prescriptionIds = [];
             
@@ -71,6 +76,7 @@ class ConsultationAction
             
                     $facture = FactureDispensaire::create([
                         'num_facture_patient' => (int) $request->numFacture,
+                        'prix_total' => 
                         'consultation_id' => $consultation->id
                     ]);
                 }

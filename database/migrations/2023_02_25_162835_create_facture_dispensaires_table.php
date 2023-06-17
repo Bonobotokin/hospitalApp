@@ -18,6 +18,8 @@ return new class extends Migration
         Schema::create('facture_dispensaires', function (Blueprint $table) {
             $table->id();
             $table->integer('num_facture_patient');
+            $table->integer('montant')->default(0.00);
+            $table->integer('reste')->default(0.00);
             $table->boolean('isNotPayed')->default(0);
             $table->foreignIdFor(Consultation::class)->nullable()->constrained();
             
