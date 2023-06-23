@@ -137,7 +137,10 @@ Route::post('enregistrer/Consultation', [ConsultationController::class, 'store']
 ###########################################
 
 Route::get('Caisse/payementPatient', [CaisseController::class, 'index'])->name('all.patient.payeable');
+Route::get('Caisse/reglement/facture/{numFacture}', [CaisseController::class, 'create'])->name('patient.reglement.facture');
 Route::post('caisse/enregistremenFacture', [FactureDispensaireController::class, 'store'])->name('enregistrement.Facture');
+// Route::post('update/facture/', [CaisseController::class, 'update'])->name('update.facture');
+
 
 
 

@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Action\FactureAction;
 use App\Http\Requests\StoreCaisseRequest;
 use App\Http\Requests\UpdateCaisseRequest;
 use App\Models\Caisse;
 use App\Repository\FactureRepository;
+use GuzzleHttp\Psr7\Request;
 
 class CaisseController extends Controller
 {
@@ -41,9 +43,14 @@ class CaisseController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($numfacture)
     {
-        //
+        $data = $this->factureRepository->getFacture($numfacture);
+        
+        return view('caisses.enegistrementDepayemeny', 
+                [
+                    'facture' => $data
+                ]);
     }
 
     /**
@@ -54,7 +61,7 @@ class CaisseController extends Controller
      */
     public function store(StoreCaisseRequest $request)
     {
-        //
+        
     }
 
     /**
@@ -86,9 +93,26 @@ class CaisseController extends Controller
      * @param  \App\Models\Caisse  $caisse
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateCaisseRequest $request, Caisse $caisse)
+    public function update(Request $request)
     {
-        //
+        dd($request);exit;
+        // try {
+        //     //code...
+        //     // $Response = $caisse->savePayement($request);
+
+        //     dd($Response, 'caisses');
+
+        //     if (!is_null($Response['data']))
+        //     {
+
+        //         return redirect()->route('all.patient.payeable',['reponse'=>$Response])->with('success', $Response['message']);
+
+        //     }else {
+        //         return redirect()->back()->withErrors($Response)->withInput();
+        //     }
+        // } catch (\Throwable $th) {
+        //     //throw $th;
+        // }
     }
 
     /**

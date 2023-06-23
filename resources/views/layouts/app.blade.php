@@ -278,6 +278,12 @@
                     </a>
                     <div class="collapse" id="ui-pharmacie">
                         <ul class="nav flex-column sub-menu">
+
+                            <li class="nav-item">
+                                <a class="nav-link" href="">
+                                    Distribution
+                                </a>
+                            </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('pharmacie.stock') }}">
                                     Stock Medicament
@@ -614,6 +620,7 @@
 <script src="{{ asset('script/symptomes.js') }}"></script>
 <script src="{{ asset('script/diagnostic.js') }}"></script>
 <script src="{{ asset('script/prescription.js')}}"></script>
+<script src="{{ asset('script/payedFacture.js')}}"></script>
 
 <script>
     $(function() {
@@ -646,18 +653,18 @@
     function getMontantReste() {
         var montantPayed = parseFloat(document.getElementById("montantPayed").value);
         var restePayed = document.getElementById("restePayed");
-        var totalMontantDefault = parseFloat(document.getElementById("totalMontantDefault").value);
+        var totalMontantDefault = parseFloat(document.getElementById("totalMontantDefault").innerText);
 
         if (totalMontantDefault > montantPayed) {
-            restePayed.value = montantPayed.toFixed(2);
+            restePayed.value = totalMontantDefault - montantPayed.toFixed(2);
+
         } else if (totalMontantDefault <= montantPayed) {
             restePayed.value = '0.00';
+            montantPayed = "Desoler, le montant est trop elever que la facture a payer, veuillez insert une valeur exacte"
         }
 
 
     }
-
-
 </script>
 
 </html>

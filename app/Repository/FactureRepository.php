@@ -21,21 +21,20 @@ class FactureRepository implements FactureRepositoryInterface
             'consultation.prescriptions.produit'
         ])
             ->where('isNotPayed', false)
+            // ->latest()
             ->distinct()
             ->get();
-        
+
         $facturesInfo = $factures->groupBy(function ($facture) {
             $consultation = $facture->consultation;
             $patient = $consultation->patient;
             return $facture->num_facture_patient . '-' . $consultation->patient->matricule . '-' . $consultation->patient->nom_patient;
-
-            
         })->map(function ($groupedFactures, $key) {
             $facture = $groupedFactures->first();
             $consultation = $facture->consultation;
-            
+
             $prescriptions = $consultation->prescriptions;
-        
+
             $produits = $prescriptions->map(function ($prescription) {
                 $produit = $prescription->produit;
                 return [
@@ -46,26 +45,75 @@ class FactureRepository implements FactureRepositoryInterface
                     'prix_totale' => $prescription->prix_total,
                 ];
             });
-        
+
             return [
                 'id' => $facture->id,
-                'facture' => $facture->num_facture_patient,
+                'facture' => $facture->id,
                 'prixTotal' => $prescriptions->sum('prix_total') + $consultation->prix,
+                'prixFacture' => $facture->reste,
                 'matricule' => $consultation->patient->matricule,
-                'patient' => $consultation->patient->nom_patient." ".$consultation->patient->prenom_patient,
-                'montant' => (double) $facture->montant,
-                'reste' => (double) $facture->reste,
+                'patient' => $consultation->patient->nom_patient . " " . $consultation->patient->prenom_patient,
+                'montant' => (float) $facture->montant,
+                'reste' => (float) $facture->reste,
                 'consultation_prix' => $consultation->prix,
                 'produits' => $produits,
+                'etat' => $facture->isNotPayed
             ];
-        });      
+        });
 
         // dd($facturesInfo);
-    
+
         return $facturesInfo;
     }
-    
-    
+
+    public function getFacture(int $numFacture)
+    {
+        $factures = FactureDispensaire::with([
+            'consultation.patient',
+            'consultation.prescriptions.produit'
+        ])
+            ->where('id', $numFacture)
+
+            ->get();
+        $facturesInfo = $factures->groupBy(function ($facture) {
+            $consultation = $facture->consultation;
+            $patient = $consultation->patient;
+            return "dataDetails";
+        })->map(function ($groupedFactures, $key) {
+            $facture = $groupedFactures->first();
+            $consultation = $facture->consultation;
+
+            $prescriptions = $consultation->prescriptions;
+
+            $produits = $prescriptions->map(function ($prescription) {
+                $produit = $prescription->produit;
+                return [
+                    'produit_nom' => $produit->designation_produits,
+                    'quantite' => $prescription->quantite,
+                    'categorie' => $produit->categorie,
+                    'prix_unitaire' => $produit->prix_vente_produits,
+                    'prix_totale' => $prescription->prix_total,
+                ];
+            });
+
+            return [
+                'id' => $facture->id,
+                'facture' => $facture->id,
+                'prixTotal' => $prescriptions->sum('prix_total') + $consultation->prix,
+                'prixFacture' => $facture->reste,
+                'matricule' => $consultation->patient->matricule,
+                'patient' => $consultation->patient->nom_patient . " " . $consultation->patient->prenom_patient,
+                'montant' => (float) $facture->montant,
+                'reste' => (float) $facture->reste,
+                'consultation_prix' => $consultation->prix,
+                'produits' => $produits,
+                'etat' => $facture->isNotPayed
+            ];
+        });
+        // dd($facturesInfo);
+
+        return $facturesInfo;
+    }
 
     // $consultations = Consultation::with(['patient', 'prescription.produit'])
     //         ->whereHas('patient', function ($query) {

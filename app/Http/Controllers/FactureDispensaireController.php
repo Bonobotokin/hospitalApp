@@ -43,7 +43,7 @@ class FactureDispensaireController extends Controller
             //code...
             $Response = $action->savePayement($request);
 
-            // dd($Response, 'caisses');
+            dd($Response, 'caisses');
 
             if (!is_null($Response['data']))
             {
