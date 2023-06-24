@@ -72,10 +72,14 @@ Route::get('pharmacie/stock', [StockPharmacieController::class, 'index'])->name(
 
 // Commandes Medicaments Pharmacie
 
-Route::get('Pharmacie/commande/Medicament', [PharmacienController::class, 'index'])->name('commande.index');
+Route::get('Pharmacie/commande/Medicament', [PharmacienController::class, 'commande'])->name('commande.index');
 
-// distribution Medicament 
+// Distribution medicament
+Route::get('Pharmacie/distribution/Medicament', [PharmacienController::class, 'index'])->name('distribution.index');
+Route::get('Pharmacie/distribution/Medicament/{consultation_id}', [PharmacienController::class, 'distribuerPrescription'])->name('distribution.prescription');
 
+
+// mettre a jour le depots by magasin
 
 
 
@@ -119,7 +123,7 @@ Route::post('personnels/store', [PersonnelController::class, 'store'])->name('pe
 ###########################################
 
 Route::get('reception/patient', [ReceptionisteController::class, 'patient'])->name('liste.patient');
-Route::get('receptioniste/consultation', [ReceptionisteController::class, 'consultation'])->name('liste.consultation');
+Route::get('receptioniste/consultation/liste', [ReceptionisteController::class, 'consultation'])->name('liste.consultation');
 Route::get('receptioniste/new_consultation', [ReceptionisteController::class, 'createConsultation'])->name('create.consultation');
 Route::post('Enregistre_pation/Consultation', [ReceptionisteController::class, 'storeConsultation'])->name('store.consultation');
 
@@ -138,8 +142,10 @@ Route::post('enregistrer/Consultation', [ConsultationController::class, 'store']
 ###########################################
 
 Route::get('Caisse/payementPatient', [CaisseController::class, 'index'])->name('all.patient.payeable');
+Route::get('Caisse/reglement/facture/{numFacture}', [CaisseController::class, 'create'])->name('patient.reglement.facture');
 Route::post('caisse/enregistremenFacture', [FactureDispensaireController::class, 'store'])->name('enregistrement.Facture');
-Route::get('encaissement/journaliere', [caisseController::class, 'encaisseMentJournaliere'])->name('journaliere.encaissement');
+// Route::post('update/facture/', [CaisseController::class, 'update'])->name('update.facture');
+
 
 
 

@@ -4,11 +4,19 @@ namespace App\Action;
 
 use App\Models\Consultation;
 use App\Models\Patient;
+use App\Repository\PatientRepository;
 use App\Models\PatientParametre;
 use Illuminate\Support\Facades\DB;
 
 class PatientAction
 {
+    private $patientRepository;
+    public function __construct(
+
+        PatientRepository $patientRepository
+    ){
+        $this->patientRepository = $patientRepository;
+    }
 
     public function add_hadle_patient($request)
     {
@@ -20,7 +28,14 @@ class PatientAction
                 $parametreRequest = $request->parametres;
                 $consultation_data = $request->consultantion;
                 
-                // $matricule = $this->look_matricule($patientRequest['matricule']);
+                $verrifiMatricule = $this->verrifieMatricule($patientRequest['matricule']); 
+                if(($verrifiMatricule)) {
+                    return [
+
+                        "data"    => null,
+                        "message" => "Desoler le matricule que vous avez ecrit est dejas enregistrer a une autre patient",
+                    ];
+                }
 
                 $patient = Patient::Create([
                     'matricule' => $patientRequest['matricule'],
@@ -88,12 +103,11 @@ class PatientAction
         } 
     }
 
+    public function verrifieMatricule($matricule){
 
-    public function look_matricule($num) {
-        // dd($num);
-        $num = (int) $num;
-        $consultation = Consultation::select('matricule')->where('matricule', '=' ,$num)->get();
+        $matricule = $this->patientRepository->findMatricule($matricule);
+        
+        return $matricule;
 
-        dd($consultation);
     }
 }

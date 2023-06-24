@@ -98,7 +98,7 @@ class AchatProduitController extends Controller
 
     public function detailsAchat(int $num)
     {
-    $showListeAchat = $this->achatProduitsRepository->getByNumAchat($num);
+        $showListeAchat = $this->achatProduitsRepository->getByNumAchat($num);
         $isRessut = $this->achatProduitsRepository->setRessut($num);
         
         return view('achats.detailsAchat',

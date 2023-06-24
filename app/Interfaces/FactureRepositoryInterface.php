@@ -12,4 +12,6 @@ interface FactureRepositoryInterface
 
     // public function getConsultation($id);
 
+    public function getFacture(int $numFacture);
+
 }

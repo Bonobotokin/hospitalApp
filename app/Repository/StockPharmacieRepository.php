@@ -5,6 +5,9 @@ namespace App\Repository;
 use App\Interfaces\StockPharmacieRepositoryInterface;
 use App\Models\Depot;
 use App\Models\StockPharmacie;
+use App\Models\DistributionPharmacie;
+use App\Models\DistributionPrescriptions;
+use App\Models\FactureDispensaire;
 
 class StockPharmacieRepository implements StockPharmacieRepositoryInterface
 {
@@ -72,7 +75,7 @@ class StockPharmacieRepository implements StockPharmacieRepositoryInterface
                 ];
             });
 
-            $depots = Depot::with('produit')
+        $depots = Depot::with('produit')
             ->whereIn('produit_id', $stocks->pluck('produit_id'))
             ->get()
             ->map(function ($depot) use ($stocks) {
@@ -90,13 +93,84 @@ class StockPharmacieRepository implements StockPharmacieRepositoryInterface
                 ];
             });
         // dd($depots);
-        return $depots; 
+        return $depots;
     }
 
 
 
 
-    public function seeInNumExist()
+    //     public function listeDistribution()
+    //     {
+    //         $data = DistributionPrescriptions::with([
+    //             'distributionPharmacie',
+    //             'prescription',
+    //             'prescription.consultations',
+    //             'prescription.produit',
+    //             'factureDispensaire',
+    //         ])
+    //         ->orWhereHas('factureDispensaire', function($query){
+    //            $query->where('isNotPayed', true);
+    //        })
+    //         ->distinct()
+    //         ->get();
+
+
+
+    //         $distribution = $data->groupBy(function ($data) {
+
+    //             $facture = $data->factureDispensaire;
+    //             $prescriptions = $data->prescriptions;
+    //             $consultations = $data->prescriptions->consultations;
+    //             $patient = $consultations->patient;
+    //             return $patient->matricule . '-' . $consultations->id;
+    //         })->map(function ($groupedProduits, $key) {
+    //             $distribution = $groupedProduits->first();
+    //             $consultation = $distribution->consultations;
+    //             $prescriptions = $consultation->prescriptions;
+    //             $produits = $prescriptions->map(function ($prescription) {
+    //                 $produit = $prescription->produit;
+    //                 return [
+    //                     'produit_nom' => $produit->designation_produits,
+    //                     'quantite' => $prescription->quantite,
+    //                     'categorie' => $produit->categorie,
+    //                     'prix_unitaire' => $produit->prix_vente_produits,
+    //                     'prix_totale' => $prescription->prix_total,
+    //                 ];
+    //             });
+
+    //             return [
+    //                 'id' => $distribution->id
+    //             ];
+
+    //         });
+
+    //         dd($data);
+    //     }
+
+    public function listeDistribution()
     {
+        $data = DistributionPharmacie::with([
+            'consultation',
+            'factureDispensaire'
+        ])
+            ->orWhereHas('factureDispensaire', function ($query) {
+                $query->where('isNotPayed', true);
+            })
+            ->where('isDistribued', false)
+            ->get()
+            ->map(function ($data) {
+
+                $patient = $data->consultation->patient;
+                return [
+                    'id' => $data->id,
+                    'consultation_id' => $data->consultation->id,
+                    'matricule' => $patient->matricule,
+                    'patient' => $patient->nom_patient . " " . $patient->prenom_patient,
+                    'etat' => $data->isDistribued
+                ];
+            });
+
+        return $data;
+        // return $facturesInfo;
     }
 }

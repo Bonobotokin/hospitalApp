@@ -24,6 +24,7 @@ return new class extends Migration
             $table->integer('telephone_1_personneles')->nullable();
             $table->integer('telephone_2_personneles')->nullable();
             $table->string('situation_matrimoniale_personneles',20);
+            $table->string('titre')->nullable();
             $table->timestamps();
         });
     }

@@ -50,4 +50,8 @@ class Consultation extends Model
     {
         return $this->hasMany(FactureDispensaire::class);
     }
+    public function distribution () : HasMany
+    {
+        return $this->hasMany(DistributionPharmacie::class);
+    }
 }

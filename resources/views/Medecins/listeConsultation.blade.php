@@ -25,41 +25,43 @@
                         </thead>
                         <tbody>
                             @foreach ( $listeConsultation as $liste)
-                                    @if ($liste['etat_consultation'] == 0)
-                                    <tr style="background-color: #0b787ecf;color:white">
-                                        <td> {{$liste['matricule'] }} </td>
-                                        <td> {{$liste['nom'] }} {{$liste['prenom'] }} </td>
-                                        <td> {{$liste['age'] }}</td>
-                                        <td>
-                                            @if($liste['sexe'] === 0)
-                                            Femme
-                                            @else
-                                            Homme
-                                            @endif
-                                        </td>
-                                        <td>
-                                            @if ($liste['consultation'] == 1)
-                                            <label class="badge badge-danger">{{ $liste['type_consultation'] }}</label>
-                                            @elseif ($liste['consultation'] == 2)
-                                            <label class="badge badge-info">{{ $liste['type_consultation'] }}</label>
-                                            @endif
+                            @if ($liste['date_enregistrement'] === $dateConsultation)
+                                @if ($liste['etat_consultation'] == 0)
+                                <tr style="background-color: #0b787ecf;color:white">
+                                    <td> {{$liste['matricule'] }} </td>
+                                    <td> {{$liste['nom'] }} {{$liste['prenom'] }} </td>
+                                    <td> {{$liste['age'] }}</td>
+                                    <td>
+                                        @if($liste['sexe'] === 0)
+                                        Femme
+                                        @else
+                                        Homme
+                                        @endif
+                                    </td>
+                                    <td>
+                                        @if ($liste['consultation'] == 1)
+                                        <label class="badge badge-danger">{{ $liste['type_consultation'] }}</label>
+                                        @elseif ($liste['consultation'] == 2)
+                                        <label class="badge badge-info">{{ $liste['type_consultation'] }}</label>
+                                        @endif
 
-                                        </td>
-                                        <td> {{$liste['nom_medecin']}} </td>
-                                        <td class="template-demo">
-                                            <a type="button" href="{{ route('consulte.patient', [ 'id' => $liste['patient_id'] ]) }}" class="badge badge-warning btn-block">
-                                                Consulter
-                                                <i class="mdi mdi-hospital float-right"></i>
-                                            </a>
-                                            <br><br>
-                                            <a type="button" class="badge badge-info btn-block">
-                                                Plus de details
-                                                <i class="mdi mdi-show float-right"></i>
-                                            </a>
-                                        </td>
-                                    </tr>
-                                    @endif
+                                    </td>
+                                    <td> {{$liste['nom_medecin']}} </td>
+                                    <td class="template-demo">
+                                        <a type="button" href="{{ route('consulte.patient', [ 'id' => $liste['patient_id'] ]) }}" class="badge badge-warning btn-block">
+                                            Consulter
+                                            <i class="mdi mdi-hospital float-right"></i>
+                                        </a>
+                                        <br><br>
+                                        <a type="button" class="badge badge-info btn-block">
+                                            Plus de details
+                                            <i class="mdi mdi-show float-right"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                                @endif
 
+                            @endif
                             @endforeach
                         </tbody>
                     </table>

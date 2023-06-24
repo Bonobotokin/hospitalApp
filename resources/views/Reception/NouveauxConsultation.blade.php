@@ -22,20 +22,25 @@
                 <div class="row">
                     <div class="col-md-4">
                         <div class="form-group">
-                            <label for="Nom">Matricule :</label>
-                            <input type="text" name="patient[matricule]" class="form-control" placeholder="Numero Matricule">
+                            <label for="Matricule">Matricule :</label>
+                            <input required type="text" name="patient[matricule]" class="form-control" placeholder="Numero Matricule">
+                            @error('patient[matricule]')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="form-group">
                             <label for="Nom">Nom :</label>
-                            <input type="text" style="text-transform: uppercase;" name="patient[nom_patient]" class="form-control" placeholder="Nom du patient">
+                            <input required type="text" style="text-transform: uppercase;" name="patient[nom_patient]" class="form-control" placeholder="Nom du patient">
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="form-group">
                             <label for="Prenom">Prenom :</label>
-                            <input type="text" name="patient[prenom_patient]" class="form-control" placeholder="Nom du patient">
+                            <input required type="text" name="patient[prenom_patient]" class="form-control" placeholder="Nom du patient">
                         </div>
                     </div>
                     <div class="col-md-2">
@@ -50,20 +55,20 @@
                     <div class="col-md-2">
                         <div class="form-group">
                             <label for="Age">Age :</label>
-                            <input type="text" name="patient[age_patient]" class="form-control" placeholder="20 Ans">
+                            <input required type="text" name="patient[age_patient]" class="form-control" placeholder="20 Ans">
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="form-group">
                             <label for="Profession">Profession :</label>
-                            <input type="text" name="patient[profession_patient]" class="form-control" placeholder="Profession">
+                            <input required type="text" name="patient[profession_patient]" class="form-control" placeholder="Profession">
                         </div>
 
                     </div>
                     <div class="col-md-4">
                         <div class="form-group">
                             <label for="Adresse">Adresse :</label>
-                            <input type="text" name="patient[adresse_patient]" class="form-control" placeholder="Adresse de la patient">
+                            <input required type="text" name="patient[adresse_patient]" class="form-control" placeholder="Adresse de la patient">
                         </div>
                     </div>
                     <div class="col-md-4">
@@ -79,13 +84,13 @@
                     <div class="col-md-4">
                         <div class="form-group">
                             <label for="Contact">Telephone 1:</label>
-                            <input type="text" name="patient[telephone_1_patient]" class="form-control" placeholder="+241346697188">
+                            <input required type="text" name="patient[telephone_1_patient]" class="form-control" placeholder="+241346697188">
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="form-group">
                             <label for="Contact">Telephone 2:</label>
-                            <input type="text" name="patient[telephone_2_patient]" class="form-control" placeholder="+261346697188">
+                            <input required type="text" name="patient[telephone_2_patient]" class="form-control" placeholder="+261346697188">
                         </div>
                     </div>
                 </div>
@@ -94,25 +99,25 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="pere_patient">Nom du pere:</label>
-                            <input type="text" name="patient[nomPere_patient]" class="form-control" placeholder="Nom du pere de la patient">
+                            <input required type="text" name="patient[nomPere_patient]" class="form-control" placeholder="Nom du pere de la patient">
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="mere_patient">Nom de la Mere:</label>
-                            <input type="text" name="patient[nomMere_patient]" class="form-control" placeholder="Nom de la Mere de la pateitn">
+                            <input required type="text" name="patient[nomMere_patient]" class="form-control" placeholder="Nom de la Mere de la pateitn">
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="personne_reference">Nom du pere de reference:</label>
-                            <input type="text" name="patient[nomPere_reference_patient]" class="form-control" placeholder="Persoone de reference">
+                            <input required type="text" name="patient[nomPere_reference_patient]" class="form-control" placeholder="Persoone de reference">
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="telephone_personne_reference">Telephone du personne a reference:</label>
-                            <input type="text" name="patient[telephone_reference_patient]" class="form-control" placeholder="Telephone de la reference">
+                            <input required type="text" name="patient[telephone_reference_patient]" class="form-control" placeholder="Telephone de la reference">
                         </div>
                     </div>
                 </div>
@@ -122,37 +127,37 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="Poids">Poids :</label>
-                            <input type="text" name="parametres[poids]" class="form-control" placeholder="Poids">
+                            <input required type="text" name="parametres[poids]" class="form-control" placeholder="Poids">
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="Taills">Taills :</label>
-                            <input type="text" name="parametres[taille]" class="form-control" placeholder="Taills">
+                            <input required type="text" name="parametres[taille]" class="form-control" placeholder="Taills">
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="Temperature">Temperature :</label>
-                            <input type="text" name="parametres[temperature]" class="form-control" placeholder="Temperature">
+                            <input required type="text" name="parametres[temperature]" class="form-control" placeholder="Temperature">
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="Tension Arteriel">Tension Arteriel :</label>
-                            <input type="text" name="parametres[tension]" class="form-control" placeholder="Tension Arteriel">
+                            <input required type="text" name="parametres[tension]" class="form-control" placeholder="Tension Arteriel">
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="Pouls">Pouls :</label>
-                            <input type="text" name="parametres[pouls]" class="form-control" placeholder="Pouls">
+                            <input required type="text" name="parametres[pouls]" class="form-control" placeholder="Pouls">
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="Frequence">Frequence :</label>
-                            <input type="text" name="parametres[frequence]" class="form-control" placeholder="Frequence">
+                            <input required type="text" name="parametres[frequence]" class="form-control" placeholder="Frequence">
                         </div>
                     </div>
                 </div>
@@ -162,15 +167,15 @@
                         <div class="form-group">
                             <label for="typeConsultation">Type Consultation</label>
                             <select name="consultantion[type_consultation]" class="form-control">
-                                                               
+
                                 @foreach ($types as $consultantion)
-                                    <option value="{{ $consultantion->id }}">{{ $consultantion->type_consultaion }}</option>
+                                <option value="{{ $consultantion->id }}">{{ $consultantion->type_consultaion }}</option>
 
                                 @endforeach
                             </select>
                         </div>
                     </div>
-                    
+
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="Medecins">Medecins qui Refere :</label>
