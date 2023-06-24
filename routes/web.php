@@ -72,7 +72,12 @@ Route::get('pharmacie/stock', [StockPharmacieController::class, 'index'])->name(
 
 // Commandes Medicaments Pharmacie
 
-Route::get('Pharmacie/commande/Medicament', [PharmacienController::class, 'index'])->name('commande.index');
+Route::get('Pharmacie/commande/Medicament', [PharmacienController::class, 'commande'])->name('commande.index');
+
+// Distribution medicament
+Route::get('Pharmacie/distribution/Medicament', [PharmacienController::class, 'index'])->name('distribution.index');
+Route::get('Pharmacie/distribution/Medicament/{consultation_id}', [PharmacienController::class, 'distribuerPrescription'])->name('distribution.prescription');
+
 
 // mettre a jour le depots by magasin
 

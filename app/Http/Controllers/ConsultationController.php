@@ -81,7 +81,7 @@ class ConsultationController extends Controller
             //code...
             $consultationResponse = $action->newPatientConsulted($request);
 
-            // dd($consultationResponse, 'consultationController');
+            dd($consultationResponse, 'consultationController');
 
             if (!is_null($consultationResponse['data']))
             {

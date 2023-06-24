@@ -280,7 +280,7 @@
                         <ul class="nav flex-column sub-menu">
 
                             <li class="nav-item">
-                                <a class="nav-link" href="">
+                                <a class="nav-link" href="{{ route('distribution.index') }}">
                                     Distribution
                                 </a>
                             </li>

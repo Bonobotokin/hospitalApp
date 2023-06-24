@@ -8,6 +8,6 @@ interface StockPharmacieRepositoryInterface {
 
     public function lookOfQuantite();
 
-    public function seeInNumExist();
+    public function listeDistribution();
 
 }

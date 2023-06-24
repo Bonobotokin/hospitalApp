@@ -69,16 +69,16 @@ class ConsultationAction
             
                     $distribution = DistributionPharmacie::create([
                         'pharmacien_id' => null,
-                        'prescription_id' => $prescription->id,
+                        'consultations_id' => $consultation->id,
                         'distribuer' => 0,
                         'reste' => 0
                     ]);
             
-                    // $facture = FactureDispensaire::create([
-                    //     'num_facture_patient' => (int) $request->numFacture,
-                    //     // 'prix_total' => 
-                    //     'consultation_id' => $consultation->id
-                    // ]);
+                    $facture = FactureDispensaire::create([
+                        // 'num_facture_patient' => (int) $request->numFacture,
+                        // 'prix_total' => 
+                        'consultation_id' => $consultation->id
+                    ]);
                 }
             
                 // On synchronise la relation many-to-many entre consultations et prescriptions

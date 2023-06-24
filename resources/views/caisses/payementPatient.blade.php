@@ -70,50 +70,5 @@
             </div>
         </div>
     </div>
-    <!-- <div class="col-lg-6 col-md-6 grid-margin" id="add_facture_{{ $facture['facture'] }}" style="">
-        <div class="card">
-            <div class="card-body">
-                <div class="card-title text-center" id="titre_facture">
-                    facture de 
-                </div>
-                <div class="table-responsive">
-                    <table id="tableFactureListe" class="table table-bordered table-striped tableFactureListe">
-                        <thead>
-                            <tr>
-                                <th>Designation</th>
-                                <th>Quantite</th>
-                                <th>Montant</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td colspan="2" class="text-center">Consultation</td>
-                                <td id="consultation_prix" class="text-center"></td>
-                            </tr>
-                            <tr>
-                                <td colspan="2" class="text-center">Soin</td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td colspan="2" class="text-center">Laboratoire</td>
-                                <td></td>
-                            </tr>
-                            <tr>
-
-                                <td id="produit_nom"></td>
-                                <td id="quantite" class="text-center"></td>
-                                <td id="prix_totale" class="text-center"></td>
-                            </tr>
-                        </tbody>
-                        <tfoot>
-                            <td colspan="2" class="text-center">Total</td>
-
-                            <td id="prixTotal"></td>
-                        </tfoot>
-                    </table>
-                </div>
-            </div>
-        </div>
-    </div> -->
 </div>
 @endsection
