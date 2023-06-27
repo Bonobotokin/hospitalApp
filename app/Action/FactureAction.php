@@ -131,17 +131,20 @@ class FactureAction
                         'consultation_id' => $consultation->id
                     ]);
 
-                    $distribution = DistributionPharmacie::create([
-                        'pharmacien_id' => null,
-                        'prescription_id' => $prescription->id,
-                        'distribuer' => 0,
-                        'reste' => 0
-                    ]);
+                    
 
                     $facture = FactureDispensaire::create([
-                        'num_facture_patient' => (int) $request->numFacture,
+                        // 'num_facture_patient' => (int) $request->numFacture,
                         // 'prix_total' => 
                         'consultation_id' => $consultation->id
+                    ]);
+                    $distribution = DistributionPharmacie::create([
+                        'consultation_id' => $consultation->id,
+                        'facture_dispensaire_id'=> $facture->id,
+                        'pharmacien_id' => null,
+                        'isDistribued' => false,
+                        'distribuer' => 0,
+                        'reste' => 0
                     ]);
                 }
 

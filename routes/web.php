@@ -76,7 +76,9 @@ Route::get('Pharmacie/commande/Medicament', [PharmacienController::class, 'comma
 
 // Distribution medicament
 Route::get('Pharmacie/distribution/Medicament', [PharmacienController::class, 'index'])->name('distribution.index');
-Route::get('Pharmacie/distribution/Medicament/{consultation_id}', [PharmacienController::class, 'distribuerPrescription'])->name('distribution.prescription');
+Route::get('Pharmacie/distribution/Medicament/{id}', [PharmacienController::class, 'getOrdonnance'])->name('distribution.getOrdonnance');
+
+// Route
 
 
 // mettre a jour le depots by magasin

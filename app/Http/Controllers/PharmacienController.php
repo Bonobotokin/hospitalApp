@@ -5,19 +5,24 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StorePharmacienRequest;
 use App\Http\Requests\UpdatePharmacienRequest;
 use App\Models\Pharmacien;
+use App\Repository\DistributionRepository;
+use App\Repository\LivraisonPharmacieRepository;
 use App\Repository\StockPharmacieRepository;
-use GuzzleHttp\Psr7\Request;
+use Illuminate\Http\Request;
+
 
 class PharmacienController extends Controller
 {
     private $stockPharmacieRepository;
+    private $distributionRepository;
     public function __construct(
 
-        StockPharmacieRepository $stockPharmacieRepository
+        StockPharmacieRepository $stockPharmacieRepository,
+        DistributionRepository $distributionRepository
 
-    ){
+    ) {
         $this->stockPharmacieRepository = $stockPharmacieRepository;
-        
+        $this->distributionRepository = $distributionRepository;
     }
     /**
      * Display a listing of the resource.
@@ -26,11 +31,12 @@ class PharmacienController extends Controller
      */
     public function index()
     {
-        $distributionListe = $this->stockPharmacieRepository->listeDistribution();
+        $distributionListe = $this->distributionRepository->listeDistribution();
         // dd('ok');
-        return view('Pharmacie.distribution',
-                    ['liste' => $distributionListe]
-                );
+        return view(
+            'Pharmacie.distribution',
+            ['liste' => $distributionListe]
+        );
     }
     public function commande()
     {
@@ -48,11 +54,19 @@ class PharmacienController extends Controller
         return view('Pharmacie.metreAjourStock');
     }
 
-    public function distribuerPrescription(int $id)
+    public function getOrdonnance(Request $request, $id)
     {
-        dd($id);
-        // return view('Pharmacie.metreAjourStock');
+        $ordonnance = $this->distributionRepository->getPrescription($id);
+        return response()->json(['consultationId' => $ordonnance]);
+
     }
+
+    // public function getOrdonnance(Request $request, $matricule)
+    // {
+    //     $ordonnance = $this->distributionRepository->
+    //     return response()->json($ordonnance);
+    // }
+
 
     /**
      * Store a newly created resource in storage.

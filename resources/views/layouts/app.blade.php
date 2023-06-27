@@ -666,5 +666,58 @@
 
     }
 </script>
+<!-- <script>
+    $(document).ready(function() {
+        // ...
+
+        // Ajoutez ce code pour détecter l'événement de clic sur les lignes de la table
+        $('table').on('click', 'tr', function() {
+            var matricule = $(this).data('matricule');
+            updateCarteOrdonnance(matricule);
+        });
+    });
+
+    // Ajoutez cette fonction pour mettre à jour le contenu de la deuxième carte avec le matricule sélectionné
+    function updateCarteOrdonnance(matricule) {
+        var carteOrdonnance = $('#carte-ordonnance');
+        carteOrdonnance.find('.card-title').text('Ordonnance de ' + matricule);
+    }
+</script> -->
+<script>
+    $(document).ready(function() {
+        $('table').on('click', 'tr', function() {
+            // var consultationId = $(this).data('consultation');
+            var consultationId = parseInt($(this).data('consultation'));
+
+            console.log(consultationId);
+            updateCarteOrdonnance(consultationId);
+        });
+    });
+
+    function updateCarteOrdonnance(consultationId) {
+        $.ajax({
+            url: '{{ route("distribution.getOrdonnance", ["id" => "__consultationId__"]) }}'.replace('__consultationId__', consultationId),
+            type: 'GET',
+            dataType: 'json',
+            success: function(data) {
+                console.log(JSON.stringify(data));
+                var consultation = data.consultationId[0].consultation;
+                var consultationId = consultation.id;
+
+                // Mettre à jour le contenu de la deuxième carte avec les détails de l'ordonnance récupérés
+                $('#carte-ordonnance').find('.card-title').text('Ordonnance de ' + consultationId);
+                
+                // Vous pouvez également mettre à jour d'autres éléments de la carte avec les autres détails de l'ordonnance
+
+                // Vous pouvez également mettre à jour d'autres éléments de la carte avec les autres détails de l'ordonnance
+            },
+            error: function(xhr, status, error) {
+                console.error(xhr.responseText);
+            }
+        });
+    }
+</script>
+
+
 
 </html>

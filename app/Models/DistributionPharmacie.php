@@ -13,8 +13,9 @@ class DistributionPharmacie extends Model
 
     protected $fillable = [
         'consultation_id',
-        'facture_dispensaires_id',
+        'facture_dispensaire_id',
         'pharmacien_id',
+        'isDistribued',
         'distribuer',
         'reste'
     ];
