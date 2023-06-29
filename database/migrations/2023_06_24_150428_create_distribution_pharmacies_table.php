@@ -22,8 +22,6 @@ return new class extends Migration
             $table->foreignIdFor(FactureDispensaire::class)->nullable()->constrained();
             $table->foreignIdFor(Pharmacien::class)->nullable()->constrained();            
             $table->boolean('isDistribued')->default(0);
-            $table->integer('distribuer')->nullable();
-            $table->integer('reste')->nullable();
             $table->timestamps();
         });
     }

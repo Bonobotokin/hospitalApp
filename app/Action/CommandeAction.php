@@ -39,7 +39,7 @@ class CommandeAction
 
                 $nombreCommande = $request->nombreCommande;
 
-                $magasinier = $this->personnelRepository->getPersonnelConnected($magasinierId);
+                $magasinier = $this->personnelRepository->getMagasinnier($magasinierId);
                 // dd($request);
                 $CommandeId = [];
                 for ($i = 0; $i < (int) $nombreCommande; $i++) {

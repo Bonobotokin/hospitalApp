@@ -1,4 +1,5 @@
 @extends('layouts.app')
+
 @section('content')
 
 @if ($errors->any())
@@ -84,13 +85,13 @@
                     <div class="col-md-4">
                         <div class="form-group">
                             <label for="Contact">Telephone 1:</label>
-                            <input required type="text" name="patient[telephone_1_patient]" class="form-control" placeholder="+241346697188">
+                            <input type="text" name="patient[telephone_1_patient]" class="form-control" placeholder="+241346697188">
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="form-group">
                             <label for="Contact">Telephone 2:</label>
-                            <input required type="text" name="patient[telephone_2_patient]" class="form-control" placeholder="+261346697188">
+                            <input type="text" name="patient[telephone_2_patient]" class="form-control" placeholder="+261346697188">
                         </div>
                     </div>
                 </div>
@@ -99,25 +100,25 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="pere_patient">Nom du pere:</label>
-                            <input required type="text" name="patient[nomPere_patient]" class="form-control" placeholder="Nom du pere de la patient">
+                            <input type="text" name="patient[nomPere_patient]" class="form-control" placeholder="Nom du pere de la patient">
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="mere_patient">Nom de la Mere:</label>
-                            <input required type="text" name="patient[nomMere_patient]" class="form-control" placeholder="Nom de la Mere de la pateitn">
+                            <input type="text" name="patient[nomMere_patient]" class="form-control" placeholder="Nom de la Mere de la pateitn">
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="personne_reference">Nom du pere de reference:</label>
-                            <input required type="text" name="patient[nomPere_reference_patient]" class="form-control" placeholder="Persoone de reference">
+                            <input type="text" name="patient[nomPere_reference_patient]" class="form-control" placeholder="Persoone de reference">
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="telephone_personne_reference">Telephone du personne a reference:</label>
-                            <input required type="text" name="patient[telephone_reference_patient]" class="form-control" placeholder="Telephone de la reference">
+                            <input type="text" name="patient[telephone_reference_patient]" class="form-control" placeholder="Telephone de la reference">
                         </div>
                     </div>
                 </div>

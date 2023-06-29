@@ -8,6 +8,8 @@ interface StockPharmacieRepositoryInterface {
 
     public function lookOfQuantite();
 
+    public static function produitStoque(int $id);
+
     // public function listeDistribution();
 
 }

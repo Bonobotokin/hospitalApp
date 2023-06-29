@@ -33,7 +33,7 @@ class ConsultationAction
 
                 $magasinierId = Auth::user()->id;
                 
-                $equipeFourniture = $this->personnelRepository->getPersonnelConnected($magasinierId);
+                $equipeFourniture = $this->personnelRepository->getMagasinnier($magasinierId);
             
                 $nombreMedicaments = (int) $request->input('nombreMedicament');
             
@@ -62,27 +62,28 @@ class ConsultationAction
                     // On ajoute l'id de la prescription créée dans le tableau
                     $prescriptionIds[] = $prescription->id;
             
-                    $posologie = Posologie::create([
-                        'details_posologie' => $request->posologie,
-                        'consultation_id' => $consultation->id
-                    ]);
             
-            
-                    $facture = FactureDispensaire::create([
-                        // 'num_facture_patient' => (int) $request->numFacture,
-                        // 'prix_total' => 
-                        'consultation_id' => $consultation->id
-                    ]);
+                   
 
-                    $distribution = DistributionPharmacie::create([
-                        'consultation_id' => $consultation->id,
-                        'facture_dispensaire_id'=> $facture->id,
-                        'pharmacien_id' => null,
-                        'isDistribued' => false,
-                        'distribuer' => 0,
-                        'reste' => 0
-                    ]);
+                    
                 }
+
+                $posologie = Posologie::create([
+                    'details_posologie' => $request->posologie,
+                    'consultation_id' => $consultation->id
+                ]);
+        
+                $facture = FactureDispensaire::create([
+                    // 'num_facture_patient' => (int) $request->numFacture,
+                    // 'prix_total' => 
+                    'consultation_id' => $consultation->id
+                ]);
+                $distribution = DistributionPharmacie::create([
+                    'consultation_id' => $consultation->id,
+                    'facture_dispensaire_id'=> $facture->id,
+                    'pharmacien_id' => null,
+                    'isDistribued' => false
+                ]);
             
                 // On synchronise la relation many-to-many entre consultations et prescriptions
                 $consultation->prescriptions()->sync($prescriptionIds);

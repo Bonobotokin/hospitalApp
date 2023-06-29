@@ -7,6 +7,7 @@ use App\Models\Magasinier;
 use App\Models\Medecin;
 use App\Models\Personnel;
 use App\Models\PersonnelRole;
+use App\Models\Pharmacien;
 use App\Models\ServiceMedicale;
 
 class PersonnelRepository implements PersonnelRepositoryInterface
@@ -35,18 +36,33 @@ class PersonnelRepository implements PersonnelRepositoryInterface
         return $personnels;                            
     }
 
-    public function getPersonnelConnected(int $userId)
+    public function getMagasinnier(int $userId)
     {
 
         $personnelLogin = Compte::with('personnel','user')
                                 ->where('user_id', $userId)
                                 ->get();
-        
+        // dd($personnelLogin);
         $personnelMagasinier = Magasinier::with('personnel')
             ->Where('personnel_id', $personnelLogin[0]['personnel_id'])
             ->get();
         
         return $personnelMagasinier;
+    }
+
+    public function getPharmacie(int $userId)
+    {
+
+        $personnelLogin = Compte::with('personnel','user')
+                                ->where('user_id', $userId)
+                                ->get();
+        // dd($personnelLogin);
+        $personnelPharmacien = Pharmacien::with('personnel')
+            ->Where('personnel_id', $personnelLogin[0]['personnel_id'])
+            ->get();
+        
+        
+        return $personnelPharmacien;
     }
 
     public function tranPersonnelTovalidate(int $userId)

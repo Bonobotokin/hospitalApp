@@ -17,6 +17,7 @@ class StockPharmacieRepository implements StockPharmacieRepositoryInterface
 
         $stoque = StockPharmacie::with('produit')
             ->get()
+            ->where('quantite_pharmacie', '>', 50)
             ->map(function ($stoque) {
 
                 $produits = $stoque->produit;
@@ -39,7 +40,25 @@ class StockPharmacieRepository implements StockPharmacieRepositoryInterface
         return $stoque;
     }
 
+    public static function produitStoque(int $id)
+    {
+        // verrifie if produits in stoque and if is quantite is > 10
+        $stock = StockPharmacie::with('produit')
+            ->where('produit_id', $id)
+            ->where('quantite_pharmacie', '>', 10)
+            ->get()
+            ->map(function ($stock) {
 
+                $produit = $stock->produit;
+                
+                return [
+                    'produit_id' => $stock->produit_id,
+                    'quantite' => $stock->quantite_pharmacie,
+                ];
+            });
+
+        return $stock;
+    }
 
 
     // $stoque = StockPharmacie::with('produit')

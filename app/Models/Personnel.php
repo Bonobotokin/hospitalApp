@@ -41,6 +41,11 @@ class Personnel extends Model
         return $this->hasMany(Magasinier::class);
     }
 
+    public function pharmacien() : HasMany
+    {
+        return $this->hasMany(Pharmacien::class);
+    }
+
     public function medecin() : HasMany
     {
         return $this->hasMany(Medecin::class);

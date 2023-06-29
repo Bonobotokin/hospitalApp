@@ -30,17 +30,26 @@
                     </a> -->
                 <div class="table-responsive">
                     <table class="table">
+                        <thead>
+                            <th class="text-center">Matricule</th>
+                            <th class="text-center">Nom</th>
+                            <th class="text-center">Etat</th>
+                        </thead>
                         <tbody>
                             @foreach ($liste as $data )
                             <tr data-consultation="{{ $data['consultation_id'] }}">
-
-                                <td>{{ $data['consultation_id'] }}</td>
-                                <td>{{ $data['matricule'] }}</td>
-                                <td id="patient_nom">{{ $data['patient'] }}</td>
+                                <!-- <tr> -->
+                                <td class="text-center">{{ $data['matricule'] }}</td>
+                                <td id="patient_nom" class="text-center">
+                                    {{ $data['patient_nom'] }}
+                                    <br>
+                                    {{ $data['patient_prenom'] }}
+                                </td>
                                 <td class="text-right font-weight-medium">
 
                                     @if ($data['etat'] == false)
                                     <div class="badge badge-outline-info">non distribuer</div>
+                                    <!-- <a href="{{ route('distribution.getOrdonnance', ['id' => $data['consultation_id']]) }}"class="badge badge-outline-info">non distribuer</a> -->
                                     @else
 
                                     <div class="badge badge-outline-success">distribuer</div>
@@ -61,17 +70,29 @@
 
         <div class="card">
             <div class="card-body">
-                <h4 class="card-title text-center">Ordonnance de </h4>
-                <!-- <a type="button" href="#" class="nav-link" style="color:white">
-                        <blockquote class="blockquote blockquote-warning">
-                            
-                            <p >
-                                Le Magasin depots a des nouveaux produits, veuillez me click 
-                                pour en savoire quelle produits s'agit-il !
-                            </p>
-                        
-                        </blockquote>
-                    </a> -->
+
+                @csrf
+                <div class="card-title text-center">
+                    <h4>Ordonnance</h4>
+                </div>
+                <table class="table">
+                    <thead>
+                        <th class="text-center">Designation</th>
+                        <th class="text-center">Quantite</th>
+                        <th class="text-center">Type</th>
+                    </thead>
+
+                    <tbody class="listeProduits">
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="form">
+                </div>
+
             </div>
         </div>
     </div>

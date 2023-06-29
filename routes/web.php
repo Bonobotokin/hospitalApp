@@ -75,8 +75,10 @@ Route::get('pharmacie/stock', [StockPharmacieController::class, 'index'])->name(
 Route::get('Pharmacie/commande/Medicament', [PharmacienController::class, 'commande'])->name('commande.index');
 
 // Distribution medicament
-Route::get('Pharmacie/distribution/Medicament', [PharmacienController::class, 'index'])->name('distribution.index');
+Route::get('Pharmacie/distribution', [PharmacienController::class, 'index'])->name('distribution');
 Route::get('Pharmacie/distribution/Medicament/{id}', [PharmacienController::class, 'getOrdonnance'])->name('distribution.getOrdonnance');
+Route::post('Pharmacie/distribution/Update', [PharmacienController::class, 'updateDistribution'])->name('distribution.update');
+
 
 // Route
 

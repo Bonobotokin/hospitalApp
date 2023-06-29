@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Action\PharmacieAction;
 use App\Http\Requests\StorePharmacienRequest;
 use App\Http\Requests\UpdatePharmacienRequest;
 use App\Models\Pharmacien;
@@ -54,11 +55,30 @@ class PharmacienController extends Controller
         return view('Pharmacie.metreAjourStock');
     }
 
-    public function getOrdonnance(Request $request, $id)
+    public function getOrdonnance($id)
     {
         $ordonnance = $this->distributionRepository->getPrescription($id);
+        // dd($ordonnance);
         return response()->json(['consultationId' => $ordonnance]);
+    }
 
+    public function updateDistribution(Request $request, PharmacieAction $action)
+    {
+        try {
+            //code...
+            $updateDistributionaction = $action->updateDistribution($request);
+
+            dd($updateDistributionaction, 'updateDistribution');
+
+            if (!is_null($updateDistributionaction['data'])) {
+
+                return redirect()->route('distribution', ['reponse' => $updateDistributionaction])->with('success', $updateDistributionaction['message']);
+            } else {
+                return redirect()->back()->withErrors($updateDistributionaction)->withInput();
+            }
+        } catch (\Throwable $th) {
+            //throw $th;
+        }
     }
 
     // public function getOrdonnance(Request $request, $matricule)

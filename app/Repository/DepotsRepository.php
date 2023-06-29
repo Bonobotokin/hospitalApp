@@ -61,6 +61,7 @@ class DepotsRepository implements DepotsRepositoryInterface
 
     public static function medicamentProduits()
     {
+        // get produits if is medicaments
         $depots = Depot::with('produit')
                        
             ->orWhereHas('produit', function($query) {

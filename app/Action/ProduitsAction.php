@@ -27,7 +27,7 @@ class ProduitsAction
         try {
             $data = DB::transaction(function () use ($request, $magasinierId) {
 
-                $equipeFourniture = $this->personnelRepository->getPersonnelConnected($magasinierId);
+                $equipeFourniture = $this->personnelRepository->getMagasinnier($magasinierId);
 
                 // dd($equipeFourniture);
                 if($equipeFourniture->isEmpty()) {

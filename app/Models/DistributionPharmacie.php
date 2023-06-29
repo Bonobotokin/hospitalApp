@@ -15,9 +15,7 @@ class DistributionPharmacie extends Model
         'consultation_id',
         'facture_dispensaire_id',
         'pharmacien_id',
-        'isDistribued',
-        'distribuer',
-        'reste'
+        'isDistribued'
     ];
 
 
