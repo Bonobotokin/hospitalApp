@@ -91,19 +91,21 @@
                                             <tr>
                                                 <th> Code </th>
                                                 <th> Nom</th>
+                                                <th> Categorie</th>
                                                 <th> Type</th>
                                                 <th> Abrev</th>
                                             </tr>
                                         </thead>
                                         <tbody id="myUL">
-                                            {{-- @dd($produits) --}}
+                                            
                                             @foreach ($produits as $data)
                                             <tr id="content_search" onclick="getElement()" class="content_search" style="cursor:pointer">
                                                 <td id="idProduits"> {{ $data['num'] }} </td>
                                                 <td id="nom"> {{ $data['nom'] }} </td>
                                                 <td id="categorie"> {{ $data['categorie'] }} </td>
+                                                <td id="type"> {{ $data['types'] }} </td>
                                                 <td id="abrev"> {{ $data['abrev'] }} </td>
-                                                <td id="categorie"> {{ $data['categorie'] }} </td>
+                                                <td id="categorie" style="display:none"> {{ $data['categorie'] }} </td>
                                             </tr>
                                             @endforeach
                                         </tbody>
@@ -126,15 +128,14 @@
                                                 </div>
                                                 <div class="col-lg-4">
                                                     <div class="form-group">
-                                                        <label for="">Type :</label>
+                                                        <label for="">Categorie :</label>
                                                         <input id="categorieValue" type="text" class="form-control" />
                                                     </div>
                                                 </div>
-
                                                 <div class="col-lg-4">
                                                     <div class="form-group">
-                                                        <label for="Conditionnement">Condit : </label>
-                                                        <input id="conditionnement" type="text" placeholder="Conditionnement" class="form-control">
+                                                        <label for="">Type :</label>
+                                                        <input id="typeValue" type="text" class="form-control" />
                                                     </div>
                                                 </div>
                                             </div>
@@ -143,13 +144,19 @@
                                                 Information sur le commande :
                                             </h6>
                                             <div class="row">
-                                                <div class="col-lg-4">
+                                                <div class="col-lg-2">
                                                     <div class="form-group">
-                                                        <label for="Quantite">Q Livrer: </label>
+                                                        <label for="Conditionnement">Condit : </label>
+                                                        <input id="conditionnement" type="text" placeholder="Conditionnement" class="form-control">
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-3">
+                                                    <div class="form-group">
+                                                        <label for="Quantite">Qt Livrer: </label>
                                                         <input id="quantite" type="number" placeholder="Quantite totale" class="form-control">
                                                     </div>
                                                 </div>
-                                                <div class="col-lg-4">
+                                                <div class="col-lg-3">
                                                     <div class="form-group">
                                                         <label for="Quantite">Total : </label>
                                                         <input id="total" type="number" placeholder="Quantiter a commander" class="form-control">

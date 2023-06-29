@@ -46,6 +46,7 @@ class PersonnelRepository implements PersonnelRepositoryInterface
         $personnelMagasinier = Magasinier::with('personnel')
             ->Where('personnel_id', $personnelLogin[0]['personnel_id'])
             ->get();
+
         
         return $personnelMagasinier;
     }

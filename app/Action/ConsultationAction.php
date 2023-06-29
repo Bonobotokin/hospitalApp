@@ -26,7 +26,7 @@ class ConsultationAction
 
     public function newPatientConsulted($request)
     {
-
+        dd($request);
         try {
 
             $data = DB::transaction(function () use ($request) {

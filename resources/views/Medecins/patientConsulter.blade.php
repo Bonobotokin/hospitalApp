@@ -10,7 +10,6 @@
         <div class="template-demo float-right">
             <button type="button" id="consultationBtn" onclick="newConsultation()" class="btn btn-inverse-primary btn-fw">Nouveaux Consultations</button>
             <button type="button" id="antecedantBtn" onclick="showAntecedant()" class="btn btn-inverse-warning btn-fw">Antecedants</button>
-
         </div>
     </div>
     {{-- content New Consultation --}}
@@ -120,11 +119,9 @@
                                 <div class="table-responsive">
                                     <div class="add-items d-flex">
                                         <select class="js-example-basic-single laboInput" style="width:100%">
-                                            <option value="AL">Alabama</option>
-                                            <option value="WY">Wyoming</option>
-                                            <option value="AM">America</option>
-                                            <option value="CA">Canada</option>
-                                            <option value="RU">Russia</option>
+                                            @foreach ($laboratoire as $liste)
+                                            <option value="{{ $liste->designation_examens_labo }}">{{ $liste->designation_examens_labo }}</option>
+                                            @endforeach
                                         </select>
                                         <button class="add btn btn-primary labo-list-add-btn">Add</button>
                                     </div>
@@ -201,14 +198,31 @@
                                     </thead>
                                     <tbody id="medicamentUl">
                                         @foreach ( $produitListe as $key => $list)
-                                        <tr id="content_search_medicament"  class="content_search" style="cursor:pointer">
+                                        @if ( $list['quantite'] > 50)
+                                        <tr id="content_search_medicament" class="content_search" style="cursor:pointer">
                                             <td>{{ $list['num'] }}</td>
                                             <td>{{ $list['abrev'] }}</td>
                                             <td>{{ $list['type'] }}</td>
                                             <td>{{ $list['prix'] }}</td>
                                             <td>{{ $list['quantite'] }}</td>
                                         </tr>
-                                        @endforeach
+                                        @elseif ( $list['quantite'] > 20)
+                                        <tr style="background-color: #ffab00d6;color:white;">
+                                            <td>{{ $list['num'] }}</td>
+                                            <td>{{ $list['abrev'] }}</td>
+                                            <td>{{ $list['type'] }}</td>
+                                            <td>{{ $list['prix'] }}</td>
+                                            <td>{{ $list['quantite'] }}</td>
+                                        </tr>
+                                        @elseif ( $list['quantite'] < 10) <tr style="background-color: red;color:white;">
+                                            <td>{{ $list['num'] }}</td>
+                                            <td>{{ $list['abrev'] }}</td>
+                                            <td>{{ $list['type'] }}</td>
+                                            <td>{{ $list['prix'] }}</td>
+                                            <td>Epuiser</td>
+                                            </tr>
+                                            @endif
+                                            @endforeach
                                     </tbody>
                                 </table>
                             </div>
@@ -216,7 +230,7 @@
                         <div class="col-md-6 ">
                             <h6 class="preview-subject text-center">Medicament a prescrire</h6>
                             <div class="row">
-                                
+
                                 <div id="medicamentForm" class="medicamentForm form-inline">
 
                                 </div>
@@ -271,7 +285,7 @@
                                         <tbody>
                                             <tr>
                                                 <td>Null</td>
-                                                <td class="text-right">  </td>
+                                                <td class="text-right"> </td>
                                                 <td></td>
                                             </tr>
                                         </tbody>
@@ -287,7 +301,7 @@
                                         <tbody>
                                             <tr>
                                                 <td>Null</td>
-                                                <td class="text-right">  </td>
+                                                <td class="text-right"> </td>
                                                 <td></td>
                                             </tr>
                                         </tbody>
@@ -320,10 +334,10 @@
                             </div>
                         </div>
                         <div class="row text-center">
-                        <div class="col-lg-6">
+                            <div class="col-lg-6">
                                 <div class="form-group">
                                     <label for="factureTotal">Numero facture :</label>
-                                    <input type="text" name="numFacture"  class="form-control" placeholder="012345">
+                                    <input type="text" name="numFacture" class="form-control" placeholder="012345">
                                 </div>
                             </div>
                             <div class="col-lg-6">
@@ -332,20 +346,17 @@
                                     <input type="text" name="facture" id="facturePaye" class="form-control" placeholder="{{ $patient['prix'] }}">
                                 </div>
                             </div>
-                            <div class="col-lg-6 ">
-                                <button type="reset" class="btn btn-inverse-danger btn-fw">
-                                    <i class="mdi mdi-refresh btn-icon-prepend"></i>
-                                    Annuler
-                                </button>
-                            </div>
-                            <div class="col-lg-6 ">
-                                <button type="submit" class="btn btn-inverse-primary btn-fw">
-                                    <i class="mdi mdi-plus btn-icon-prepend"></i>
-                                    Enregistrer
-                                </button>
-                            </div>
                         </div>
                     </div>
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <button type="reset" class="btn btn-danger btn-block"><i class="mdi mdi-refresh btn-icon-prepend"></i> Annuler</button>
+                        </div>
+                        <div class="col-lg-6">
+                            <button type="submit" class="btn btn-success btn-block"><i class="mdi mdi-plus btn-icon-prepend"></i> Enregistrer</button>
+                        </div>
+                    </div>
+                    
                 </form>
             </div>
         </div>

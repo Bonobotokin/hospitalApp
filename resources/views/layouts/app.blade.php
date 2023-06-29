@@ -85,6 +85,9 @@
         text-decoration: none !important;
         cursor: pointer !important;
     }
+    .select2-container--default .select2-results__option[aria-selected=true] {
+        background-color: #212374 !important;
+    }
 </style>
 
 <body>

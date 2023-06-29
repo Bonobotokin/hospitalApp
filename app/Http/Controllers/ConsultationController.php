@@ -7,6 +7,7 @@ use App\Http\Requests\StoreConsultationRequest;
 use App\Http\Requests\UpdateConsultationRequest;
 use App\Models\Consultation;
 use App\Repository\ConsultationRepository;
+use App\Repository\LaboratoireRepository;
 use App\Repository\PatientRepository;
 use App\Repository\PersonnelRepository;
 use App\Repository\StockPharmacieRepository;
@@ -20,6 +21,7 @@ class ConsultationController extends Controller
     protected $consultationRepository;
     protected $patientRepository;
     private $stockPharmacieRepository;
+    private $laboratoireRepository;
 
     public function __construct(
 
@@ -27,7 +29,8 @@ class ConsultationController extends Controller
         TypesConsultationRepository $typesConsultationRepository,
         PersonnelRepository $personnelRepository,
         PatientRepository $patientRepository,
-        StockPharmacieRepository $stockPharmacieRepository
+        StockPharmacieRepository $stockPharmacieRepository,
+        LaboratoireRepository $laboratoireRepository
 
     )
     {
@@ -37,6 +40,7 @@ class ConsultationController extends Controller
         $this->personnelRepository  = $personnelRepository;
         $this->patientRepository = $patientRepository;
         $this->stockPharmacieRepository = $stockPharmacieRepository;
+        $this->laboratoireRepository = $laboratoireRepository;
 
     } 
 
@@ -103,11 +107,13 @@ class ConsultationController extends Controller
         $patientInfo = $this->consultationRepository->getPatientById($id);
         $produits = $this->stockPharmacieRepository->getAll();
         $parametre = $this->patientRepository->getParametrepatient($id);
+        $laboratoire = $this->laboratoireRepository->getAll();
         return view('Medecins.patientConsulter', 
             [
                 'patient' => $patientInfo[0],
                 'produitListe' => $produits,
-                'parametre' => $parametre[0]
+                'parametre' => $parametre[0],
+                'laboratoire' => $laboratoire
             ]
         );
     }

@@ -32,7 +32,17 @@
                             <tbody>
                                 @foreach ($livraison as $livraisonListe)
                                     <tr>
-                                        <td> 0 {{ $livraisonListe['num_livraison'] }}</td>
+                                        <td>
+                                            @if ($livraisonListe['num_livraison'] < 10)
+                                                000{{ $livraisonListe['num_livraison'] }} 
+                                            @elseif ($livraisonListe['num_livraison'] < 100)
+                                                00{{ $livraisonListe['num_livraison'] }} 
+                                            @elseif ($livraisonListe['num_livraison'] < 1000)
+                                                0{{ $livraisonListe['num_livraison'] }} 
+                                            @else
+                                                {{ $livraisonListe['num_livraison'] }} 
+                                            @endif 
+                                        </td>
                                         <td>{{ $livraisonListe['date'] }}</td>
                                         <td>
                                             <?php

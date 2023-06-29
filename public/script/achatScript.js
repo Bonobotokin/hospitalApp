@@ -42,12 +42,13 @@ window.onload = () => {
 
 
                 for (let ul = 0; ul < contentProduits.length; ul++) {
-                    console.log(contentProduits[ul].innerText);
+                    console.log(contentProduits[ul].innerText, "eto");
                     const id = contentProduits[0].innerText;
                     const designationProduits = contentProduits[1].innerText;
                     const typeProduits = contentProduits[2].innerText;
                     const conditProduits = contentProduits[2].innerText;
                     const quantiteProduits = contentProduits[3].innerText;
+                    categorieValue.value = contentProduits[3].innerText;
                     const categorieProduits = contentProduits[4].innerText;
                     codeProduits.value = id;
                     designation.value = designationProduits;

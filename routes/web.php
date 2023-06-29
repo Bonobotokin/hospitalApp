@@ -79,10 +79,6 @@ Route::get('Pharmacie/distribution', [PharmacienController::class, 'index'])->na
 Route::get('Pharmacie/distribution/Medicament/{id}', [PharmacienController::class, 'getOrdonnance'])->name('distribution.getOrdonnance');
 Route::post('Pharmacie/distribution/Update', [PharmacienController::class, 'updateDistribution'])->name('distribution.update');
 
-
-// Route
-
-
 // mettre a jour le depots by magasin
 
 
@@ -133,7 +129,7 @@ Route::post('Enregistre_pation/Consultation', [ReceptionisteController::class, '
 
 
 ###########################################
-#  Gestion des Medecin Consultation  #
+#  Gestion des Medecin Consultation       #
 ###########################################
 
 Route::get('Medecin/listeConsultation', [ConsultationController::class, 'index'])->name('get.all.consultation');
@@ -151,10 +147,8 @@ Route::post('caisse/enregistremenFacture', [FactureDispensaireController::class,
 // Route::post('update/facture/', [CaisseController::class, 'update'])->name('update.facture');
 
 
-
-
 ###########################################
-#  Api for aafficher les info in Js     #
+#  Api for aafficher les info in Js       #
 ###########################################
 
 Route::get('facture/getAll', [facturePatienApiContronller::class, 'facturePatient'])->name('information.facture.patien');

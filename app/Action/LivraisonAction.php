@@ -37,7 +37,7 @@ class LivraisonAction
     {
         
         try {
-
+            // dd($request);
             $livraisonAll = $this->livraisonProduitsRepository->getByNumLivraison($request->numLivraison);
 
             $magasinierId = Auth::user()->id;
@@ -73,6 +73,7 @@ class LivraisonAction
                             'type_mouvement'  => 'entrant'
 
                         ]);
+                        // dd($newEntrantDepot);
 
                         $depots = Depot::find((int) $livraisonAll[0]['produit_id']);
                         $depots->conditionnement_depots = $livraisonAll[0]['conditionnement_livraison'];
@@ -134,7 +135,7 @@ class LivraisonAction
 
     public function verifyUserIsMagasin($magasinierId)
     {
-        $magasinierConnetected = $this->personnelRepository->getPersonnelConnected($magasinierId);
+        $magasinierConnetected = $this->personnelRepository->getMagasinnier($magasinierId);
 
         return $magasinierConnetected[0]['id'];
     }
@@ -148,6 +149,8 @@ class LivraisonAction
     public function saveLivraisonPartenariat($request)
     {
         try {
+
+            // dd($request);
             
             $data = DB::transaction(function () use ($request) {
 

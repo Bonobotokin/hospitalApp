@@ -17,7 +17,7 @@ class StockPharmacieRepository implements StockPharmacieRepositoryInterface
 
         $stoque = StockPharmacie::with('produit')
             ->get()
-            ->where('quantite_pharmacie', '>', 50)
+            // ->where('quantite_pharmacie', '>', 10)
             ->map(function ($stoque) {
 
                 $produits = $stoque->produit;
