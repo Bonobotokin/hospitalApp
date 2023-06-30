@@ -25,8 +25,7 @@
                         </thead>
                         <tbody>
                             @foreach ( $listeConsultation as $liste)
-                            @if ($liste['date_enregistrement'] === $dateConsultation)
-                                @if ($liste['etat_consultation'] == 0)
+                            @if ($liste['date_enregistrement'] === $dateConsultation ||2 $liste['etat_consultation'] = 02)
                                 <tr style="background-color: #0b787ecf;color:white">
                                     <td> {{$liste['matricule'] }} </td>
                                     <td> {{$liste['nom'] }} {{$liste['prenom'] }} </td>
@@ -59,7 +58,6 @@
                                         </a>
                                     </td>
                                 </tr>
-                                @endif
 
                             @endif
                             @endforeach

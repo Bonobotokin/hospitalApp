@@ -118,7 +118,7 @@
 <script src="{{ asset('script/getElemtCommande.js') }}"></script>
 <script src="{{ asset('script/scriptLivraisonCommande.js') }}"></script>
 <script src="{{ asset('script/manupilation.js')}}"></script>
-<script src="{{ asset('script/achatScript.js') }}"></script>
+<!-- <script src="{{ asset('script/achatScript.js') }}"></script> -->
 {{-- js for manipulation --}}
 <script src="{{ asset('script/consultation.js') }}"></script>
 <script src="{{ asset('script/examens_echographie.js')}}"></script>

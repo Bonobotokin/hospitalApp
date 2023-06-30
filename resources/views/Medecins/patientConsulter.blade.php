@@ -129,6 +129,14 @@
                                         <ul class="d-flex flex-column-reverse text-white labo todo-list-custom">
 
                                         </ul>
+                                        <div class="row">
+                        <div class="col-lg-6 text-right">
+                            <button type="reset" class="btn btn-danger "><i class="mdi mdi-refresh btn-icon-prepend"></i> Annuler</button>
+                        </div>
+                        <div class="col-lg-6">
+                            <button type="submit" class="btn btn-success "><i class="mdi mdi-plus btn-icon-prepend"></i> Enregistrer</button>
+                        </div>
+                    </div>
                                     </div>
                                 </div>
                             </div>
@@ -347,8 +355,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="row">
+
                         <div class="col-lg-6">
                             <button type="reset" class="btn btn-danger btn-block"><i class="mdi mdi-refresh btn-icon-prepend"></i> Annuler</button>
                         </div>
