@@ -37,7 +37,7 @@
                         </thead>
                         <tbody>
                             @foreach ($liste as $data )
-                            <tr data-consultation="{{ $data['consultation_id'] }}">
+                            <tr style="cursor: pointer;" data-consultation="{{ $data['consultation_id'] }}">
                                 <!-- <tr> -->
                                 <td class="text-center">{{ $data['matricule'] }}</td>
                                 <td id="patient_nom" class="text-center">

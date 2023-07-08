@@ -11,6 +11,7 @@ use App\Http\Controllers\CaisseController;
 use App\Http\Controllers\CommandeProduitController;
 use App\Http\Controllers\ConsultationController;
 use App\Http\Controllers\DepotController;
+use App\Http\Controllers\ExamenLaboratoireController;
 use App\Http\Controllers\FactureDispensaireController;
 use App\Http\Controllers\LivraisonProduitsController;
 use App\Http\Controllers\PatientController;
@@ -87,7 +88,7 @@ Route::post('Pharmacie/distribution/Update', [PharmacienController::class, 'upda
 #  Gestion des Produits & Fournisseur Administrator #
 ###########################################################
 
-Route::get('produits/liste', [ProduitController::class, 'index'])->name('index.produits');                                          
+Route::get('Depots/produits', [ProduitController::class, 'index'])->name('index.produits');                                          
 Route::post('produits/store', [ProduitController::class, 'store'])->name('store.produits');                                         
 
 
@@ -123,7 +124,7 @@ Route::post('personnels/store', [PersonnelController::class, 'store'])->name('pe
 ###########################################
 
 Route::get('reception/patient', [ReceptionisteController::class, 'patient'])->name('liste.patient');
-Route::get('receptioniste/consultation/liste', [ReceptionisteController::class, 'consultation'])->name('liste.consultation');
+Route::get('receptioniste/liste/consultation', [ReceptionisteController::class, 'consultation'])->name('liste.consultation');
 Route::get('receptioniste/new_consultation', [ReceptionisteController::class, 'createConsultation'])->name('create.consultation');
 Route::post('Enregistre_pation/Consultation', [ReceptionisteController::class, 'storeConsultation'])->name('store.consultation');
 
@@ -133,7 +134,7 @@ Route::post('Enregistre_pation/Consultation', [ReceptionisteController::class, '
 ###########################################
 
 Route::get('Medecin/listeConsultation', [ConsultationController::class, 'index'])->name('get.all.consultation');
-Route::get('consulted/{id}/patient', [ConsultationController::class, 'consultePatient'])->name('consulte.patient');
+Route::get('consulted/{id}/patientDay', [ConsultationController::class, 'consultePatient'])->name('consulte.patient');
 Route::post('enregistrer/Consultation', [ConsultationController::class, 'store'])->name('storePatient.consultation');
 
 
@@ -144,6 +145,7 @@ Route::post('enregistrer/Consultation', [ConsultationController::class, 'store']
 Route::get('Caisse/payementPatient', [CaisseController::class, 'index'])->name('all.patient.payeable');
 Route::get('Caisse/reglement/facture/{numFacture}', [CaisseController::class, 'create'])->name('patient.reglement.facture');
 Route::post('caisse/enregistremenFacture', [FactureDispensaireController::class, 'store'])->name('enregistrement.Facture');
+Route::get('caisse/enregistremenFacture/{id}', [FactureDispensaireController::class, 'getFacture'])->name('caisse.getFacture');
 // Route::post('update/facture/', [CaisseController::class, 'update'])->name('update.facture');
 
 
@@ -152,3 +154,12 @@ Route::post('caisse/enregistremenFacture', [FactureDispensaireController::class,
 ###########################################
 
 Route::get('facture/getAll', [facturePatienApiContronller::class, 'facturePatient'])->name('information.facture.patien');
+
+
+#####################
+#  Laboratoire       #
+#####################
+Route::get('Laboratoire/liste/examen', [ExamenLaboratoireController::class, 'index'])->name('laboratoire.examen.liste');
+Route::get('laboratoire/getElement/{id}', [ExamenLaboratoireController::class,'getElementLabo'])->name('consultation.getElementLabo');
+Route::get('laboratoire/getElementAnalyses/{id}', [ExamenLaboratoireController::class,'getDataExamen'])->name('consultation.getDataElement');
+Route::post('Laboratoire/examens/saveResultat', [ExamenLaboratoireController::class, 'storeResultat'])->name('save.resultat.laboratoire');

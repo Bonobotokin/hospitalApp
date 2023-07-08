@@ -6,6 +6,7 @@ namespace Database\Seeders;
 
 use App\Models\ExamenEchoType;
 use App\Models\ExamenLaboratoire;
+use App\Models\TypeExamenLaboratoire;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -35,6 +36,7 @@ class DatabaseSeeder extends Seeder
             PharmacienSeeder::class,
             MedecinSeeder::class,
             ReceptionisteSeeder::class,
+            TypeExamenLaboratoireSeeder::class,
             ExamenLaboratoireSeeder::class,
             ExamenEchoTypeSeeder::class,
             ExamenEchographieSeeder::class,

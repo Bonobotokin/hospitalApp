@@ -28,6 +28,7 @@
     <link rel="stylesheet" href="{{ asset('assets/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/plugins/datatables-responsive/css/responsive.bootstrap4.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/plugins/datatables-buttons/css/buttons.bootstrap4.min.css') }}">
+    <link rel="stylesheet" href="{{asset('assets/plugins/summernote/summernote-bs4.min.css')}}">
 
     <! <link rel="stylesheet" href="{{ asset('assets/plugins/toastr/toastr.min.css') }}">
 </head>
@@ -85,13 +86,16 @@
         text-decoration: none !important;
         cursor: pointer !important;
     }
+
     .select2-container--default .select2-results__option[aria-selected=true] {
         background-color: #212374 !important;
     }
 </style>
 
 <body>
+
     <div class="container-scroller">
+
         <nav class="sidebar sidebar-offcanvas" id="sidebar">
             <div class="sidebar-brand-wrapper d-none d-lg-flex align-items-center justify-content-center fixed-top">
                 <a class="sidebar-brand brand-logo" href="index.html"><img src="{{ asset('assets/images/logo.svg') }}" alt="logo" /></a>
@@ -269,6 +273,50 @@
                         </ul>
                     </div>
                 </li>
+
+                <!-- Laboratoire -->
+                <li class="nav-item menu-items">
+                    <a class="nav-link" data-toggle="collapse" href="#ui-pharmacie" aria-expanded="false" aria-controls="ui-pharmacie">
+                        <span class="menu-icon">
+                            <i class="mdi mdi-home"></i>
+                        </span>
+                        <span class="menu-title">Laboratoire</span>
+                        <i class="menu-arrow"></i>
+                    </a>
+                    <div class="collapse" id="ui-pharmacie">
+                        <ul class="nav flex-column sub-menu">
+
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('laboratoire.examen.liste') }}">
+                                    Examen
+                                </a>
+                            </li>
+                            <!-- <li class="nav-item">
+                                <a class="nav-link" href="{{ route('pharmacie.stock') }}">
+                                    Stock Medicament
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('commande.index') }}">
+                                    Commande Medicaments
+                                </a>
+                            </li> -->
+                            <!-- 
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('index.achat.produits') }}">
+                                    Achat des Produits
+                                </a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('liste.reception') }}">
+                                    Listes des Livraison
+                                </a>
+                            </li> -->
+                        </ul>
+                    </div>
+                </li>
+
                 <!-- Pharmacie & Pharmacien -->
 
                 <li class="nav-item menu-items">
@@ -494,7 +542,85 @@
         <!-- page-body-wrapper ends -->
     </div>
 </body>
-{{-- New fourniture --}}
 
-@extends('layouts.script')
+<script src="{{ asset('assets/vendors/js/vendor.bundle.base.js') }}"></script>
+<!-- Plugin js for this page -->
+<script src="{{ asset('assets/vendors/select2/select2.min.js') }}"></script>
+<script src="{{ asset('assets/vendors/typeahead.js/typeahead.bundle.min.js') }}"></script>
+<!-- End plugin js for this page -->
+<script src="{{ asset('assets/vendors/progressbar.js/progressbar.min.js') }}"></script>
+<script src="{{ asset('assets/vendors/jvectormap/jquery-jvectormap.min.js') }}"></script>
+<script src="{{ asset('assets/vendors/jvectormap/jquery-jvectormap-world-mill-en.js') }}"></script>
+<script src="{{ asset('assets/vendors/owl-carousel-2/owl.carousel.min.js') }}"></script>
+
+<script src="{{ asset('assets/js/dashboard.js') }}"></script>
+
+<script src="{{ asset('assets/plugins/toastr/toastr.min.js') }}"></script>
+<!-- DataTables  & Plugins -->
+<script src="{{ asset('assets/plugins/datatables/jquery.dataTables.min.js') }}"></script>
+<script src="{{ asset('assets/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
+<script src="{{ asset('assets/plugins/datatables-responsive/js/dataTables.responsive.min.js') }}"></script>
+<script src="{{ asset('assets/plugins/datatables-responsive/js/responsive.bootstrap4.min.js') }}"></script>
+<script src="{{ asset('assets/plugins/datatables-buttons/js/dataTables.buttons.min.js') }}"></script>
+<script src="{{ asset('assets/plugins/datatables-buttons/js/buttons.bootstrap4.min.js') }}"></script>
+<script src="{{ asset('assets/plugins/jszip/jszip.min.js') }}"></script>
+<script src="{{ asset('assets/plugins/pdfmake/pdfmake.min.js') }}"></script>
+<script src="{{ asset('assets/plugins/pdfmake/vfs_fonts.js') }}"></script>
+<script src="{{ asset('assets/plugins/datatables-buttons/js/buttons.html5.min.js') }}"></script>
+<script src="{{ asset('assets/plugins/datatables-buttons/js/buttons.print.min.js') }}"></script>
+<script src="{{ asset('assets/plugins/datatables-buttons/js/buttons.colVis.min.js') }}"></script>
+<!-- Page specific script -->
+<script src="{{ asset('assets/js/select2.js ') }}"></script>
+<!-- endinject -->
+<!-- inject:js -->
+<script src="{{ asset('assets/js/off-canvas.js') }}"></script>
+<script src="{{ asset('assets/js/hoverable-collapse.js') }}"></script>
+<script src="{{ asset('assets/js/misc.js') }}"></script>
+<script src="{{ asset('assets/js/settings.js') }}"></script>
+<script src="{{ asset('assets/js/todolist.js') }}"></script>
+<!-- endinject -->
+<!-- Custom js for this page -->
+<script src="{{ asset('assets/js/file-upload.js') }}"></script>
+<script src="{{ asset('assets/js/typeahead.js') }}"></script>
+<script src="{{ asset('assets/js/select2.js') }}"></script>
+
+<script src="{{ asset('assets/plugins/summernote/summernote-bs4.min.js') }}"></script>
+
+<script>
+    $(function() {
+        $("#example1").DataTable({
+            "responsive": true,
+            "lengthChange": true,
+            "autoWidth": true,
+            "buttons": ["copy", "excel", "pdf", "print"]
+        }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+        $('#example2').DataTable({
+            "paging": true,
+            "lengthChange": true,
+            "searching": true,
+            "ordering": true,
+            "info": false,
+            "autoWidth": false,
+            "responsive": true,
+        });
+        $('#example3').DataTable({
+            "paging": true,
+            "lengthChange": true,
+            "searching": true,
+            "ordering": true,
+            "info": false,
+            "autoWidth": false,
+            "responsive": true,
+        });
+        $("#listeExament").DataTable({
+            "responsive": true,
+            "lengthChange": true,
+            "autoWidth": true,
+            "buttons": ["copy", "excel", "pdf", "print"]
+        }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+    });
+</script>
+
+@yield('script')
+
 </html>

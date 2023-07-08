@@ -20,6 +20,7 @@
                     @csrf
                     <input type="hidden" value="{{ $patient['consultation_id'] }}" name="consultation_id">
                     <input type="hidden" value="{{ $patient['patient_id'] }}" name="patient_id">
+                    <input type="hidden" name="patient_nom" value="{{ $patient['nom'] }}">
                     <input type="hidden" value="{{ $patient['type_consultation_id'] }}" name="type_consultation_id">
                     <input type="hidden" value="{{ $patient['medecin'] }}" name="medecin_id">
                     <div class="col-md-12 " style="margin-bottom: 30px">
@@ -125,18 +126,16 @@
                                         </select>
                                         <button class="add btn btn-primary labo-list-add-btn">Add</button>
                                     </div>
-                                    <div class="list-wrapper">
-                                        <ul class="d-flex flex-column-reverse text-white labo todo-list-custom">
+                                    <div class="list-wrapper" id="contentAddLabo">
+                                        <ul id="laboListe" class="d-flex flex-column-reverse text-white labo todo-list-custom">
 
                                         </ul>
-                                        <div class="row">
-                        <div class="col-lg-6 text-right">
-                            <button type="reset" class="btn btn-danger "><i class="mdi mdi-refresh btn-icon-prepend"></i> Annuler</button>
-                        </div>
-                        <div class="col-lg-6">
-                            <button type="submit" class="btn btn-success "><i class="mdi mdi-plus btn-icon-prepend"></i> Enregistrer</button>
-                        </div>
-                    </div>
+                                        <div id="lsiteLabo" class="col-lg-12 form-inline lsiteLabo">
+
+                                        </div>
+                                        <div class="col-lg-12">
+                                            <button id="validateLabo" type="button" onclick="saveAndvalideExamenLabo();" class="btn btn-info btn-block ">Valider</button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -146,36 +145,36 @@
                         <div class="col-md-12 text-center">
                             <h6 class="preview-subject">Resultat d'examens</h6>
                         </div>
-                        <div class="col-md-7">
-                            <h6 class="preview-subject">Echographie</h6>
-                            <div class="template-demo">
+
+                        <div class="col-md-8">
+                            <div class="table-responsive">
                                 <table class="table table-bordered">
                                     <thead>
-                                        <th>
-                                            type
-                                        </th>
-                                        <th>
-                                            observation
-                                        </th>
+                                        <tr>
+                                            <th> Parametres </th>
+                                            <th style="width:10%"> Valeurs de references </th>
+                                            <th> Unite </th>
+                                            <th style="width:20%"> Valeur </th>
+                                            <th> Observation </th>
+                                        </tr>
                                     </thead>
                                     <tbody>
+                                        @foreach ($resultatLabo as $data)
                                         <tr>
-                                            <td>Cellule</td>
-                                            <td>Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae, ipsum
-                                                dignissimos nemo similique modi pariatur, omnis consequatur libero
-                                                distinctio minus dicta laborum facere neque totam officiis ea incidunt?
-                                                Obcaecati, ratione?
-                                            </td>
+                                            <td>{{$data['designation_examens_labo']}}</td>
+                                            <td>{{$data['valeurs_referrences']}}</td>
+                                            <td>{{$data['Unite']}}</td>
+                                            <td>{{$data['designation_examens_labo']}}</td>
+                                            <td>{{$data['observation_examens']}}</td>
+
                                         </tr>
+                                        @endforeach
                                     </tbody>
                                 </table>
                             </div>
                         </div>
-                        <div class="col-md-5">
-                            <h6 class="preview-subject">Laboratoire</h6>
-                            <div class="template-demo">
-
-                            </div>
+                        <div class="col-md-4">
+                            <p>{{ $rapport[0]->details }}</p>
                         </div>
                     </div>
                     <div id="diagnostic" style="display:none" class="row">
@@ -290,13 +289,31 @@
                             <div class="template-demo">
                                 <div class="table-responsive">
                                     <table class="table">
-                                        <tbody>
+
+                                        <thead>
                                             <tr>
-                                                <td>Null</td>
-                                                <td class="text-right"> </td>
-                                                <td></td>
+                                                <th>Nom</th>
+                                                <th>Prix</th>
                                             </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach ($examen as $dataExamen)
+
+                                            @foreach ($dataExamen as $value)
+                                            <tr>
+                                                <td>{{ $value['designation_examens_labo'] }}</td>
+                                                <td class="text-right"> {{ $value['prix'] }} </td>
+                                            </tr>
+                                            @endforeach
+                                            @endforeach
                                         </tbody>
+                                        <tfoot>
+
+                                            <tr>
+                                                <td>Total</td>
+                                                <td id="totalLaboratoire" class="text-right"></td>
+                                            </tr>
+                                        </tfoot>
                                     </table>
                                 </div>
                             </div>
@@ -354,7 +371,12 @@
                                     <input type="text" name="facture" id="facturePaye" class="form-control" placeholder="{{ $patient['prix'] }}">
                                 </div>
                             </div>
+
+
                         </div>
+                    </div>
+
+                    <div class="row" style="margin:5% 0 5% 0; display:none;" id="sendBtn">
 
                         <div class="col-lg-6">
                             <button type="reset" class="btn btn-danger btn-block"><i class="mdi mdi-refresh btn-icon-prepend"></i> Annuler</button>
@@ -363,10 +385,24 @@
                             <button type="submit" class="btn btn-success btn-block"><i class="mdi mdi-plus btn-icon-prepend"></i> Enregistrer</button>
                         </div>
                     </div>
-                    
                 </form>
             </div>
         </div>
     </div>
 </div>
+@endsection
+
+
+
+
+@section('script')
+<script src="{{ asset('script/consultation.js') }}"></script>
+<script src="{{ asset('script/examens_echographie.js')}}"></script>
+<script src="{{ asset('script/examens_laboratoire.js')}}"></script>
+<script src="{{ asset('script/symptomes.js') }}"></script>
+<script src="{{ asset('script/diagnostic.js') }}"></script>
+<script src="{{ asset('script/prescription.js')}}"></script>
+<script src="{{ asset('script/payedFacture.js')}}"></script>
+<script src="{{ asset('script/manupilation.js')}}"></script>
+
 @endsection

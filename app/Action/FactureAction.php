@@ -17,11 +17,12 @@ class FactureAction
 {
     public function savePayement($request)
     {
+        // dd($request);
         try {
 
             $data = DB::transaction(function () use ($request) {
 
-
+                
                 // dd($request['totalMontantDefault'] - $request['montantPayed']);
                 $lookFacture = FactureDispensaire::where('id', $request['numFacture'])
                     ->get();

@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Consultation;
 use App\Models\ExamenEchographie;
 use App\Models\ExamenLaboratoire;
 use Illuminate\Database\Migrations\Migration;
@@ -17,10 +18,12 @@ return new class extends Migration
     {
         Schema::create('examens', function (Blueprint $table) {
             $table->id();
+            $table->foreignIdFor(Consultation::class)->nullable()->constrained();
             $table->foreignIdFor(ExamenLaboratoire::class)->nullable()->constrained();
             $table->foreignIdFor(ExamenEchographie::class)->nullable()->constrained();
             $table->string('resultat_examens');
             $table->string('observation_examens');
+            $table->boolean('finished')->default(0);
             $table->timestamps();
         });
     }

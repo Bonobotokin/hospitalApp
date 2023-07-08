@@ -67,6 +67,13 @@ window.onload = () => {
 		}
 
 	}
+
+
+	var PrixConsultaion = document.getElementById('PrixConsultaion');
+	const facturePaye = document.getElementById('facturePaye');
+	var totalLaboratoire = document.getElementById("totalLaboratoire");
+	facturePaye.value = parseFloat(totalLaboratoire.textContent) + parseFloat(PrixConsultaion.textContent);
+
 };
 
 
@@ -134,6 +141,7 @@ function btnvalide() {
 	const prix = document.querySelectorAll('#prix');
 	const tFoot = document.getElementById('tFoot');
 	const PrixConsultaion = document.getElementById('PrixConsultaion');
+	const totalLaboratoire = document.getElementById("totalLaboratoire");
 	const facturePaye = document.getElementById('facturePaye');
 	let totalPrix = 0;
 
@@ -150,15 +158,102 @@ function btnvalide() {
 	});
 
 	tFoot.textContent = totalPrix;
+	if(totalLaboratoire){
+		facturePaye.value = parseFloat(totalPrix) + parseFloat(PrixConsultaion.textContent) + parseFloat(totalLaboratoire.textContent);
 
+	}else{
+		
 	facturePaye.value = parseFloat(totalPrix) + parseFloat(PrixConsultaion.textContent);
+	}
 
-	console.log(facturePaye);
 
 
 
 
 }
+
+
+function saveAndvalideExamenLabo() {
+
+	const li = document.querySelectorAll('#laboListe li .form-check input');
+	const laboListe = document.querySelectorAll('#laboListe');
+	const listeExamenLabo = document.getElementById('lsiteLabo');
+
+	const factureMedicament = document.querySelector('#factureMedicament');
+	const sendBtn = document.getElementById("sendBtn");
+
+	// const abotProduits = document.querySelectorAll('#laboListe .abotProduits');
+
+
+	// li.forEach((div) => {
+	// 	listeExamenLabo.appendChild(div);
+	// });
+	var liCount = 0;
+	const input = document.createElement('input');
+	if (li.length > 0) {
+
+		const removeContent = document.getElementById('laboListe');
+		removeContent.parentNode.removeChild(removeContent);
+
+		input.name = "nombreLaboratoire";
+		input.value = li.length;
+		input.type = "hidden";
+		for (let i = 0; i < li.length; i++) {
+			li[i].name = i + "[designation]";
+			// liCount++;
+			console.log(li[i])
+			listeExamenLabo.appendChild(li[i]);
+
+			// updateCarteOrdonnance(li[i]);
+			// $(this).parent(li).remove();
+		}
+		listeExamenLabo.appendChild(input);
+		document.getElementById("validateLabo").style.display = "none";
+		sendBtn.style.display = "flex";
+	}
+
+
+}
+
+
+function addInListeAnalyse() {
+    var listeAnalyse = document.getElementById("listeAnalyse");
+    var selectedIndex = listeAnalyse.selectedIndex;
+    var selectedOption = listeAnalyse.options[selectedIndex];
+	var tr = document.createElement("tr");
+    if (selectedOption) {
+        var selectedValue = selectedOption.value;
+        var selectedText = selectedOption.innerText;
+        tr.innerHTML = 
+		`
+			<td>${selectedText} <input type="hidden" value="${selectedValue}"/></td>
+			<td></td>
+
+		`
+        console.log("Valeur sélectionnée :", selectedValue);
+        console.log("Texte sélectionné :", selectedText);
+    } else {
+        alert("Aucune option sélectionnée.");
+    }
+}
+
+// function updateCarteOrdonnance(laboElement) {
+// 	$.ajax({
+// 		url: '{{ route("consultation.getElementLabo") }}',
+// 		type: 'post',
+// 		dataType: 'json',
+// 		success: function (data) {
+// 			console.log(JSON.stringify(data));
+
+
+// 		},
+// 		error: function (xhr, status, error) {
+
+// 			alert(console.error(xhr.responseText));
+// 		}
+// 	});
+
+// }
 
 function hideShowParamaetre() {
 	let showparametre = document.getElementById('parametre');
@@ -171,16 +266,15 @@ async function getInfoPatientFacture() {
 }
 
 
-function getMonantReste()
-{
+function getMonantReste() {
 	const totalMontantDefault = document.getElementById('totalMontantDefault');
 	const montantPayed = document.getElementById('montantPayed');
 	const RestePayed = document.getElementById('RestePayed');
 
-	
+
 	const resteData = totalMontantDefault.value - montantPayed.value
 	RestePayed.value = resteData;
-	
+
 
 }
 

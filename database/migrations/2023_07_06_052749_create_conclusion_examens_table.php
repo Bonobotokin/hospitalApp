@@ -1,7 +1,5 @@
 <?php
 
-use App\Models\Consultation;
-use App\Models\Prescription;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -15,13 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('facture_dispensaires', function (Blueprint $table) {
+        Schema::create('conclusion_examens', function (Blueprint $table) {
             $table->id();
-            $table->integer('montant')->default(0.00);
-            $table->integer('reste')->default(0.00);
-            $table->boolean('isNotPayed')->default(0);
-            $table->foreignIdFor(Consultation::class)->nullable()->constrained();
-            
+            $table->string('examen_id')->nullable();
+            $table->string('details')->nullable();
             $table->timestamps();
         });
     }
@@ -33,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('facture_dispensaires');
+        Schema::dropIfExists('conclusion_examens');
     }
 };

@@ -23,9 +23,14 @@ class Prescription extends Model
 
     public function consultations()
     {
-        return $this->belongsToMany(Consultation::class, 'consultation_prescriptions');
+        return $this->belongsToMany(Consultation::class, 'consultation_examen_prescriptions');
     }
 
+    public function examen() 
+    {
+        return $this->belongsToMany(Examen::class,'consultation_examen_prescriptions');
+    }
+    
     public function produit () : BelongsTo
     {
         return $this->belongsTo(Produit::class);

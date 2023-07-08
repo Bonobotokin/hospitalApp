@@ -9,7 +9,7 @@
         var item = $(this).prevAll('.laboInput').val();
 
         if (item) {
-          laboItem.append("<li><div class='form-check'><input type='text'  name='examens[designation]' class='form-control' value='"+ item +"'/></div><i class='remove mdi mdi-close-circle-outline'></i></li>");
+          laboItem.append("<li><div class='form-check'><input style='margin: 1% !important ' type='text'  name='examens[designation]' class='form-control' value='"+ item +"'/></div><i class='remove mdi mdi-close-circle-outline'></i></li>");
           laboInput.val("");
         }
 

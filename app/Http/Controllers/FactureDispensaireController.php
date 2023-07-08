@@ -7,10 +7,21 @@ use App\Action\factureDispensaireAction;
 use App\Http\Requests\StoreFactureDispensaireRequest;
 use App\Http\Requests\UpdateFactureDispensaireRequest;
 use App\Models\FactureDispensaire;
+use App\Repository\FactureRepository;
 use Illuminate\Http\Request;
 
 class FactureDispensaireController extends Controller
 {
+
+    private $factureRepository;
+    public function __construct(
+
+        FactureRepository $factureRepository
+
+    ) {
+        $this->factureRepository = $factureRepository;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -43,7 +54,7 @@ class FactureDispensaireController extends Controller
             //code...
             $Response = $action->savePayement($request);
 
-            dd($Response, 'caisses');
+            // dd($Response, 'caisses');
 
             if (!is_null($Response['data']))
             {
@@ -56,6 +67,13 @@ class FactureDispensaireController extends Controller
         } catch (\Throwable $th) {
             //throw $th;
         }
+    }
+
+    public function getFacture($id)
+    {
+        $facture = $this->factureRepository->getFacture($id);
+        // dd($ordonnance);
+        return response()->json(['factureId' => $facture]);
     }
 
     /**

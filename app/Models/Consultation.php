@@ -41,9 +41,15 @@ class Consultation extends Model
     }
 
     
-    public function prescriptions()
+    public function prescription()
     {
-        return $this->belongsToMany(Prescription::class, 'consultation_prescriptions');
+        return $this->belongsToMany(Prescription::class, 'consultation_examen_prescriptions');
+    }
+
+    public function examens() 
+    {
+        return $this->belongsToMany(Examen::class, 'consultation_examen_prescriptions')
+        ->withTimestamps();
     }
 
     public function factureDispensaire () : HasMany

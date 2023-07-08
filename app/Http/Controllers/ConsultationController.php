@@ -7,6 +7,7 @@ use App\Http\Requests\StoreConsultationRequest;
 use App\Http\Requests\UpdateConsultationRequest;
 use App\Models\Consultation;
 use App\Repository\ConsultationRepository;
+use App\Repository\ExamenRepository;
 use App\Repository\LaboratoireRepository;
 use App\Repository\PatientRepository;
 use App\Repository\PersonnelRepository;
@@ -22,6 +23,7 @@ class ConsultationController extends Controller
     protected $patientRepository;
     private $stockPharmacieRepository;
     private $laboratoireRepository;
+    private $examenRepository;
 
     public function __construct(
 
@@ -30,19 +32,19 @@ class ConsultationController extends Controller
         PersonnelRepository $personnelRepository,
         PatientRepository $patientRepository,
         StockPharmacieRepository $stockPharmacieRepository,
-        LaboratoireRepository $laboratoireRepository
+        LaboratoireRepository $laboratoireRepository,
+        ExamenRepository $examenRepository
 
-    )
-    {
-        
+    ) {
+
         $this->consultationRepository = $consultationRepository;
         $this->typesConsultationRepository = $typesConsultationRepository;
         $this->personnelRepository  = $personnelRepository;
         $this->patientRepository = $patientRepository;
         $this->stockPharmacieRepository = $stockPharmacieRepository;
         $this->laboratoireRepository = $laboratoireRepository;
-
-    } 
+        $this->examenRepository = $examenRepository;
+    }
 
     /**
      * Display a listing of the resource.
@@ -53,14 +55,14 @@ class ConsultationController extends Controller
     {
         $listeConsultation = $this->consultationRepository->get_patient_consultation_to_day();
         $dateConsultation = $this->consultationRepository->date_consultation();
-        
-        return view('Medecins.listeConsultation', 
+
+        return view(
+            'Medecins.listeConsultation',
             [
                 'listeConsultation' => $listeConsultation,
                 'dateConsultation' => $dateConsultation
             ]
         );
-
     }
 
     /**
@@ -81,18 +83,18 @@ class ConsultationController extends Controller
      */
     public function store(Request $request, ConsultationAction $action)
     {
+        // dd($request);exit;
         try {
             //code...
             $consultationResponse = $action->newPatientConsulted($request);
 
             dd($consultationResponse, 'consultationController');
+            exit;
 
-            if (!is_null($consultationResponse['data']))
-            {
-
-                return redirect()->route('get.all.consultation',['reponse'=>$consultationResponse])->with('success', $consultationResponse['message']);
-
-            }else {
+            if (!is_null($consultationResponse['data']) && !is_null($consultationResponse['patient_id'])) {
+                // consulted/{id}/patient
+                return redirect()->route('consulte.patient', ['id' => $consultationResponse['patient_id'], 'reponse' => $consultationResponse])->with('success', $consultationResponse['message']);
+            } else {
                 return redirect()->back()->withErrors($consultationResponse)->withInput();
             }
         } catch (\Throwable $th) {
@@ -100,20 +102,28 @@ class ConsultationController extends Controller
         }
     }
 
-    
+
     public function consultePatient(int $id)
-    {   
+    {
         // dd($id);
         $patientInfo = $this->consultationRepository->getPatientById($id);
         $produits = $this->stockPharmacieRepository->getAll();
         $parametre = $this->patientRepository->getParametrepatient($id);
         $laboratoire = $this->laboratoireRepository->getAll();
-        return view('Medecins.patientConsulter', 
+        $examen = $this->examenRepository->getExamenConsultation($id);
+        $resultatExamen = $this->examenRepository->getResultatById($id);  
+        $getRapport = $this->examenRepository->getConclusionExamenById($id);
+        // dd($resultatExamen);
+        return view(
+            'Medecins.patientConsulter',
             [
                 'patient' => $patientInfo[0],
                 'produitListe' => $produits,
                 'parametre' => $parametre[0],
-                'laboratoire' => $laboratoire
+                'laboratoire' => $laboratoire,
+                'examen' => $examen,
+                'resultatLabo' => $resultatExamen,
+                'rapport' => $getRapport
             ]
         );
     }

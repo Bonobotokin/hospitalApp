@@ -14,4 +14,6 @@ interface FactureRepositoryInterface
 
     public function getFacture(int $numFacture);
 
+    // public function getExamens
+
 }

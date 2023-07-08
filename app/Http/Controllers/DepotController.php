@@ -6,6 +6,7 @@ use App\Models\Depot;
 use App\Repository\DepotsRepository;
 use App\Http\Requests\StoreDepotRequest;
 use App\Http\Requests\UpdateDepotRequest;
+use GuzzleHttp\Psr7\Request;
 
 class DepotController extends Controller
 {
@@ -49,7 +50,7 @@ class DepotController extends Controller
      * @param  \App\Http\Requests\StoreDepotRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreDepotRequest $request)
+    public function store(Request $request)
     {
         //
     }
@@ -83,7 +84,7 @@ class DepotController extends Controller
      * @param  \App\Models\Depot  $depot
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateDepotRequest $request, Depot $depot)
+    public function update(Request $request, Depot $depot)
     {
         //
     }
