@@ -143,10 +143,11 @@
                     </div>
                     <div id="resultatExamens" style="display:none" class="row">
                         <div class="col-md-12 text-center">
-                            <h6 class="preview-subject">Resultat d'examens</h6>
+                            <h4 class="preview-subject">Resultat d'examens</h4>
                         </div>
 
                         <div class="col-md-8">
+                            <h6 class="preview-subject">Laboratoire</h6>
                             <div class="table-responsive">
                                 <table class="table table-bordered">
                                     <thead>
@@ -174,7 +175,13 @@
                             </div>
                         </div>
                         <div class="col-md-4">
-                            <p>{{ $rapport[0]->details }}</p>
+                            <table class="table">
+                                <tbody>
+                                    <tr>
+                                        <td>{{ $rapport[0]->details }}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                     <div id="diagnostic" style="display:none" class="row">
@@ -297,12 +304,13 @@
                                             </tr>
                                         </thead>
                                         <tbody>
+
                                             @foreach ($examen as $dataExamen)
 
                                             @foreach ($dataExamen as $value)
-                                            <tr>
+                                            <tr class="listeExamen">
                                                 <td>{{ $value['designation_examens_labo'] }}</td>
-                                                <td class="text-right"> {{ $value['prix'] }} </td>
+                                                <td class="prix text-right">{{ $value['prix'] }}</td>
                                             </tr>
                                             @endforeach
                                             @endforeach

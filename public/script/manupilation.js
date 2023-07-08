@@ -72,6 +72,16 @@ window.onload = () => {
 	var PrixConsultaion = document.getElementById('PrixConsultaion');
 	const facturePaye = document.getElementById('facturePaye');
 	var totalLaboratoire = document.getElementById("totalLaboratoire");
+	var elementsPrix = document.getElementsByClassName('prix');
+	var sum = 0;
+
+	for (let i = 0; i < elementsPrix.length; i++) {
+		var prix = parseFloat(elementsPrix[i].innerText);
+		sum += prix;
+	}
+	totalLaboratoire.innerText = sum
+	// console.log(sum);
+
 	facturePaye.value = parseFloat(totalLaboratoire.textContent) + parseFloat(PrixConsultaion.textContent);
 
 };
@@ -158,12 +168,12 @@ function btnvalide() {
 	});
 
 	tFoot.textContent = totalPrix;
-	if(totalLaboratoire){
+	if (totalLaboratoire) {
 		facturePaye.value = parseFloat(totalPrix) + parseFloat(PrixConsultaion.textContent) + parseFloat(totalLaboratoire.textContent);
 
-	}else{
-		
-	facturePaye.value = parseFloat(totalPrix) + parseFloat(PrixConsultaion.textContent);
+	} else {
+
+		facturePaye.value = parseFloat(totalPrix) + parseFloat(PrixConsultaion.textContent);
 	}
 
 
@@ -217,24 +227,24 @@ function saveAndvalideExamenLabo() {
 
 
 function addInListeAnalyse() {
-    var listeAnalyse = document.getElementById("listeAnalyse");
-    var selectedIndex = listeAnalyse.selectedIndex;
-    var selectedOption = listeAnalyse.options[selectedIndex];
+	var listeAnalyse = document.getElementById("listeAnalyse");
+	var selectedIndex = listeAnalyse.selectedIndex;
+	var selectedOption = listeAnalyse.options[selectedIndex];
 	var tr = document.createElement("tr");
-    if (selectedOption) {
-        var selectedValue = selectedOption.value;
-        var selectedText = selectedOption.innerText;
-        tr.innerHTML = 
-		`
+	if (selectedOption) {
+		var selectedValue = selectedOption.value;
+		var selectedText = selectedOption.innerText;
+		tr.innerHTML =
+			`
 			<td>${selectedText} <input type="hidden" value="${selectedValue}"/></td>
 			<td></td>
 
 		`
-        console.log("Valeur sélectionnée :", selectedValue);
-        console.log("Texte sélectionné :", selectedText);
-    } else {
-        alert("Aucune option sélectionnée.");
-    }
+		console.log("Valeur sélectionnée :", selectedValue);
+		console.log("Texte sélectionné :", selectedText);
+	} else {
+		alert("Aucune option sélectionnée.");
+	}
 }
 
 // function updateCarteOrdonnance(laboElement) {

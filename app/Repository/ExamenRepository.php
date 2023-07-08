@@ -40,7 +40,7 @@ class ExamenRepository implements ExamenRepositoryInterface
                         'id' => $examenLaboratoire->id,
                         'designation_examens_labo' => $examenLaboratoire->designation_examens_labo,
                         'prix' => $examenLaboratoire->prix_examen,
-                        'total' => $totalPrix
+                        'total' => is_null($totalPrix) ? " " : $totalPrix
                     ];
                 });
 

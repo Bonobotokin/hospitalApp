@@ -113,7 +113,7 @@ class ConsultationController extends Controller
         $examen = $this->examenRepository->getExamenConsultation($id);
         $resultatExamen = $this->examenRepository->getResultatById($id);  
         $getRapport = $this->examenRepository->getConclusionExamenById($id);
-        // dd($resultatExamen);
+        // dd($examen);
         return view(
             'Medecins.patientConsulter',
             [
